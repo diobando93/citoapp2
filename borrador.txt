@@ -1,0 +1,27 @@
+{
+  "name": "citoapp2",
+  "version": "1.0.0",
+  "description": "aplicacion para laboratorios de citologia",
+  "main": "src/index.js",
+  "scripts": {
+      "dev": "nodemon src/index.js",
+      "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diobando93/citoapp2.git"
+  },
+  "author": "Eter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diobando93/citoapp2/issues"
+  },
+  "homepage": "https://github.com/diobando93/citoapp2#readme",
+  "dependencies": {
+    "electron": "^8.2.1",
+    "mongoose": "^5.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
