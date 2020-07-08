@@ -11,13 +11,21 @@
 
   <body>
     <div class="container">
-    <form action="action_page.php">
+    <form >
       <div class="row">
         <div class="col-25">
           <label for="fname">Cedula</label>
         </div>
         <div class="col-75">
           <input type="text" id="Ced" name="Cedu" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="fname">Historia Clinica</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="h_clinica" name="h_clinica" >
         </div>
       </div>
       <div class="row">
@@ -42,6 +50,16 @@
         </div>
         <div class="col-75">
           <input type="text" id="edad" name="edad" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="lname">Fecha de nacimiento</label>
+        </div>
+        <div class="col-75">
+          <input type="date" id="f_nacimiento" name="f_nacimiento"
+                  value="2018-07-22"
+                   min="1900-01-01" max="2018-12-31">
         </div>
       </div>
       <div class="row">
@@ -90,6 +108,46 @@
         </div>
         <div class="col-75">
           <input type="text" id="sector" name="sector" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="linstruccion">Instruccion</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="instruccion" name="instruccion" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="locupacion">Ocupacion</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ocupacion" name="ocupacion" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="lins_jefefamilia">Instruccion jefe de famila</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ins_jefefamilia" name="ins_jefefamilia" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="locu_jefefamilia">Ocupacion jefe de famila</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ocu_jefefamilia" name="ocu_jefefamilia" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="locu_jefefamilia">Zurita</label>
+        </div>
+        <div class="col-75">
+          <input type="checkbox" id="zurita" name="zurita" value= "verdadero" >
         </div>
       </div>
       <div class="row">

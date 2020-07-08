@@ -1,7 +1,14 @@
+const electron = require('electron')
+const {ipcRenderer} = electron
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-const dropdown = document.getElementsByClassName("dropdown-btn");
+var dropdown = document.getElementsByClassName("dropdown-btn");
 //var dropdown = document.getElementsByClassName("dropdown-btn");
+
 var i;
+
+let pedido = false;
+let resultado = false;
+let retiro = false;
 
 for (i = 0; i < dropdown.length; i++) {
   dropdown[i].addEventListener("click", function() {
@@ -14,3 +21,8 @@ for (i = 0; i < dropdown.length; i++) {
      }
  });
 }
+
+document.getElementById('pedidos').addEventListener('click', function(e){
+    pedido = true
+    ipcRenderer.send('envio-datos-paciente', pedido);
+});
