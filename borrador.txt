@@ -25,3 +25,19 @@
     "nodemon": "^2.0.2"
   }
 }
+
+
+<div class="row">
+  <div class="col-25">
+    <label for="fname">Cedula</label>
+  </div>
+  <div class="col-75">
+    <input type="text" id="Ced" name="Cedu" >
+  </div>
+  <div class="col-25">
+    <label for="hcllinica">Historia Clinica</label>
+   </div>
+   <div class="col-75">
+     <input type="text" id="h_clinica" name="h_clinica" >
+   </div>
+</div>
