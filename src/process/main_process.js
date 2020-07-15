@@ -1,5 +1,6 @@
 const {BrowserWindow, ipcMain, app} = require('electron');
 const {recibir} = require('./pedido_process.js');
+const {consultar} = require('./resultado_process.js');
 
 function createWindow(){
     const win = new BrowserWindow({
@@ -16,6 +17,9 @@ ipcMain.on('envio-datos-paciente', (e, args) => {
     app.whenReady().then(recibir)
 });
 
+ipcMain.on('consulta-datos-paciente', (e, args) =>{
+    app.whenReady().then(consultar)
+})
 
 
 module.exports = {createWindow};

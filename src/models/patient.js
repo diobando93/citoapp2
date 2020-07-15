@@ -1,48 +1,31 @@
 const { model, Schema } = require('mongoose')
 
-const Patient = new Schema ({
+const Paciente = new Schema ({
     h_clinica: String,
     cedula: String,
     apellidos: String,
     nombres: String,
     f_nacimiento: Date,
+    edad: String,
+    ubicacion: {
+        pais: String,
+        provincia: String,
+        canton: String,
+        parroquia: String,
+        ciudad: String,
+        barrio: String,
+        direccion: String,
+        sector: String,
+    },
+    estudios: {
+        instruccion: String,
+        ocupacion: String,
+        ins_jefefamilia: String,
+        ocu_jefefamilia: String
+    }
 });
 
-const DatPatient = new Schema ({
-    h_clinica: String,
-    cedula: String,
-    f_creacion: Date,
-    solca: Boolean,
-    edad: String
-});
-
-const AddrPatient = new Schema ({
-    cedula: String,
-    h_clinica: String,
-    pais: String,
-    provincia: String,
-    canton: String,
-    parroquia: String,
-    ciudad: String,
-    barrio: String,
-    direccion: String,
-    sector: String,
-    instruccion: String,
-    ocupacion: String,
-    ins_jefefamilia: String,
-    ocu_jefefamilia: String
-});
-
-
-
-
-
-module.exports = model('Patient', Patient);
-module.exports = model('DatPatient', DatPatient);
-module.exports = model('AddrPatient', AddrPatient);
-
-
-
+module.exports = model('Patient', Paciente);
 /*
 module.exports = model('Sample', Sample);
 const Antecedent = new Schema ({

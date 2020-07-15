@@ -22,7 +22,13 @@ for (i = 0; i < dropdown.length; i++) {
  });
 }
 
+
 document.getElementById('pedidos').addEventListener('click', function(e){
-    pedido = true
+    pedido = true;
     ipcRenderer.send('envio-datos-paciente', pedido);
+});
+
+document.getElementById('resultados').addEventListener('click', function(e) {
+    resultado = true;
+    ipcRenderer.send('consulta-datos-paciente', resultado);
 });
