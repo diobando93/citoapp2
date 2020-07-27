@@ -4,8 +4,8 @@
   "description": "aplicacion para laboratorios de citologia",
   "main": "src/index.js",
   "scripts": {
-      "dev": "nodemon --watch . --exec \"electron . --debug\"",
-      "start": "electron ."
+    "dev": "nodemon --watch . --exec \"electron . --debug\"",
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/diobando93/citoapp2#readme",
   "dependencies": {
+    "ecuador-postal-codes": "0.0.6",
     "electron": "^8.2.1",
     "mongoose": "^5.9.7"
   },

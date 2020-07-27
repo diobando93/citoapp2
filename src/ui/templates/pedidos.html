@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,153 +11,168 @@
 
   <body>
     <div class="container">
-    <form >
-      <div class="row">
-        <div class="col-25">
-          <label for="fname">Cedula</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="Ced" name="Cedu" >
-        </div>
-        <div class="col-25">
-          <label for="fname">Historia Clinica</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="h_clinica" name="h_clinica" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Nombres</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="Nombre" name="Nombres" >
-        </div>
-        <div class="col-25">
-          <label for="lname">Apellidos</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="Apellido" name="Apellidos" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Edad</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="edad" name="edad" >
-        </div>
-        <div class="col-25">
-          <label for="lname">Fecha de nacimiento</label>
-        </div>
-        <div class="col-75">
-          <input type="date" id="f_nacimiento" name="f_nacimiento"
-                  value="2018-07-22"
-                   min="1900-01-01" max="2018-12-31">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">País</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="pais" name="pais" >
-        </div>
-        <div class="col-25">
-          <label for="lname">Provincia</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="provincia" name="provincia" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Cantón</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="canton" name="canton" >
-        </div>
-        <div class="col-25">
-          <label for="lname">Parroquía</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="parroquia" name="parroquia" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Ciudad</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="ciudad" name="ciudad" >
-        </div>
-        <div class="col-25">
-          <label for="lname">Sector</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="sector" name="sector" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="linstruccion">Instruccion</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="instruccion" name="instruccion" >
-        </div>
-        <div class="col-25">
-          <label for="locupacion">Ocupacion</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="ocupacion" name="ocupacion" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lins_jefefamilia">Instruccion jefe de famila</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="ins_jefefamilia" name="ins_jefefamilia" >
-        </div>
-        <div class="col-25">
-          <label for="locu_jefefamilia">Ocupacion jefe de famila</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="ocu_jefefamilia" name="ocu_jefefamilia" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="esta_toma_muestra">Establecimiento toma de muestra</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="est_toma_muestra" name="est_toma_muestra" >
-        </div>
-        <div class="col-25">
-          <label for="f_tmuestra">Fecha toma de muestra</label>
-        </div>
-        <div class="col-75">
-            <input type="date" id="f_muestra" name="f_muestra"
-                    value="2018-07-22"
-                     min="1900-01-01" max="2018-12-31">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="locu_jefefamilia">Zurita</label>
-        </div>
-        <div class="col-75">
-          <input type="checkbox" id="zurita" name="zurita" value= "verdadero" >
-        </div>
-      </div>
-      <div class="row">
-         <a href="main.html">Regresar</a>
-      </div>
-      <div class="row">
-        <input type="button" value="Grabar" onclick="pedido_render()">
-      </div>
-      <script  src = "../scripts/pedidos_render.js"> </script>
-    </form>
+        <form>
+            <!-- Cedula e Historia Clinica -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Cedula</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Ced" name="Cedu">
+                </div>
+                <div class="col-25">
+                    <label for="fname">Historia Clinica</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="h_clinica" name="h_clinica" style="display: none;">
+                </div>
+            </div>
+            <!-- Nombres y Apellidos -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Nombres</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Nombre" name="Nombres" style="display: none;">
+                </div>
+                <div class="col-25">
+                    <label for="lname">Apellidos</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Apellido" name="Apellidos" style="display: none;">
+                </div>
+            </div>
+            <!-- Edad y Fecha de Nacimiento -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Edad</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="edad" name="edad" style="display: none;">
+                </div>
+                <div class="col-25">
+                    <label for="lname">Fecha de nacimiento</label>
+                </div>
+                <div class="col-75">
+                    <input type="date" id="f_nacimiento" name="f_nacimiento"
+                           value="2018-07-22"
+                           min="1900-01-01" max="2018-12-31" style="display: none;">
+                </div>
+            </div>
+            <!-- Pais y Provincia -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">País</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="pais" name="pais" style="display: none;">
+                </div>
+                <div class="col-25">
+                    <label for="lname">Provincia</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="provincia" name="provincia" style="display: none;">
+                </div>
+            </div>
+            <!-- canton parroquia -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Cantón</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="canton" name="canton" style="display: none;">
+                </div>
+                <div class="col-25">
+                    <label for="lname">Parroquía</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="parroquia" name="parroquia" style="display: none;">
+                </div>
+            </div>
+            <!-- Ciudad Sector -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Ciudad</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="ciudad" name="ciudad" style="display: none;">
+                </div>
+                <div class="col-25">
+                    <label for="lname">Sector</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="sector" name="sector" style="display: none;">
+                </div>
+            </div>
+            <!-- Instruccion ocupacion -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="linstruccion">Instruccion</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="instruccion" name="instruccion" style="display: none;">
+                </div>
+                <div class="col-25">
+                    <label for="locupacion">Ocupacion</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="ocupacion" name="ocupacion" style="display: none;">
+                </div>
+            </div>
+            <!-- ins_jefefamilia ocu_jefefamilia -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lins_jefefamilia">Instruccion jefe de famila</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="ins_jefefamilia" name="ins_jefefamilia" style="display: none;">
+                </div>
+                <div class="col-25">
+                    <label for="locu_jefefamilia">Ocupacion jefe de famila</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="ocu_jefefamilia" name="ocu_jefefamilia" style="display: none;">
+                </div>
+            </div>
+            <!-- est_toma_muestra  f_muestra -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="esta_toma_muestra">Establecimiento toma de muestra</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="est_toma_muestra" name="est_toma_muestra" style="display: none;">
+                </div>
+                <div class="col-25">
+                    <label for="f_tmuestra">Fecha toma de muestra</label>
+                </div>
+                <div class="col-75">
+                    <input type="date" id="f_muestra" name="f_muestra"
+                           value="2018-07-22"
+                           min="1900-01-01" max="2018-12-31" style="display: none;">
+                </div>
+            </div>
+            <!-- locu_jefefamilia -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="locu_jefefamilia">Zurita</label>
+                </div>
+                <div class="col-75">
+                    <input type="checkbox" id="zurita" name="zurita" value="verdadero" style="display: none;">
+                </div>
+            </div>
+            <!-- Write your comments here -->
+            <div class="row">
+                <a href="main.html">Regresar</a>
+            </div>
+
+            <div class="row">
+                <input type="button" value="Grabar" onclick="pedido_render()">
+
+            </div>
+
+            <script src="../scripts/pedidos_render.js"></script>
+
+        </form>
   </div>
 </body>
 </html>

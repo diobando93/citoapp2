@@ -6,7 +6,7 @@ function consultar(){
         console.log(args);
         const paciente = await Patient.findOne({cedula: args},
             'apellidos nombres').exec();
-        e.reply('response', paciente);    
+        e.reply('response', JSON.stringify(paciente));    
         console.log(paciente);
     })
 }

@@ -21,6 +21,58 @@ const solca  = document.querySelector(".col-75 input[name='solca']");
 //let enviar = false;
 let datos = [];
 
+
+var input = document.getElementById("Ced");
+
+input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        ipcRenderer.send('cedula', cedula.value);
+        var x = document.getElementById("Nombre");
+        if (x.style.display === "none") {
+            document.getElementById('h_clinica').style.display = 'block';
+            document.getElementById('Nombre').style.display = 'block';
+            document.getElementById('edad').style.display = 'block';
+            document.getElementById('Apellido').style.display = 'block';
+            document.getElementById('f_nacimiento').style.display = 'block';
+            document.getElementById('pais').style.display = 'block';
+            document.getElementById('provincia').style.display = 'block';
+            document.getElementById('canton').style.display = 'block';
+            document.getElementById('parroquia').style.display = 'block';
+            document.getElementById('ciudad').style.display = 'block';
+            document.getElementById('sector').style.display = 'block';
+            document.getElementById('instruccion').style.display = 'block';
+            document.getElementById('ocupacion').style.display = 'block';
+            document.getElementById('ins_jefefamilia').style.display = 'block';
+            document.getElementById('ocu_jefefamilia').style.display = 'block';
+            document.getElementById('est_toma_muestra').style.display = 'block';
+            document.getElementById('f_muestra').style.display = 'block';
+            document.getElementById('locu_jefefamilia').style.display = 'block';
+        } else {
+            document.getElementById('h_clinica').style.display = 'none';
+            document.getElementById('Nombre').style.display = 'none';
+            document.getElementById('edad').style.display = 'none';
+            document.getElementById('Apellido').style.display = 'none';
+            document.getElementById('f_nacimiento').style.display = 'none';
+            document.getElementById('pais').style.display = 'none';
+            document.getElementById('provincia').style.display = 'none';
+            document.getElementById('canton').style.display = 'none';
+            document.getElementById('parroquia').style.display = 'none';
+            document.getElementById('ciudad').style.display = 'none';
+            document.getElementById('sector').style.display = 'none';
+            document.getElementById('instruccion').style.display = 'none';
+            document.getElementById('ocupacion').style.display = 'none';
+            document.getElementById('ins_jefefamilia').style.display = 'none';
+            document.getElementById('ocu_jefefamilia').style.display = 'none';
+            document.getElementById('est_toma_muestra').style.display = 'none';
+            document.getElementById('f_muestra').style.display = 'none';
+            document.getElementById('locu_jefefamilia').style.display = 'none';
+
+        }
+    }
+});
+
+
 function pedido_render(){
     datos.push(cedula.value);
     datos.push(h_clinica.value);
@@ -42,7 +94,6 @@ function pedido_render(){
     ipcRenderer.send('datos', datos);
     datos = [];
 };
-
 
 
     /*
