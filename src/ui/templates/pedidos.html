@@ -12,6 +12,12 @@
   <body>
     <div class="container">
         <form>
+            <!-- Titulo Identificación -->
+            <div class="row">
+                <div class="titulo-principal">
+                    <h1>Identificación / Pedidos</h1>
+                </div>
+            </div>
             <!-- Cedula e Historia Clinica -->
             <div class="row">
                 <div class="col-25">
@@ -20,11 +26,27 @@
                 <div class="col-75">
                     <input type="text" id="Ced" name="Cedu">
                 </div>
+                <div class="separator">
+
+                </div>
                 <div class="col-25">
                     <label for="fname">Historia Clinica</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="h_clinica" name="h_clinica" style="display: none;">
+                    <input type="text" id="h_clinica" name="h_clinica">
+                </div>
+            </div>
+            <!-- Establecimiento -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Establecimiento</label>
+                </div>
+                <div class="col-75">
+                    <select name="establecimiento" id="establecimiento" style="display: none;">
+                        <option value="volvo">1 - Zurita</option>
+                        <option value="saab">2 - Medicamental</option>
+                        <option value="saab">3 - Interno</option>
+                    </select>
                 </div>
             </div>
             <!-- Nombres y Apellidos -->
@@ -34,6 +56,9 @@
                 </div>
                 <div class="col-75">
                     <input type="text" id="Nombre" name="Nombres" style="display: none;">
+                </div>
+                <div class="separator">
+
                 </div>
                 <div class="col-25">
                     <label for="lname">Apellidos</label>
@@ -49,6 +74,9 @@
                 </div>
                 <div class="col-75">
                     <input type="text" id="edad" name="edad" style="display: none;">
+                </div>
+                <div class="separator">
+
                 </div>
                 <div class="col-25">
                     <label for="lname">Fecha de nacimiento</label>
@@ -67,6 +95,9 @@
                 <div class="col-75">
                     <input type="text" id="pais" name="pais" style="display: none;">
                 </div>
+                <div class="separator">
+
+                </div>
                 <div class="col-25">
                     <label for="lname">Provincia</label>
                 </div>
@@ -81,6 +112,9 @@
                 </div>
                 <div class="col-75">
                     <input type="text" id="canton" name="canton" style="display: none;">
+                </div>
+                <div class="separator">
+
                 </div>
                 <div class="col-25">
                     <label for="lname">Parroquía</label>
@@ -97,6 +131,9 @@
                 <div class="col-75">
                     <input type="text" id="ciudad" name="ciudad" style="display: none;">
                 </div>
+                <div class="separator">
+
+                </div>
                 <div class="col-25">
                     <label for="lname">Sector</label>
                 </div>
@@ -107,13 +144,16 @@
             <!-- Instruccion ocupacion -->
             <div class="row">
                 <div class="col-25">
-                    <label for="linstruccion">Instruccion</label>
+                    <label for="lname">Instruccion</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="instruccion" name="instruccion" style="display: none;">
                 </div>
+                <div class="separator">
+
+                </div>
                 <div class="col-25">
-                    <label for="locupacion">Ocupacion</label>
+                    <label for="lname">Ocupacion</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="ocupacion" name="ocupacion" style="display: none;">
@@ -122,13 +162,16 @@
             <!-- ins_jefefamilia ocu_jefefamilia -->
             <div class="row">
                 <div class="col-25">
-                    <label for="lins_jefefamilia">Instruccion jefe de famila</label>
+                    <label for="lname">Instruccion jefe de famila</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="ins_jefefamilia" name="ins_jefefamilia" style="display: none;">
                 </div>
+                <div class="separator">
+
+                </div>
                 <div class="col-25">
-                    <label for="locu_jefefamilia">Ocupacion jefe de famila</label>
+                    <label for="lname">Ocupacion jefe de famila</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="ocu_jefefamilia" name="ocu_jefefamilia" style="display: none;">
@@ -137,13 +180,16 @@
             <!-- est_toma_muestra  f_muestra -->
             <div class="row">
                 <div class="col-25">
-                    <label for="esta_toma_muestra">Establecimiento toma de muestra</label>
+                    <label for="lname">Establecimiento toma de muestra</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="est_toma_muestra" name="est_toma_muestra" style="display: none;">
                 </div>
+                <div class="separator">
+
+                </div>
                 <div class="col-25">
-                    <label for="f_tmuestra">Fecha toma de muestra</label>
+                    <label for="lname">Fecha toma de muestra</label>
                 </div>
                 <div class="col-75">
                     <input type="date" id="f_muestra" name="f_muestra"
@@ -151,22 +197,102 @@
                            min="1900-01-01" max="2018-12-31" style="display: none;">
                 </div>
             </div>
-            <!-- locu_jefefamilia -->
+
+            <!------------------------------------------------->
+            <!-- Titulo Antecedentes -->
             <div class="row">
-                <div class="col-25">
-                    <label for="locu_jefefamilia">Zurita</label>
-                </div>
-                <div class="col-75">
-                    <input type="checkbox" id="zurita" name="zurita" value="verdadero" style="display: none;">
+                <div class="titulo-principal">
+                    <h1>Antecedentes</h1>
                 </div>
             </div>
-            <!-- Write your comments here -->
+            <!-- f_ultimamenstruacion   f_muestra -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Fecha de ultima menstruación</label>
+                </div>
+                <div class="col-75">
+                    <input type="date" id="f_menstruacion" name="f_menstruacion"
+                           value="2018-07-22"
+                           min="1900-01-01" max="2018-12-31" style="display: none;">
+                </div>
+                <div class="separator">
+
+                </div>
+                <div class="col-25">
+                    <label for="lname">Método de planificación familiar</label>
+                </div>
+                <div class="col-75">
+                    <select id="metodo_planificacion" name="metodo_planificacion" style="display: none;">
+                        <option value="Condón">1 - Condón</option>
+                        <option value="Diafragma">2 - Diafragma</option>
+                        <option value="DIU">3 - DIU</option>
+                        <option value="Parches hormonales">4 - Parches hormonales</option>
+                        <option value="Inyección">5 - Inyección</option>
+                        <option value="Implantes">6 - Implantes</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Otros Datos -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Actualemente en: </label>
+                </div>
+
+                <div style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 35%; margin-top: 6px; padding-top: 10px">
+                    Embarazo: <input id="embarazo" name="chkRed" type="checkbox" value="Embarazo" class="checkbox"  style="width: 50%;">
+                    Lactancia: <input id="lactancia" name="chkBlue" type="checkbox" value="Lactancia" class="checkbox"  style="width: 50%;">
+                </div>
+            </div>
+            <!-- Otros Datos -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Alguna vez le practicaron: </label>
+                </div>
+
+                <div style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 70%; margin-top: 6px; padding-top: 10px">
+                    DestrucciónLocal: <input id="chkDestrlocal" name="chkDestrlocal" type="checkbox" value="Destrucción Local" class="checkbox" style="margin:10px;">
+                    Conización: <input id="chkConizacion" name="chkConizacion" type="checkbox" value="Conizacion" class="checkbox" style="margin:10px;">
+                    Histectomía: <input id="chkHistectomia" name="chkHistectomia" type="checkbox" value="Histectomia" class="checkbox" style="margin:10px;">
+                    Raioterapia: <input id="chkRadioterapia" name="chkRadioterapia" type="checkbox" value="chkRadioterapia" class="checkbox" style="margin:10px;">
+                    Hormonoterapia: <input id="chkHormonoterapia" name="chkHormonoterapia" type="checkbox" value="Hormonoterapia" class="checkbox" style="margin:10px;">
+                    Tratamiento Oncologico u otros: <input id="chkTratamOncol" name="chkTratamOncol" type="checkbox" value="Trataminento Oncológico u otros" class="checkbox" style="margin:10px;">
+                </div>
+            </div>
+            <!-- Otros Datos -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Se ha realizado una citología: </label>
+                </div>
+
+                <div style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 70%; margin-top: 6px; padding-top: 10px">
+
+                    <div class="row">
+                        <input type="radio" id="rdSi" name="rdCitollogia" value="Si">
+                        <label for="male">Si</label><br>
+                        <input type="radio" id="rdNo" name="rdCitollogia" value="No">
+                        <label for="female">No</label><br>
+                    </div>
+
+                    <div class="row">
+                        <label for="fname"  style="width: 10%;">Cuantas</label>
+                        <input type="text" id="numCitologias" name="numCitologias"  style="width: 10%;">
+                        <label for="fname"  style="width: 10%;">Hace Cuanto</label>
+                        <input type="text" id="numAnios" name="numAnios"  style="width: 10%;">
+                        <label for="fname"  style="width: 10%;">Anios</label>
+                        <input type="text" id="numMeses" name="numMeses"  style="width: 10%;">
+                        <label for="fname"  style="width: 10%;">Meses</label>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- Regresar -->
             <div class="row">
                 <a href="main.html">Regresar</a>
             </div>
-
+            <!-- Grabar -->
             <div class="row">
-                <input type="button" value="Grabar" onclick="pedido_render()">
+                <input type="button" value="Grabar" onclick="pedido_render()" style="background-color:#cff6ff">
 
             </div>
 

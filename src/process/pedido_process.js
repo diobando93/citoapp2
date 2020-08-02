@@ -4,12 +4,17 @@ const Antecedent = require('../models/antecedent.js');
 const Hclinic = require('../models/h_clinic.js');
 const validaciones = require('./validaciones.js');
 let ecuador = require('ecuador-postal-codes');
-
+let hclicia_acttualizar = 0;
+let provincias = [];
 //recibe datos desde el pedido_render
 function recibir(){
     ipcMain.on('cedula', async(e, args) =>{
         console.log(args);
-        hcgen(args)
+        hcgen(args);
+        provincias = provinces();
+        console.log(provincias);
+        canton('PICHINCHA');
+        parroquia('QUITO');
     });
     ipcMain.on('datos', async (e, args) =>{
         let envia0 = true;
@@ -64,6 +69,7 @@ async function hcgen(cedula){
         console.log(hclinicaNew1);
         let actualizar = Hclinic.where({_id: '5f1311fef9417d3136858ce8'});
         actualizar.updateOne({$set: {h_clinica: hclinicaNew1}}).exec();
+        //return hclinicaNew1;
     } else{
         console.log('envie codigo');
         cedula_buscar = cedula_buscar[0];
@@ -77,8 +83,38 @@ async function hcgen(cedula){
         }
         return true;
     }
-
 }
+    function provinces(){
+        let results = ecuador.data.provinces;
+        let provincias = [];
+        for (var key in results){
+            provincias.push(results[key].name);
+        }
+        return provincias;
+    }
+
+    function canton(args){
+        let results =  ecuador.data.lookupProvinces(args);
+        results = results[0];
+        let canton = [];
+        for (var key in results.cities){
+            canton.push(results.cities[key].name);
+        }
+        console.log(canton);
+        //console.log(results.cities[0].towns);
+    }
+
+    function parroquia(args){
+        let result = ecuador.data.lookupCities(args);
+        results = result[0];
+        let parroquia = [];
+        for (var key in results.towns){
+            parroquia.push(results.towns[key].name);
+        }
+        console.log(parroquia);
+        //console.log(result);
+    }
+
 
 
 module.exports = {recibir};

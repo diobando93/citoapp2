@@ -1,125 +1,209 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="../statics/stylepedidos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Laboratorios Citología</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
-    <form action="action_page.php">
-      <div class="row">
-        <div class="col-25">
-          <label for="fname">Cedula</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="Ced" name="Cedu" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Nombres</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="Nombre" name="Nombres" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Apellidos</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="Apellido" name="Apellidos" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Edad</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="edad" name="edad" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">País</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="pais" name="pais" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Provincia</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="provincia" name="provincia" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Cantón</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="canton" name="canton" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Parroquía</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="parroquia" name="parroquia" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Ciudad</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="ciudad" name="ciudad" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Sector</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="sector" name="sector" >
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="Enfermedad">Enfermedad</label>
-        </div>
-        <div class="col-75">
-          <select id="country" name="country">
-            <option value="australia">vph1</option>
-            <option value="canada">vph2</option>
-            <option value="usa">vph3</option>
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="subject">Escribe algo</label>
-        </div>
-        <div class="col-75">
-          <textarea id="subject" name="subject" style="height:200px"></textarea>
-        </div>
-      </div>
-      <div class="row">
-        <input type="button" value="Consultar" onclick="consulta_render()">
-      </div>
-      <div class="row">
-         <a href="main.html">Regresar</a>
-      </div>
-    </form>
-  </div>
-  <script src = "../scripts/resultados_render.js"> </script>
+        <form action="action_page.php">
+            <!-- Titulo -->
+            <div class="row">
+                <div class="titulo-principal">
+                    <h1>Resultados</h1>
+                </div>
+            </div>
+            <!-- RESULTADOS ANTERIORES -->
+            <div class="row">
+                <!-- DATOS Y FICHA DE USUAIO -->
+                <div class="columnContenedor" style="box-shadow: 0 0 0 1px #0084ff; width:20%;">
+                    <!-- Row Titulo -->
+                    <div class="row">
+                        <h2 style="color:#040887">Ficha</h2>
+                    </div>
+                    <!-- Row Nombre -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Nombre:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="nombre" name="nombre">
+                        </div>
+                    </div>
+                    <!-- Row NO INFORME -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">No Informe:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="noInforme" name="noInforme">
+                        </div>
+                    </div>
+                    <!-- Row Fecha de Ingreso -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Fecha de Ingreso:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="fechaIngreso" name="fechaIngreso">
+                        </div>
+                    </div>
+                    <!-- Row Fecha de Muestra -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Fecha de Muestra:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="fechaMuestra" name="fechaMuestra">
+                        </div>
+                    </div>
+                    <!-- Row Establecimiento -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Establecimiento:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="establecimiento" name="establecimiento">
+                        </div>
+                    </div>
+                    <!-- Row Edad -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Edad:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="edad" name="edad">
+                        </div>
+                    </div>
+                    <!-- Row Residencia -->
+                    <div class="row">
+                        <div class="row">
+                            <h2 style="color:#040887">Residencia</h2>
+                        </div>
+                    </div>
+                    <!-- Row Provincia -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Provincia:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="provincia" name="provincia">
+                        </div>
+                    </div>
+                    <!-- Row Canton -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Canton:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="canton" name="canton">
+                        </div>
+                    </div>
+                    <!-- Row Direccion -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Dirección:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="direccion" name="direccion">
+                        </div>
+                    </div>
+                </div>
+            <!-- DATOS FICHAS ANTERIORES -->
+                <div class="columnContenedor" style="box-shadow: 0 0 0 1px #0084ff; width:60%;">
+                <!-- Row Titulo DIAGNOSTICO -->
+                <div class="row">
+                    <h2 style="color:#040887">Diagnosticos</h2>
+                </div>
+                <!-- Row ULTIMO DIAGNOSTICO -->
+                <div class="row">
+                    <div class="campoCorto">
+                        <label for="fname">Ultimo Diagnostico:</label>
+                    </div>
+                </div>
+                <!-- Row DIAGNOSTICO Mas severo-->
+                <div class="row">
+                    <div class="campoCorto">
+                        <label for="fname">Diagnostico mas severo:</label>
+                    </div>
+                </div>
+                <!-- Row Num Informe -->
+                <div class="row">
+                    <div class="campoCorto">
+                        <label for="fname">Numero de Informe:</label>
+                    </div>
+                    <div class="campoCorto">
+                        <input type="text" id="numeroInforme" name="numeroInforme">
+                    </div>
+                </div>
+                <!-- Row Fecha de Informe -->
+                <div class="row">
+                    <div class="campoCorto">
+                        <label for="fname">Fecha de Infomre:</label>
+                    </div>
+                    <div class="campoCorto">
+                        <input type="text" id="fechaInforme" name="fechaInforme">
+                    </div>
+                </div>
+                <!-- Row Diagnostico -->
+                <div class="row">
+                    <div class="campoCorto">
+                        <label for="fname">Diagnostico:</label>
+                    </div>
+                    <div class="campoCorto">
+                        <input type="text" id="Diagnostico" name="Diagnostico">
+                    </div>
+                </div>
+                <!-- Row Titulo DATOS ADICIONALES -->
+                <div class="row">
+                    <h2 style="color:#040887">Datos Adicionales</h2>
+                </div>
+                <!-- Row Gestaciones -->
+                <div class="row">
+                    <div class="campoCorto">
+                        <label for="fname">No de Gestaciones:</label>
+                    </div>
+                    <div class="campoCorto">
+                        <input type="text" id="gestaciones" name="gestaciones">
+                    </div>
+                </div>
+                <!-- Row Partos -->
+                <div class="row">
+                    <div class="campoCorto">
+                        <label for="fname">No de Partos:</label>
+                    </div>
+                    <div class="campoCorto">
+                        <input type="text" id="partos" name="partos">
+                    </div>
+                </div>
+                <!-- Row Abortos -->
+                <div class="row">
+                    <div class="campoCorto">
+                        <label for="fname">No de Abortos:</label>
+                    </div>
+                    <div class="campoCorto">
+                        <input type="text" id="abortos" name="abortos">
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- RESULTADOS ACTUALES -->
+            <!-- BOTON CONSULTAR -->
+            <div class="row">
+                <input type="button" value="Consultar" onclick="consulta_render()">
+            </div>
+            <!-- BOTON REGRESAR -->
+            <div class="row">
+                <a href="main.html">Regresar</a>
+            </div>
+
+        </form>
+    </div>
+    <script src = "../scripts/resultados_render.js"> </script>
 </body>
 </html>

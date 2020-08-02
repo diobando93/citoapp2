@@ -1,11 +1,10 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-const cedula = document.querySelector(".col-75 input[name = 'Cedu']");
+const cedula = document.querySelector(".col-75 input[name = 'nombre']");
 function consulta_render(){
-    ipcRenderer.send('consulta', cedula.value);
+    ipcRenderer.send('consulta', nombre.value);
     ipcRenderer.on('response', (e, args) =>{
-        console.log(args);
-        const resultado = JSON.parse(args);
-        console.log(resultado.nombres);
+        const datos = JSON.parse(args);
+        console.log(datos);
     })
 }

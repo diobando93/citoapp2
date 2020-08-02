@@ -29,8 +29,11 @@ input.addEventListener("keyup", function (event) {
         event.preventDefault();
         ipcRenderer.send('cedula', cedula.value);
         var x = document.getElementById("Nombre");
+
+        console.log("Entro")
+
         if (x.style.display === "none") {
-            document.getElementById('h_clinica').style.display = 'block';
+            document.getElementById('establecimiento').style.display = 'block';
             document.getElementById('Nombre').style.display = 'block';
             document.getElementById('edad').style.display = 'block';
             document.getElementById('Apellido').style.display = 'block';
@@ -47,9 +50,13 @@ input.addEventListener("keyup", function (event) {
             document.getElementById('ocu_jefefamilia').style.display = 'block';
             document.getElementById('est_toma_muestra').style.display = 'block';
             document.getElementById('f_muestra').style.display = 'block';
-            document.getElementById('locu_jefefamilia').style.display = 'block';
-        } else {
-            document.getElementById('h_clinica').style.display = 'none';
+            document.getElementById('f_menstruacion').style.display = 'block';
+            document.getElementById('metodo_planificacion').style.display = 'block';
+            document.getElementById('embarazo').style.display = 'block';
+            document.getElementById('lactancia').style.display = 'block';
+        }
+
+        /*else {
             document.getElementById('Nombre').style.display = 'none';
             document.getElementById('edad').style.display = 'none';
             document.getElementById('Apellido').style.display = 'none';
@@ -68,7 +75,7 @@ input.addEventListener("keyup", function (event) {
             document.getElementById('f_muestra').style.display = 'none';
             document.getElementById('locu_jefefamilia').style.display = 'none';
 
-        }
+        }*/
     }
 });
 
