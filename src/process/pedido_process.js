@@ -12,9 +12,10 @@ function recibir(){
         console.log(args);
         hcgen(args);
         provincias = provinces();
+        e.reply('provincias', JSON.stringify(provincias));
         console.log(provincias);
-        canton('PICHINCHA');
-        parroquia('QUITO');
+        //canton('PICHINCHA');
+        //parroquia('QUITO');
     });
     ipcMain.on('datos', async (e, args) =>{
         let envia0 = true;

@@ -20,6 +20,7 @@ const ocu_jefefamilia = document.querySelector(".col-75 input[name='ocu_jefefami
 const solca  = document.querySelector(".col-75 input[name='solca']");
 //let enviar = false;
 let datos = [];
+const provincia = [];
 
 
 var input = document.getElementById("Ced");
@@ -28,10 +29,11 @@ input.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         ipcRenderer.send('cedula', cedula.value);
+        ipcRenderer.on('provincias', (e,args) =>{
+            provincias = JSON.parse(args);
+            console.log(provincias);
+        })
         var x = document.getElementById("Nombre");
-
-        console.log("Entro")
-
         if (x.style.display === "none") {
             document.getElementById('establecimiento').style.display = 'block';
             document.getElementById('Nombre').style.display = 'block';
@@ -55,27 +57,6 @@ input.addEventListener("keyup", function (event) {
             document.getElementById('embarazo').style.display = 'block';
             document.getElementById('lactancia').style.display = 'block';
         }
-
-        /*else {
-            document.getElementById('Nombre').style.display = 'none';
-            document.getElementById('edad').style.display = 'none';
-            document.getElementById('Apellido').style.display = 'none';
-            document.getElementById('f_nacimiento').style.display = 'none';
-            document.getElementById('pais').style.display = 'none';
-            document.getElementById('provincia').style.display = 'none';
-            document.getElementById('canton').style.display = 'none';
-            document.getElementById('parroquia').style.display = 'none';
-            document.getElementById('ciudad').style.display = 'none';
-            document.getElementById('sector').style.display = 'none';
-            document.getElementById('instruccion').style.display = 'none';
-            document.getElementById('ocupacion').style.display = 'none';
-            document.getElementById('ins_jefefamilia').style.display = 'none';
-            document.getElementById('ocu_jefefamilia').style.display = 'none';
-            document.getElementById('est_toma_muestra').style.display = 'none';
-            document.getElementById('f_muestra').style.display = 'none';
-            document.getElementById('locu_jefefamilia').style.display = 'none';
-
-        }*/
     }
 });
 
