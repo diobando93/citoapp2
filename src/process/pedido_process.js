@@ -6,6 +6,7 @@ const validaciones = require('./validaciones.js');
 let ecuador = require('ecuador-postal-codes');
 let hclicia_acttualizar = 0;
 let provincias = [];
+let cantones = [];
 //recibe datos desde el pedido_render
 function recibir(){
     ipcMain.on('cedula', async(e, args) =>{
@@ -13,7 +14,11 @@ function recibir(){
         hcgen(args);
         provincias = provinces();
         e.reply('provincias', JSON.stringify(provincias));
-        console.log(provincias);
+        ipcMain.on('dropProvincia', async (e, args) =>{
+            cantones = canton(args);
+            e.reply('cantones', JSON.stringify(cantones));
+            cantones = [];
+        });
         //canton('PICHINCHA');
         //parroquia('QUITO');
     });
@@ -29,11 +34,29 @@ function recibir(){
             cedula: args[0],
             apellidos: args[3],
             nombres: args[2],
-            f_nacimiento: args[5]
+            f_nacimiento: args[6],
+            edad: args[5],
+            ubicacion: {
+                pais: args[7],
+                provincia: args[8],
+                canton: args[9],
+                parroquia: args[10],
+                ciudad: args[11],
+                sector: args[12],
+            },
+            estudios: {
+                instruccion: args[13],
+                ocupacion: args[14],
+                ins_jefefamilia: args[15],
+                ocu_jefefamilia: args[16],
+            },
+            est_toma_muestra: args[17],
+            f_muestra: args[18]
         }
         const antecedente = {
             h_clinica: args[1],
-            cedula: args[0]
+            cedula: args[0],
+
         }
         const hclinica ={
             h_clinica: args[1]
@@ -101,7 +124,8 @@ async function hcgen(cedula){
         for (var key in results.cities){
             canton.push(results.cities[key].name);
         }
-        console.log(canton);
+        return canton;
+        //console.log(canton);
         //console.log(results.cities[0].towns);
     }
 

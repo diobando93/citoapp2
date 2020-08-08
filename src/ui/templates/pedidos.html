@@ -24,7 +24,7 @@
                     <label for="fname">Cedula</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="Ced" name="Cedu">
+                    <input type="text" id="Cedula" name="Cedu">
                 </div>
                 <div class="separator">
 
@@ -102,7 +102,8 @@
                     <label for="lname">Provincia</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="provincia" name="provincia" style="display: none;">
+                    <select name="provincia" id="provincia" style="display: none;" onchange="getProvincia()">
+                    </select>
                 </div>
             </div>
             <!-- canton parroquia -->
@@ -111,7 +112,8 @@
                     <label for="lname">Cantón</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="canton" name="canton" style="display: none;">
+                    <select name="canton" id="canton" style="display: none;" onclick="getCanton()">
+                    </select>
                 </div>
                 <div class="separator">
 
@@ -253,7 +255,7 @@
                     DestrucciónLocal: <input id="chkDestrlocal" name="chkDestrlocal" type="checkbox" value="Destrucción Local" class="checkbox" style="margin:10px;">
                     Conización: <input id="chkConizacion" name="chkConizacion" type="checkbox" value="Conizacion" class="checkbox" style="margin:10px;">
                     Histectomía: <input id="chkHistectomia" name="chkHistectomia" type="checkbox" value="Histectomia" class="checkbox" style="margin:10px;">
-                    Raioterapia: <input id="chkRadioterapia" name="chkRadioterapia" type="checkbox" value="chkRadioterapia" class="checkbox" style="margin:10px;">
+                    Radioterapia: <input id="chkRadioterapia" name="chkRadioterapia" type="checkbox" value="chkRadioterapia" class="checkbox" style="margin:10px;">
                     Hormonoterapia: <input id="chkHormonoterapia" name="chkHormonoterapia" type="checkbox" value="Hormonoterapia" class="checkbox" style="margin:10px;">
                     Tratamiento Oncologico u otros: <input id="chkTratamOncol" name="chkTratamOncol" type="checkbox" value="Trataminento Oncológico u otros" class="checkbox" style="margin:10px;">
                 </div>

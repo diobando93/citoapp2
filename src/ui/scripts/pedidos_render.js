@@ -1,37 +1,58 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-const cedula = document.querySelector(".col-75 input[name='Cedu']");
-const h_clinica = document.querySelector(".col-75 input[name='h_clinica']");
-const nombres = document.querySelector(".col-75 input[name='Nombres']");
-const apellidos = document.querySelector(".col-75 input[name='Apellidos']");
-const edad = document.querySelector(".col-75 input[name='edad']");
-const f_nacimiento = document.querySelector(".col-75 input[name='f_nacimiento']");
-const pais = document.querySelector(".col-75 input[name='pais']");
-const provincia = document.querySelector(".col-75 input[name='provincia']");
-const canton = document.querySelector(".col-75 input[name='canton']");
-const parroquia = document.querySelector(".col-75 input[name='parroquia']");
-const ciudad = document.querySelector(".col-75 input[name='ciudad']");
-const direccion = document.querySelector(".col-75 input[name='ciudad']");
-const sector = document.querySelector(".col-75 input[name='sector']");
-const instruccion = document.querySelector(".col-75 input[name='instruccion']");
-const ocupacion = document.querySelector(".col-75 input[name='ocupacion']");
-const ins_jefefamilia = document.querySelector(".col-75 input[name='ins_jefefamilia']");
-const ocu_jefefamilia = document.querySelector(".col-75 input[name='ocu_jefefamilia']");
-const solca  = document.querySelector(".col-75 input[name='solca']");
+const cedula = document.getElementById("Cedula");
+const h_clinica = document.getElementById("h_clinica");
+const establecimiento =document.getElementById("establecimiento");
+const nombres = document.getElementById("Nombre");
+const apellidos = document.getElementById("Apellido");
+const edad = document.getElementById("edad");
+const f_nacimiento = document.getElementById("f_nacimiento");
+const pais = document.getElementById("pais");
+const provincia = document.getElementById("provincia");
+const canton = document.getElementById("canton");
+const parroquia = document.getElementById("parroquia");
+const ciudad = document.getElementById("ciudad");
+const sector = document.getElementById("sector");
+const instruccion = document.getElementById("instruccion");
+const ocupacion = document.getElementById("ocupacion");
+const ins_jefefamilia = document.getElementById("ins_jefefamilia");
+const ocu_jefefamilia = document.getElementById("ocu_jefefamilia");
+const est_toma_muestra  = document.getElementById("est_toma_muestra");
+const f_muestra = document.getElementById("f_muestra");
+const f_menstruacion = document.getElementById("f_menstruacion");
+const metodo_planificacion = document.getElementById("metodo_planificacion");
+const embarazo = document.getElementById("embarazo");
+const lactancia = document.getElementById("lactancia");
+const destruccion_local = document.getElementById("chkDestrlocal");
+const conizacion = document.getElementById("chkConizacion");
+const histectomia = document.getElementById("chkHistectomia");
+const radioterapia = document.getElementById("chkRadioterapia");
+const hormonoterapia = document.getElementById("chkHormonoterapia");
+const onco_otros = document.getElementById("chkTratamOncol");
+const citologiaSi = document.getElementById("rdSi");
+const citologiaNo = document.getElementById("rdNo");
+const NumCitologias = document.getElementById("numCitologias");
+const citologiaAnios = document.getElementById("numAnios");
+const citologiaMeses = document.getElementById("numMeses");
+
 //let enviar = false;
 let datos = [];
-const provincia = [];
+var provinciasDB = [];
+var cantonesDB = [];
 
-
-var input = document.getElementById("Ced");
+var input = document.getElementById("Cedula");
 
 input.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
+        console.log(cedula.value);
         event.preventDefault();
         ipcRenderer.send('cedula', cedula.value);
         ipcRenderer.on('provincias', (e,args) =>{
-            provincias = JSON.parse(args);
-            console.log(provincias);
+            provinciasDB = JSON.parse(args);
+            var dropBox = document.getElementById("provincia");
+            for (var key in provinciasDB) {
+                dropBox.options.add(new Option(provinciasDB[key]));
+            }
         })
         var x = document.getElementById("Nombre");
         if (x.style.display === "none") {
@@ -64,6 +85,7 @@ input.addEventListener("keyup", function (event) {
 function pedido_render(){
     datos.push(cedula.value);
     datos.push(h_clinica.value);
+    datos.push(establecimiento.value);
     datos.push(nombres.value);
     datos.push(apellidos.value);
     datos.push(edad.value);
@@ -78,29 +100,44 @@ function pedido_render(){
     datos.push(ocupacion.value);
     datos.push(ins_jefefamilia.value);
     datos.push(ocu_jefefamilia.value);
+    datos.push(est_toma_muestra.value);
+    datos.push(f_muestra.value);
+    datos.push(f_menstruacion.value);
+    datos.push(metodo_planificacion.value);
+    datos.push(embarazo.value);
+    datos.push(lactancia.value);
+    datos.push(destruccion_local.value);
+    datos.push(conizacion.value);
+    datos.push(histectomia.value);
+    datos.push(radioterapia.value);
+    datos.push(hormonoterapia.value);
+    datos.push(onco_otros.value);
+    datos.push(citologiaSi.value);
+    datos.push(citologiaNo.value);
+    datos.push(NumCitologias.value);
+    datos.push(citologiaAnios.value);
+    datos.push(citologiaMeses.value);
     console.log(datos)
     ipcRenderer.send('datos', datos);
     datos = [];
 };
 
+function getProvincia(){
+    var dropBox = document.getElementById("provincia");
+    var dropProvincia = dropBox.options[dropBox.selectedIndex].value;
+    ipcRenderer.send('dropProvincia', dropProvincia);
+    ipcRenderer.on('cantones', (e, args) =>{
+        cantonesDB = JSON.parse(args);
+        console.log(cantonesDB);
+        //var dropBox2 = document.getElementById("canton");
+        /*
+        for (var key in cantonesDB) {
+            dropBox2.options.add(new Option(cantonesDB[key]));
+        }
+        */
+    })
+}
 
-    /*
-    for (const prop in aux){
-        console.log(aux)
-        console.log('boom')
-        //console.log(patient.dat_personales.aux)
-        //verificacion_vacio(patient.dat_personales["aux"])
-    };
-    let aux = ''
-    const objetos_personales = Object.keys(patient.dat_personales)
-    console.log(objetos_personales.length)
-    //const p = Object.keys(patient.dat_personales[value])
-    console.log(Object.keys(patient.dat_personales))
-    //verificacion_vacio(patient.dat_personales);
-    console.log(patient.dat_personales.cedula);
-    //ipcRenderer.send('save', registro)
-    verificacion_vacio(patient.dat_personales.nombres)
-    verificacion_vacio(patient.dat_personales.apellido)
-    verificacion_vacio(patient.dat_personales.edad)
-
-    */
+function getCanton(){
+    console.log('yaff')
+}

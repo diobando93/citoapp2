@@ -13,8 +13,6 @@ const Paciente = new Schema ({
         canton: String,
         parroquia: String,
         ciudad: String,
-        barrio: String,
-        direccion: String,
         sector: String,
     },
     estudios: {
@@ -22,7 +20,9 @@ const Paciente = new Schema ({
         ocupacion: String,
         ins_jefefamilia: String,
         ocu_jefefamilia: String
-    }
+    },
+    es_toma_muestra: String,
+    f_muestra: Date
 });
 
 module.exports = model('Patient', Paciente);
