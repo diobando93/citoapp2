@@ -41,3 +41,33 @@
      <input type="text" id="h_clinica" name="h_clinica" >
    </div>
 </div>
+dcADcadsc
+
+
+
+
+var dropBox2 = document.getElementById("canton");
+console.log(dropBox2.length);
+if (dropBox2.length > 0){
+    for (var i = 0; i < dropBox2.length; i++) {
+        dropBox2.options.remove(i);
+        console.log(i)
+    }
+}
+ipcRenderer.on('cantones',  (e, args) =>{
+    cantonesDB = JSON.parse(args);
+    //cantonesDB = args;
+    //return cantonesDB;
+    //var dropBox2 = document.getElementById("canton");
+
+    for (var key in cantonesDB) {
+        dropBox2.options.add(new Option(cantonesDB[key]));
+    }
+
+})
+//console.log(cantonesDB);
+/*
+for (var key in cantonesDB) {
+    dropBox2.options.add(new Option(cantonesDB[key]));
+}
+*/

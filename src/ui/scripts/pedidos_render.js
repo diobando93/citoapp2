@@ -39,6 +39,7 @@ const citologiaMeses = document.getElementById("numMeses");
 let datos = [];
 var provinciasDB = [];
 var cantonesDB = [];
+var parroquiasDB = [];
 
 var input = document.getElementById("Cedula");
 
@@ -46,14 +47,12 @@ input.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         console.log(cedula.value);
         event.preventDefault();
-        ipcRenderer.send('cedula', cedula.value);
-        ipcRenderer.on('provincias', (e,args) =>{
-            provinciasDB = JSON.parse(args);
-            var dropBox = document.getElementById("provincia");
-            for (var key in provinciasDB) {
-                dropBox.options.add(new Option(provinciasDB[key]));
-            }
-        })
+        provinciasDB = JSON.parse(ipcRenderer.sendSync('cedula', cedula.value));
+        console.log(provinciasDB);
+        var dropBox = document.getElementById("provincia");
+        for (var key in provinciasDB) {
+            dropBox.options.add(new Option(provinciasDB[key]));
+        }
         var x = document.getElementById("Nombre");
         if (x.style.display === "none") {
             document.getElementById('establecimiento').style.display = 'block';
@@ -125,19 +124,41 @@ function pedido_render(){
 function getProvincia(){
     var dropBox = document.getElementById("provincia");
     var dropProvincia = dropBox.options[dropBox.selectedIndex].value;
-    ipcRenderer.send('dropProvincia', dropProvincia);
-    ipcRenderer.on('cantones', (e, args) =>{
-        cantonesDB = JSON.parse(args);
-        console.log(cantonesDB);
-        //var dropBox2 = document.getElementById("canton");
-        /*
-        for (var key in cantonesDB) {
-            dropBox2.options.add(new Option(cantonesDB[key]));
+    //console.log(dropProvincia);
+    var dropBox2 = document.getElementById("canton");
+    console.log(dropBox2.length);
+    if (dropBox2.length > 0){
+        for (var i = dropBox2.length; i > -1; i--) {
+            dropBox2.options.remove(i);
         }
-        */
-    })
+    }
+    var dropBox3 = document.getElementById("parroquia");
+    if (dropBox3.length > 0){
+        for (var i = dropBox3.length; i > -1; i--) {
+            dropBox3.options.remove(i);
+        }
+    }
+    cantonesDB = JSON.parse(ipcRenderer.sendSync('dropProvincia', dropProvincia));
+    //console.log(cantonesDB);
+    for (var key in cantonesDB) {
+        dropBox2.options.add(new Option(cantonesDB[key]));
+    }
 }
 
 function getCanton(){
-    console.log('yaff')
+    var dropBox = document.getElementById("canton");
+    var dropCanton = dropBox.options[dropBox.selectedIndex].value;
+    //console.log(dropProvincia);
+    var dropBox2 = document.getElementById("parroquia");
+    console.log(dropBox2.length);
+    if (dropBox2.length > 0){
+        for (var i = dropBox2.length; i > -1; i--) {
+            dropBox2.options.remove(i);
+        }
+    }
+    parroquiasDB = JSON.parse(ipcRenderer.sendSync('dropCanton', dropCanton));
+    console.log(parroquiasDB);
+    for (var key in parroquiasDB) {
+        dropBox2.options.add(new Option(parroquiasDB[key]));
+    }
 }

@@ -7,18 +7,26 @@ let ecuador = require('ecuador-postal-codes');
 let hclicia_acttualizar = 0;
 let provincias = [];
 let cantones = [];
+let parroquias = [];
 //recibe datos desde el pedido_render
 function recibir(){
     ipcMain.on('cedula', async(e, args) =>{
         console.log(args);
         hcgen(args);
         provincias = provinces();
-        e.reply('provincias', JSON.stringify(provincias));
+        e.returnValue = JSON.stringify(provincias);
         ipcMain.on('dropProvincia', async (e, args) =>{
             cantones = canton(args);
-            e.reply('cantones', JSON.stringify(cantones));
+            //console.log(cantones);
+            e.returnValue = JSON.stringify(cantones);
             cantones = [];
         });
+        ipcMain.on('dropCanton', async(e, args) =>{
+            parroquias = parroquia(args);
+            console.log(parroquias);
+            e.returnValue = JSON.stringify(parroquias);
+        });
+
         //canton('PICHINCHA');
         //parroquia('QUITO');
     });
@@ -124,6 +132,7 @@ async function hcgen(cedula){
         for (var key in results.cities){
             canton.push(results.cities[key].name);
         }
+        //console.log(canton);
         return canton;
         //console.log(canton);
         //console.log(results.cities[0].towns);
@@ -136,8 +145,9 @@ async function hcgen(cedula){
         for (var key in results.towns){
             parroquia.push(results.towns[key].name);
         }
-        console.log(parroquia);
+        //console.log(parroquia);
         //console.log(result);
+        return parroquia;
     }
 
 
