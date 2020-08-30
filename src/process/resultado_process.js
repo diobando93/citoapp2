@@ -1,12 +1,12 @@
 const {ipcMain} = require('electron');
 const Patient = require('../models/patient.js');
-const Antecedent = require('../models/antecedent.js');
+const Antecedent = require('../models/pedido.js');
 function consultar(){
     ipcMain.on('consulta', async(e, args) =>{
         console.log(args);
         const paciente = await Patient.findOne({cedula: args},
             'apellidos nombres').exec();
-        e.reply('response', JSON.stringify(paciente));    
+        e.reply('response', JSON.stringify(paciente));
         console.log(paciente);
     })
 }

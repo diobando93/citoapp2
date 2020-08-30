@@ -71,3 +71,13 @@ for (var key in cantonesDB) {
     dropBox2.options.add(new Option(cantonesDB[key]));
 }
 */
+
+
+
+
+//console.log(pedidogen());
+(async () => {
+    numPedido = await pedidogen();
+    console.log(numPedido);
+    //numPedidoarray.push(numPedido);
+})()

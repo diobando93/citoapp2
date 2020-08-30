@@ -11,7 +11,6 @@ const pais = document.getElementById("pais");
 const provincia = document.getElementById("provincia");
 const canton = document.getElementById("canton");
 const parroquia = document.getElementById("parroquia");
-const ciudad = document.getElementById("ciudad");
 const sector = document.getElementById("sector");
 const instruccion = document.getElementById("instruccion");
 const ocupacion = document.getElementById("ocupacion");
@@ -21,6 +20,9 @@ const est_toma_muestra  = document.getElementById("est_toma_muestra");
 const f_muestra = document.getElementById("f_muestra");
 const f_menstruacion = document.getElementById("f_menstruacion");
 const metodo_planificacion = document.getElementById("metodo_planificacion");
+const num_partos = document.getElementById("num_partos");
+const num_abortos = document.getElementById("num_abortos");
+const edad_vid_sexual = document.getElementById("edad_vid_sexual")
 const embarazo = document.getElementById("embarazo");
 const lactancia = document.getElementById("lactancia");
 const destruccion_local = document.getElementById("chkDestrlocal");
@@ -40,15 +42,25 @@ let datos = [];
 var provinciasDB = [];
 var cantonesDB = [];
 var parroquiasDB = [];
+var numPedido = '';
+var hClinica = '';
 
 var input = document.getElementById("Cedula");
 
 input.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
-        console.log(cedula.value);
+        //console.log(cedula.value);
         event.preventDefault();
+        ipcRenderer.on('numPedido', (e, args) =>{
+            numPedido = args;
+            //console.log(args);
+        });
+        ipcRenderer.on('hClinica', (e, args) => {
+            hClinica = args;
+            //console.log(args);
+        });
         provinciasDB = JSON.parse(ipcRenderer.sendSync('cedula', cedula.value));
-        console.log(provinciasDB);
+        //console.log(provinciasDB);
         var dropBox = document.getElementById("provincia");
         for (var key in provinciasDB) {
             dropBox.options.add(new Option(provinciasDB[key]));
@@ -64,7 +76,6 @@ input.addEventListener("keyup", function (event) {
             document.getElementById('provincia').style.display = 'block';
             document.getElementById('canton').style.display = 'block';
             document.getElementById('parroquia').style.display = 'block';
-            document.getElementById('ciudad').style.display = 'block';
             document.getElementById('sector').style.display = 'block';
             document.getElementById('instruccion').style.display = 'block';
             document.getElementById('ocupacion').style.display = 'block';
@@ -74,8 +85,13 @@ input.addEventListener("keyup", function (event) {
             document.getElementById('f_muestra').style.display = 'block';
             document.getElementById('f_menstruacion').style.display = 'block';
             document.getElementById('metodo_planificacion').style.display = 'block';
-            document.getElementById('embarazo').style.display = 'block';
-            document.getElementById('lactancia').style.display = 'block';
+            document.getElementById('dat1').style.display = 'block';
+            document.getElementById('dat2').style.display = 'block';
+            document.getElementById('dat3').style.display = 'block';
+            document.getElementById('num_partos').style.display = 'block';
+            document.getElementById('num_abortos').style.display = 'block';
+            document.getElementById('edad_vid_sexual').style.display = 'block';
+
         }
     }
 });
@@ -83,7 +99,7 @@ input.addEventListener("keyup", function (event) {
 
 function pedido_render(){
     datos.push(cedula.value);
-    datos.push(h_clinica.value);
+    datos.push(hClinica);
     datos.push(establecimiento.value);
     datos.push(nombres.value);
     datos.push(apellidos.value);
@@ -93,16 +109,17 @@ function pedido_render(){
     datos.push(provincia.value);
     datos.push(canton.value);
     datos.push(parroquia.value);
-    datos.push(ciudad.value);
     datos.push(sector.value);
     datos.push(instruccion.value);
     datos.push(ocupacion.value);
     datos.push(ins_jefefamilia.value);
     datos.push(ocu_jefefamilia.value);
-    datos.push(est_toma_muestra.value);
     datos.push(f_muestra.value);
     datos.push(f_menstruacion.value);
     datos.push(metodo_planificacion.value);
+    datos.push(num_partos.value);
+    datos.push(num_abortos.value);
+    datos.push(edad_vid_sexual.value);
     datos.push(embarazo.value);
     datos.push(lactancia.value);
     datos.push(destruccion_local.value);
@@ -116,6 +133,7 @@ function pedido_render(){
     datos.push(NumCitologias.value);
     datos.push(citologiaAnios.value);
     datos.push(citologiaMeses.value);
+    datos.push(numPedido);
     console.log(datos)
     ipcRenderer.send('datos', datos);
     datos = [];

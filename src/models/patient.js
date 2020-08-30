@@ -6,23 +6,6 @@ const Paciente = new Schema ({
     apellidos: String,
     nombres: String,
     f_nacimiento: Date,
-    edad: String,
-    ubicacion: {
-        pais: String,
-        provincia: String,
-        canton: String,
-        parroquia: String,
-        ciudad: String,
-        sector: String,
-    },
-    estudios: {
-        instruccion: String,
-        ocupacion: String,
-        ins_jefefamilia: String,
-        ocu_jefefamilia: String
-    },
-    es_toma_muestra: String,
-    f_muestra: Date
 });
 
 module.exports = model('Patient', Paciente);

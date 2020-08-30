@@ -43,9 +43,9 @@
                 </div>
                 <div class="col-75">
                     <select name="establecimiento" id="establecimiento" style="display: none;">
-                        <option value="volvo">1 - Zurita</option>
-                        <option value="saab">2 - Medicamental</option>
-                        <option value="saab">3 - Interno</option>
+                        <option value="Zurita">1 - Zurita</option>
+                        <option value="Medicamental">2 - Medicamental</option>
+                        <option value="Interno">3 - Interno</option>
                     </select>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     </select>
                 </div>
             </div>
-            <!-- canton parroquia -->
+            <!-- Canton parroquia -->
             <div class="row">
                 <div class="col-25">
                     <label for="lname">Cantón</label>
@@ -122,23 +122,16 @@
                     <label for="lname">Parroquía</label>
                 </div>
                 <div class="col-75">
-                    <select  id="parroquia" name="parroquia" style="display: none;">
+                    <select id="parroquia" name="parroquia" style="display: none;">
+                    </select>
                 </div>
             </div>
             <!-- Ciudad Sector -->
             <div class="row">
                 <div class="col-25">
-                    <label for="lname">Ciudad</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="ciudad" name="ciudad" style="display: none;">
-                </div>
-                <div class="separator">
-
-                </div>
-                <div class="col-25">
                     <label for="lname">Sector</label>
                 </div>
+
                 <div class="col-75">
                     <input type="text" id="sector" name="sector" style="display: none;">
                 </div>
@@ -234,15 +227,43 @@
                     </select>
                 </div>
             </div>
+            <!-- Numero de partos   Numero de abortos -->
+            <div class="row">
+                <div class="col-25" style="width:100px;">
+                    <label for="lname">Numero de Partos:</label>
+                </div>
+                <div class="col-75" style="width:60px;">
+                    <input type="text" id="num_partos" name="num_partos" style="display: none; width:50px;">
+                </div>
+                <div class="separator">
+
+                </div>
+                <div class="col-25" style="width:100px;">
+                    <label for="lname">Numero de Abortos:</label>
+                </div>
+                <div class="col-75" style="width:60px;">
+                    <input type="text" id="num_abortos" name="num_abortos" style="display: none; width:50px;">
+                </div>
+                <div class="separator">
+
+                </div>
+                <div class="col-25" style="width:100px;">
+                    <label for="lname">Edad de inicio vida sexual:</label>
+                </div>
+                <div class="col-75" style="width:60px;">
+                    <input type="text" id="edad_vid_sexual" name="edad_vid_sexual" style="display: none; width:50px;">
+                </div>
+            </div>
+
             <!-- Otros Datos -->
             <div class="row">
                 <div class="col-25">
                     <label for="lname">Actualemente en: </label>
                 </div>
 
-                <div style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 35%; margin-top: 6px; padding-top: 10px">
-                    Embarazo: <input id="embarazo" name="chkRed" type="checkbox" value="Embarazo" class="checkbox"  style="width: 50%;">
-                    Lactancia: <input id="lactancia" name="chkBlue" type="checkbox" value="Lactancia" class="checkbox"  style="width: 50%;">
+                <div id="dat1" style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 35%; margin-top: 6px; padding-top: 10px; display: none;">
+                    Embarazo: <input id="embarazo" name="chkRed" type="checkbox" value="Embarazo" class="checkbox" style="width: 15%;">
+                    Lactancia: <input id="lactancia" name="chkBlue" type="checkbox" value="Lactancia" class="checkbox" style="width: 15%;">
                 </div>
             </div>
             <!-- Otros Datos -->
@@ -251,7 +272,7 @@
                     <label for="lname">Alguna vez le practicaron: </label>
                 </div>
 
-                <div style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 70%; margin-top: 6px; padding-top: 10px">
+                <div id="dat2" style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 70%; margin-top: 6px; padding-top: 10px; display: none;">
                     DestrucciónLocal: <input id="chkDestrlocal" name="chkDestrlocal" type="checkbox" value="Destrucción Local" class="checkbox" style="margin:10px;">
                     Conización: <input id="chkConizacion" name="chkConizacion" type="checkbox" value="Conizacion" class="checkbox" style="margin:10px;">
                     Histectomía: <input id="chkHistectomia" name="chkHistectomia" type="checkbox" value="Histectomia" class="checkbox" style="margin:10px;">
@@ -266,7 +287,7 @@
                     <label for="lname">Se ha realizado una citología: </label>
                 </div>
 
-                <div style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 70%; margin-top: 6px; padding-top: 10px">
+                <div id="dat3" style="box-shadow: 0 0 0 1px #0084ff; float: left; width: 70%; margin-top: 6px; padding-top: 10px; display: none;">
 
                     <div class="row">
                         <input type="radio" id="rdSi" name="rdCitollogia" value="Si">
@@ -276,13 +297,13 @@
                     </div>
 
                     <div class="row">
-                        <label for="fname"  style="width: 10%;">Cuantas</label>
-                        <input type="text" id="numCitologias" name="numCitologias"  style="width: 10%;">
-                        <label for="fname"  style="width: 10%;">Hace Cuanto</label>
-                        <input type="text" id="numAnios" name="numAnios"  style="width: 10%;">
-                        <label for="fname"  style="width: 10%;">Anios</label>
-                        <input type="text" id="numMeses" name="numMeses"  style="width: 10%;">
-                        <label for="fname"  style="width: 10%;">Meses</label>
+                        <label for="fname" style="width: 10%;">Cuantas</label>
+                        <input type="text" id="numCitologias" name="numCitologias" style="width: 10%;">
+                        <label for="fname" style="width: 10%;">Hace Cuanto</label>
+                        <input type="text" id="numAnios" name="numAnios" style="width: 10%;">
+                        <label for="fname" style="width: 10%;">Anios</label>
+                        <input type="text" id="numMeses" name="numMeses" style="width: 10%;">
+                        <label for="fname" style="width: 10%;">Meses</label>
                     </div>
 
 
