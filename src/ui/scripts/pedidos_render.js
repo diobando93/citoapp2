@@ -123,12 +123,12 @@ function pedido_render(){
     datos.push(embarazo.value);
     datos.push(lactancia.value);
     datos.push(destruccion_local.value);
-    datos.push(conizacion.value);
+    datos.push(conizacion.checked);
     datos.push(histectomia.value);
     datos.push(radioterapia.value);
     datos.push(hormonoterapia.value);
     datos.push(onco_otros.value);
-    datos.push(citologiaSi.value);
+    datos.push(citologiaSi.checked);
     datos.push(citologiaNo.value);
     datos.push(NumCitologias.value);
     datos.push(citologiaAnios.value);

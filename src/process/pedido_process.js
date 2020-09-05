@@ -59,11 +59,11 @@ function recibir(){
 
         if (envia0 == true && envia1=== true){
             if (array[1] == 'actualice"'){
-                const NewhC = {
-                    h_clinica: array2[1]
-                }
                 let actualizar = Hclinic.where({_id: '5f1311fef9417d3136858ce8'});
                 actualizar.updateOne({$set: {h_clinica: array2[1]}}).exec();
+                hClinica = array2[1];
+            } else{
+                hClinica = args[1]
             }
             const pedidogenCounter = {
                 pedido_counter: args[35]
@@ -72,14 +72,14 @@ function recibir(){
 
             //}
             const paciente = {
-                h_clinica: args[1],
+                h_clinica: hClinica,
                 cedula: args[0],
                 apellidos: args[4],
                 nombres: args[3],
                 f_nacimiento: args[6],
             }
             const pedidoBD = {
-                h_clinica: args[1],
+                h_clinica: hClinica,
                 cedula: args[0],
                 pedido: args[35],
                 edad: args[5],
@@ -120,11 +120,12 @@ function recibir(){
                 }
             }
 
-            //const newPatient =  new Patient(paciente);
-            //const patientSaved = await newPatient.save();
-            //const newPedido = new Pedido(pedidoBD);
-            //const pedidoSaved = await newPedido.save();
-            //const newnumPedido=  new Pedidocounter(numPedido);
+            const newPatient =  new Patient(paciente);
+            const patientSaved = await newPatient.save();
+            const newPedido = new Pedido(pedidoBD);
+            const pedidoSaved = await newPedido.save();
+
+            //const newnumPedido=  new Pedidocounter(args[35]);
             //const pedidotSaved = await newPedido.save();
             //const newHclinica = new Hclinic(hclinica);
             //const hclinicaSaved = await newHclinica.save();
