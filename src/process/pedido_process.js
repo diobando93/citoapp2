@@ -3,6 +3,7 @@ const Patient = require('../models/patient.js');
 const Pedido = require('../models/pedido.js');
 const Hclinic = require('../models/h_clinic.js');
 const Pedidocounter = require('../models/pedidocounter.js');
+const Medicos = require('../models/medicos.js');
 const validaciones = require('./validaciones.js');
 let ecuador = require('ecuador-postal-codes');
 let provincias = [];
@@ -40,6 +41,21 @@ function recibir(){
             parroquias = parroquia(args);
             e.returnValue = JSON.stringify(parroquias);
         });
+    });
+
+    ipcMain.on('dropMedicos', async (e, args) =>{
+        console.log(args);
+        medicos = []
+        let medicos_buscar =  await Medicos.find({institucion: args}, 'nombre apellido').exec();
+        for (var key in medicos_buscar ) {
+            let nombreCompleto = medicos_buscar[key].nombre
+            nombreCompleto = nombreCompleto.concat(' ').concat(medicos_buscar[key].apellido)
+            //console.log(nombreCompleto);
+            medicos.push(nombreCompleto);
+        }
+        e.returnValue =JSON.stringify(medicos);
+        //console.log(medicos_buscar);
+        console.log(medicos);
     });
 
     ipcMain.on('datos', async (e, args) =>{
@@ -124,8 +140,10 @@ function recibir(){
             const patientSaved = await newPatient.save();
             const newPedido = new Pedido(pedidoBD);
             const pedidoSaved = await newPedido.save();
-
-            //const newnumPedido=  new Pedidocounter(args[35]);
+            //const newPC = new Pedidocounter(pedidogenCounter);
+            //const PCSaved = await newPC.save();
+            let actualizarPC = Pedidocounter.where({_id: '5f569faadc3f61715c40ecaf'});
+            actualizarPC.updateOne({$set: {pedido_counter: args[35]}}).exec();
             //const pedidotSaved = await newPedido.save();
             //const newHclinica = new Hclinic(hclinica);
             //const hclinicaSaved = await newHclinica.save();

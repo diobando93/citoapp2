@@ -23,16 +23,18 @@ const metodo_planificacion = document.getElementById("metodo_planificacion");
 const num_partos = document.getElementById("num_partos");
 const num_abortos = document.getElementById("num_abortos");
 const edad_vid_sexual = document.getElementById("edad_vid_sexual")
+
 const embarazo = document.getElementById("embarazo");
 const lactancia = document.getElementById("lactancia");
-const destruccion_local = document.getElementById("chkDestrlocal");
-const conizacion = document.getElementById("chkConizacion");
-const histectomia = document.getElementById("chkHistectomia");
-const radioterapia = document.getElementById("chkRadioterapia");
-const hormonoterapia = document.getElementById("chkHormonoterapia");
-const onco_otros = document.getElementById("chkTratamOncol");
+const destruccion_local = document.getElementById("rdDestrlocal");
+const conizacion = document.getElementById("rdConizacion");
+const histectomia = document.getElementById("rdHistectomia");
+const radioterapia = document.getElementById("rdRadioterapia");
+const hormonoterapia = document.getElementById("rdHormonoterapia");
+const onco_otros = document.getElementById("rdTratamOncol");
 const citologiaSi = document.getElementById("rdSi");
 const citologiaNo = document.getElementById("rdNo");
+
 const NumCitologias = document.getElementById("numCitologias");
 const citologiaAnios = document.getElementById("numAnios");
 const citologiaMeses = document.getElementById("numMeses");
@@ -42,6 +44,7 @@ let datos = [];
 var provinciasDB = [];
 var cantonesDB = [];
 var parroquiasDB = [];
+var medicosDB = [];
 var numPedido = '';
 var hClinica = '';
 
@@ -63,11 +66,12 @@ input.addEventListener("keyup", function (event) {
         //console.log(provinciasDB);
         var dropBox = document.getElementById("provincia");
         for (var key in provinciasDB) {
-            dropBox.options.add(new Option(provinciasDB[key]));
+            dropBox.options.add(new Option(key.toString() + " - " + provinciasDB[key].toString() ));
         }
         var x = document.getElementById("Nombre");
         if (x.style.display === "none") {
             document.getElementById('establecimiento').style.display = 'block';
+            document.getElementById('medicos').style.display = 'block';
             document.getElementById('Nombre').style.display = 'block';
             document.getElementById('edad').style.display = 'block';
             document.getElementById('Apellido').style.display = 'block';
@@ -120,16 +124,18 @@ function pedido_render(){
     datos.push(num_partos.value);
     datos.push(num_abortos.value);
     datos.push(edad_vid_sexual.value);
-    datos.push(embarazo.value);
-    datos.push(lactancia.value);
-    datos.push(destruccion_local.value);
+
+    datos.push(embarazo.checked);
+    datos.push(lactancia.checked);
+    datos.push(destruccion_local.checked);
     datos.push(conizacion.checked);
-    datos.push(histectomia.value);
-    datos.push(radioterapia.value);
-    datos.push(hormonoterapia.value);
-    datos.push(onco_otros.value);
+    datos.push(histectomia.checked);
+    datos.push(radioterapia.checked);
+    datos.push(hormonoterapia.checked);
+    datos.push(onco_otros.checked);
     datos.push(citologiaSi.checked);
-    datos.push(citologiaNo.value);
+    datos.push(citologiaNo.checked);
+
     datos.push(NumCitologias.value);
     datos.push(citologiaAnios.value);
     datos.push(citologiaMeses.value);
@@ -142,7 +148,8 @@ function pedido_render(){
 function getProvincia(){
     var dropBox = document.getElementById("provincia");
     var dropProvincia = dropBox.options[dropBox.selectedIndex].value;
-    //console.log(dropProvincia);
+    dropProvincia = dropProvincia.substring(dropProvincia.indexOf("-") + 1);
+    console.log(dropProvincia);
     var dropBox2 = document.getElementById("canton");
     console.log(dropBox2.length);
     if (dropBox2.length > 0){
@@ -159,24 +166,42 @@ function getProvincia(){
     cantonesDB = JSON.parse(ipcRenderer.sendSync('dropProvincia', dropProvincia));
     //console.log(cantonesDB);
     for (var key in cantonesDB) {
-        dropBox2.options.add(new Option(cantonesDB[key]));
+        dropBox2.options.add(new Option(key.toString() + " - " + cantonesDB[key].toString() ));
     }
 }
 
 function getCanton(){
     var dropBox = document.getElementById("canton");
     var dropCanton = dropBox.options[dropBox.selectedIndex].value;
+    dropCanton = dropCanton.substring(dropCanton.indexOf("-") + 1);
     //console.log(dropProvincia);
     var dropBox2 = document.getElementById("parroquia");
-    console.log(dropBox2.length);
+    //console.log(dropBox2.length);
     if (dropBox2.length > 0){
         for (var i = dropBox2.length; i > -1; i--) {
             dropBox2.options.remove(i);
         }
     }
     parroquiasDB = JSON.parse(ipcRenderer.sendSync('dropCanton', dropCanton));
-    console.log(parroquiasDB);
+    //console.log(parroquiasDB);
     for (var key in parroquiasDB) {
-        dropBox2.options.add(new Option(parroquiasDB[key]));
+        dropBox2.options.add(new Option(key.toString() + " - " + parroquiasDB[key].toString() ));
+    }
+}
+
+function getMedico(){
+    var dropBox = document.getElementById('establecimiento');
+    var dropEstablecimineto = dropBox.options[dropBox.selectedIndex].value;
+    console.log(dropEstablecimineto);
+    var dropBox2 = document.getElementById('medicos');
+    if (dropBox2.length > 0){
+        for (var i = dropBox2.length; i > -1; i--) {
+            dropBox2.options.remove(i);
+        }
+    }
+    medicosDB = JSON.parse(ipcRenderer.sendSync('dropMedicos', dropEstablecimineto));
+    console.log(medicosDB);
+    for (var key in medicosDB){
+        dropBox2.options.add(new Option(key.toString() + " - " + medicosDB[key].toString() ));
     }
 }

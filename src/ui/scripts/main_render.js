@@ -32,3 +32,8 @@ document.getElementById('resultados').addEventListener('click', function(e) {
     resultado = true;
     ipcRenderer.send('consulta-datos-paciente', resultado);
 });
+
+document.getElementById('doctores').addEventListener('click', function(e) {
+    resultado = true;
+    ipcRenderer.send('medicos-crear-eliminar', resultado);
+});
