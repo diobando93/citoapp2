@@ -1,6 +1,8 @@
 const { model, Schema } = require('mongoose')
 
 const Pedido = new Schema ({
+    fecha: String,
+    hora: String,
     cedula: String,
     h_clinica: String,
     pedido: String,
@@ -18,6 +20,10 @@ const Pedido = new Schema ({
         ins_jefefamilia: String,
         ocu_jefefamilia: String
     },
+    telefono: String,
+    email: String,
+    telefonof: String,
+    emailf: String,
     establecimiento: String,
     f_muestra: Date,
     fecha_ult_mestruacion: Date,

@@ -11,8 +11,14 @@ let cantones = [];
 let parroquias = [];
 let numPedido = '';
 let hClinica = '';
+monentoActual = new Date;
+hora = monentoActual.getHours();
+minuto = monentoActual.getMinutes();
+segundo = monentoActual.getSeconds();
+hora = hora + " : " + minuto + " : " + segundo;
 //recibe datos desde el pedido_render
 function recibir(){
+    console.log(hora);
     ipcMain.on('cedula', async(e, args) =>{
         console.log(args);
         const hcl = hcgen(args);
@@ -81,13 +87,16 @@ function recibir(){
             } else{
                 hClinica = args[1]
             }
-            const pedidogenCounter = {
-                pedido_counter: args[35]
-            }
+            //const pedidogenCounter = {
+            //    pedido_counter: args[39]
+            //}
             //const historiaClinica = {
 
             //}
+
             const paciente = {
+                fecha: new Date().toISOString().slice(0, 10),
+                hora: hora,
                 h_clinica: hClinica,
                 cedula: args[0],
                 apellidos: args[4],
@@ -95,11 +104,17 @@ function recibir(){
                 f_nacimiento: args[6],
             }
             const pedidoBD = {
+                fecha: new Date().toISOString().slice(0, 10),
+                hora: hora,
                 h_clinica: hClinica,
                 cedula: args[0],
-                pedido: args[35],
+                pedido: args[39],
                 edad: args[5],
                 establecimiento: args[2],
+                telefonof: args[16],
+                email: args[17],
+                telefonof: args[18],
+                emailf: args[19],
                 ubicacion: {
                     pais: args[7],
                     provincia: args[8],
@@ -113,37 +128,46 @@ function recibir(){
                     ins_jefefamilia: args[14],
                     ocu_jefefamilia: args[15],
                 },
-                f_muestra: args[16],
-                fecha_ult_mestruacion: args[17],
-                metodo_planificacion: args[18],
-                num_partos: args[19],
-                num_abortos: args[20],
-                inicio_sexo: args[21],
-                embarazada: args[22],
-                lactancia: args[23],
-                destruccion_local: args[24],
-                conizacon: args[25],
-                histectomia: args[26],
-                radioterapia: args[27],
-                hormonoterapia: args[28],
-                otros: args[29],
+                f_muestra: args[20],
+                fecha_ult_mestruacion: args[21],
+                metodo_planificacion: args[22],
+                num_partos: args[23],
+                num_abortos: args[24],
+                inicio_sexo: args[25],
+                embarazada: args[26],
+                lactancia: args[27],
+                destruccion_local: args[28],
+                conizacon: args[29],
+                histectomia: args[30],
+                radioterapia: args[31],
+                hormonoterapia: args[32],
+                otros: args[33],
                 citologia: {
-                    Si: args[30],
-                    No: args[31],
-                    numero: args[32],
-                    anios: args[33],
-                    meses: args[34]
+                    Si: args[34],
+                    No: args[35],
+                    numero: args[36],
+                    anios: args[37],
+                    meses: args[38]
                 }
             }
-
-            const newPatient =  new Patient(paciente);
-            const patientSaved = await newPatient.save();
+            let pacienteBuscar = await Patient.find({cedula: args[0]}).exec();
+            console.log(pacienteBuscar);
+            let verificar = true;
+            verificar = isEmpty(pacienteBuscar);
+            console.log(verificar);
+            if (verificar == true){
+                const newPatient =  new Patient(paciente);
+                const patientSaved = await newPatient.save();
+                console.log('paciente nuevo');
+            }else {
+                console.log('paciente ya existe')
+            }
             const newPedido = new Pedido(pedidoBD);
             const pedidoSaved = await newPedido.save();
             //const newPC = new Pedidocounter(pedidogenCounter);
             //const PCSaved = await newPC.save();
-            let actualizarPC = Pedidocounter.where({_id: '5f569faadc3f61715c40ecaf'});
-            actualizarPC.updateOne({$set: {pedido_counter: args[35]}}).exec();
+            let actualizarPC = Pedidocounter.where({_id: '5f5802815a5736164e9858a0'});
+            actualizarPC.updateOne({$set: {pedido_counter: args[39]}}).exec();
             //const pedidotSaved = await newPedido.save();
             //const newHclinica = new Hclinic(hclinica);
             //const hclinicaSaved = await newHclinica.save();

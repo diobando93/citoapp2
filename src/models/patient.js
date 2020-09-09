@@ -1,11 +1,13 @@
 const { model, Schema } = require('mongoose');
 
 const Paciente = new Schema ({
+    fecha: String,
+    hora: String,
     h_clinica: String,
     cedula: String,
     apellidos: String,
     nombres: String,
-    f_nacimiento: Date,
+    f_nacimiento: Date
 });
 
 module.exports = model('Patient', Paciente);
