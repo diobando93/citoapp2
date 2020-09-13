@@ -9,7 +9,7 @@ var fs = require('fs');
 function consultar(){
     ipcMain.on('consulta', async(e, args) =>{
         console.log(args);
-        const paciente = await Patient.findOne({cedula: args},
+        const paciente = await Pedido.findOne({cedula: args},
             'apellidos nombres').exec();
         const pedido = await Pedido.find({cedula: args});
         e.reply('response', JSON.stringify(paciente));

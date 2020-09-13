@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-        <form action="action_page.php">
+        <form>
             <!-- Titulo -->
             <div class="row">
                 <div class="titulo-principal">
@@ -26,22 +26,30 @@
                     <div class="row">
                         <h2 style="color:#040887">Ficha</h2>
                     </div>
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Cedula:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="cedula" name="cedula">
+                        </div>
+                    </div>
                     <!-- Row Nombre -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">No Informe:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="pedido" name="pedido">
+                        </div>
+                    </div>
+                    <!-- Row NO INFORME -->
                     <div class="row">
                         <div class="campoCorto">
                             <label for="fname">Nombre:</label>
                         </div>
                         <div class="campoCorto">
                             <input type="text" id="nombre" name="nombre">
-                        </div>
-                    </div>
-                    <!-- Row NO INFORME -->
-                    <div class="row">
-                        <div class="campoCorto">
-                            <label for="fname">No Informe:</label>
-                        </div>
-                        <div class="campoCorto">
-                            <input type="text" id="noInforme" name="noInforme">
                         </div>
                     </div>
                     <!-- Row Fecha de Ingreso -->
@@ -193,6 +201,145 @@
             </div>
             </div>
             <!-- RESULTADOS ACTUALES -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Aspecto de cuello</label>
+                </div>
+                <div class="col-75">
+                    <select name="acuello" id="establecimiento" >
+                        <option value="Normal">1 - Normal</option>
+                        <option value="Regular">2 - Regular</option>
+                        <option value="Malo">3 - Malo</option>
+                    </select>
+                </div>
+                <div class="separator">
+                </div>
+                <div class="col-25">
+                    <label for="observaciones">Observaciones</label>
+                </div>
+                <div class="col-75">
+                    <input type = "text" name="observaciones" id="observaciones">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="responsable">Responsable de la muestra`</label>
+                </div>
+                <div class="col-75">
+                    <input type = "text" name="responsable" id="responsable">
+                </div>
+                <div class="separator">
+                </div>
+                <div class="col-25">
+                    <label for="nplacas">No. Placas</label>
+                </div>
+                <div class="col-75">
+                    <input type = "text" name="nplacas" id="nplacas">
+                </div>
+            </div>
+
+            <div class="row">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup1" id="dat1">
+                        <legend>Valoracion de la muestra: </legend>
+                        <input type="radio" name="rddat1" id="madecuada" value="choice-1" checked="checked" />
+                        <label for="radio-choice-1">Adecuada</label>
+
+                        <input type="radio" name="rddat1" id="minadecuada" value="choice-2" />
+                        <label for="radio-choice-2">Inadecuada</label>
+                        <label for="noinformar">No se puede informar por: </label>
+                        <select name="noinformar" id="noinformar" >
+                            <option value="op1">1 - op1</option>
+                            <option value="op2">2 - op2</option>
+                            <option value="op3">3 - op3</option>
+                        </select>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="row">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup2" id="dat2">
+                        <legend>Frotis: </legend>
+                        <select name="frotis" id="frotis" >
+                            <option value="op1">1 - op1</option>
+                            <option value="op2">2 - op2</option>
+                            <option value="op3">3 - op3</option>
+                        </select>
+                        <label for="noprocesada">No procesada por: </label>
+                        <input type = "text" name="noprocesada" id="noprocesada">
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="row">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup3" id="dat3">
+                        <legend>Germenes </legend>
+                        <input type="radio" name="rddat1" id="fbacilar" value="choice-1"  />
+                        <label for="radio-choice-1">Flora Bacilar</label>
+                        <input type="radio" name="rddat2" id="fcocoide" value="choice-2" />
+                        <label for="radio-choice-2">Flora Cocoide</label>
+                        <input type="radio" name="rddat3" id="vbacteriana" value="choice-3" />
+                        <label for="radio-choice-3">Vaginosis Bacteriana</label>
+                        <input type="radio" name="rddat4" id="triconomas" value="choice-4" />
+                        <label for="radio-choice-4">Triconomas</label>
+                        <input type="radio" name="rddat5" id="actnomyces" value="choice-5" />
+                        <label for="radio-choice-5">Actnomyces</label>
+                        <input type="radio" name="rddat6" id="candida" value="choice-6" />
+                        <label for="radio-choice-6">Candida</label>
+                        <input type="radio" name="rddat7" id="herpes" value="choice-7" />
+                        <label for="radio-choice-7">Herpes</label>
+                        <input type="radio" name="rddat8" id="hpv" value="choice-8" />
+                        <label for="radio-choice-8">HPV Cam Sugestivos</label>
+                        <input type="radio" name="rddat9" id="germenesotros" value="choice-9" />
+                        <label for="radio-choice-9">Otros</label>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="row">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup5" id="dat5">
+                        <legend>Celulas </legend>
+                        <label for="endocervicales">Endocervicales </label>
+                        <input type = "text" name="endocervicales" id="endocervicales">
+                        <label for="metaplasticas">Metaplasticas </label>
+                        <input type = "text" name="metaplasticas" id="metaplasticas">
+                        <label for="endometriales">Endometriales </label>
+                        <input type = "text" name="endometriales" id="endometriales">
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="row">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup4" id="dat4">
+                        <legend>Resultados </legend>
+                        <label for="diagnostico">Diagnostico </label>
+                        <select name="diagnostico" id="diagnostico" >
+                            <option value="op1">1 - op1</option>
+                            <option value="op2">2 - op2</option>
+                            <option value="op3">3 - op3</option>
+                        </select>
+                        <label for="endocervicales">Recomendacion </label>
+                        <select name="recomendacion" id="recomendacion" >
+                            <option value="op1">1 - op1</option>
+                            <option value="op2">2 - op2</option>
+                            <option value="op3">3 - op3</option>
+                        </select>
+                        <label for="reobservaciones">Obsercaciones </label>
+                        <input type = "text" name="reobservaciones" id="reobservaciones">
+                        <input type="radio" name="rddat1" id="citotecnologo" value="choice-1" />
+                        <label for="radio-choice-1">Citotecnologo</label>
+                        <input type="radio" name="rddat2" id="citopatologo" value="choice-2" />
+                        <label for="radio-choice-2">Citopatologo</label>
+                    </fieldset>
+                </div>
+            </div>
+
+
             <!-- BOTON CONSULTAR -->
             <div class="row">
                 <input type="button" value="Consultar" onclick="consulta_render()">

@@ -194,6 +194,9 @@ async function pedidogen(){
         let counter = pedido_buscar[0];
         let counter1 = counter.pedido_counter;
         counter1 = counter1.split('-');
+        fechacompro = '"' +  fecha;
+        console.log(pedido_buscar);
+        console.log(fechacompro);
         let counter2 = parseInt(counter1[3])+1;
         counter2 = counter2.toString();
         let numero = fecha.split('-');
