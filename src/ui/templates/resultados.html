@@ -5,11 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="../statics/stylepedidos.css" />
+    <link rel="stylesheet" href="../statics/styleresultados.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Laboratorios Citología</title>
 </head>
 
 <body>
+
+    <div class="overlay" id="datosBusqueda">
+        <div class="form-popup" id="myForm">
+            <form  class="form-container">
+                <h1>Datos de Busqueda</h1>
+
+                <label for="Cédula"><b>Cédula</b></label>
+                <input type="text" placeholder="Ingrese la Cédula" name="cedula" id="cedula" required>
+
+                <label for="NoMuestra"><b>Número de Pedido</b></label>
+                <input type="text" placeholder="Ingrese en número de muestra" name="nomuestra" id="pedido" required>
+
+                <button type="button" class="btn" onclick="retrive()">Buscar </button>
+                <div>
+                    <button type="button" class="btn cancel" >
+                        <a href="main.html">Regresar</a>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
     <div class="container">
         <form>
             <!-- Titulo -->
@@ -28,19 +51,19 @@
                     </div>
                     <div class="row">
                         <div class="campoCorto">
-                            <label for="fname">Cedula:</label>
+                            <label for="cedula1">Cedula:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="cedula" name="cedula">
+                            <label for= cedula1 id="cedula1" name="cedula1">
                         </div>
                     </div>
                     <!-- Row Nombre -->
                     <div class="row">
                         <div class="campoCorto">
-                            <label for="fname">No Informe:</label>
+                            <label for="pedido1">No Informe:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="pedido" name="pedido">
+                            <label for = "pedido1" id="pedido1" name="pedido1">
                         </div>
                     </div>
                     <!-- Row NO INFORME -->
@@ -49,7 +72,7 @@
                             <label for="fname">Nombre:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="nombre" name="nombre">
+                            <label for="nombre" id="nombre" name="nombre">
                         </div>
                     </div>
                     <!-- Row Fecha de Ingreso -->
@@ -58,7 +81,7 @@
                             <label for="fname">Fecha de Ingreso:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="fechaIngreso" name="fechaIngreso">
+                            <label for = fechaIngreso id="fechaIngreso" name="fechaIngreso">
                         </div>
                     </div>
                     <!-- Row Fecha de Muestra -->
@@ -67,7 +90,7 @@
                             <label for="fname">Fecha de Muestra:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="fechaMuestra" name="fechaMuestra">
+                            <label for = 'fechaMuestra' id="fechaMuestra" name="fechaMuestra">
                         </div>
                     </div>
                     <!-- Row Establecimiento -->
@@ -76,7 +99,7 @@
                             <label for="fname">Establecimiento:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="establecimiento" name="establecimiento">
+                            <label for = "establecimiento" id="establecimiento" name="establecimiento">
                         </div>
                     </div>
                     <!-- Row Edad -->
@@ -85,7 +108,7 @@
                             <label for="fname">Edad:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="edad" name="edad">
+                            <label for ="edad" id="edad" name="edad">
                         </div>
                     </div>
                     <!-- Row Residencia -->
@@ -100,7 +123,7 @@
                             <label for="fname">Provincia:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="provincia" name="provincia">
+                            <label for = "provincia" id="provincia" name="provincia">
                         </div>
                     </div>
                     <!-- Row Canton -->
@@ -109,16 +132,16 @@
                             <label for="fname">Canton:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="canton" name="canton">
+                            <label for = "canton" id="canton" name="canton">
                         </div>
                     </div>
                     <!-- Row Direccion -->
                     <div class="row">
                         <div class="campoCorto">
-                            <label for="fname">Dirección:</label>
+                            <label for="fname">Parroquia:</label>
                         </div>
                         <div class="campoCorto">
-                            <input type="text" id="direccion" name="direccion">
+                            <label for = "parroquia" id="parroquia" name="parroquia">
                         </div>
                     </div>
                 </div>
@@ -133,11 +156,17 @@
                     <div class="campoCorto">
                         <label for="fname">Ultimo Diagnostico:</label>
                     </div>
+                    <div class="campoCorto">
+                        <input type="text" id="udiagnostico" name="udiagnostico">
+                    </div>
                 </div>
                 <!-- Row DIAGNOSTICO Mas severo-->
                 <div class="row">
                     <div class="campoCorto">
                         <label for="fname">Diagnostico mas severo:</label>
+                    </div>
+                    <div class="campoCorto">
+                        <input type="text" id="sdiagnostico" name="sdiagnostico">
                     </div>
                 </div>
                 <!-- Row Num Informe -->
@@ -206,7 +235,7 @@
                     <label for="fname">Aspecto de cuello</label>
                 </div>
                 <div class="col-75">
-                    <select name="acuello" id="establecimiento" >
+                    <select name="acuello" id="acuello" >
                         <option value="Normal">1 - Normal</option>
                         <option value="Regular">2 - Regular</option>
                         <option value="Malo">3 - Malo</option>
@@ -235,7 +264,7 @@
                     <label for="nplacas">No. Placas</label>
                 </div>
                 <div class="col-75">
-                    <input type = "text" name="nplacas" id="nplacas">
+                    <input type = "text" name="noplacas" id="noplacas">
                 </div>
             </div>
 
@@ -267,8 +296,8 @@
                             <option value="op2">2 - op2</option>
                             <option value="op3">3 - op3</option>
                         </select>
-                        <label for="noprocesada">No procesada por: </label>
-                        <input type = "text" name="noprocesada" id="noprocesada">
+                        <label for="fnoprocesada">No procesada por: </label>
+                        <input type = "text" name="fnoprocesada" id="fnoprocesada">
                     </fieldset>
                 </div>
             </div>
@@ -342,7 +371,7 @@
 
             <!-- BOTON CONSULTAR -->
             <div class="row">
-                <input type="button" value="Consultar" onclick="consulta_render()">
+                <input type="button" value="Consultar" onclick="enviaDatos()">
             </div>
             <!-- BOTON REGRESAR -->
             <div class="row">
