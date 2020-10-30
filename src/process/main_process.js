@@ -1,61 +1,32 @@
-const {BrowserWindow, ipcMain, app} = require('electron');
-const {recibir} = require('./pedido_process.js');
-const {consultar} = require('./resultado_process.js');
-const {doctores} = require('./doctores_process.js');
+const { BrowserWindow, ipcMain, app } = require("electron");
+const { recibir } = require("./pedido_process.js");
+const { consultar } = require("./resultado_process.js");
+const { doctores } = require("./doctores_process.js");
 
-function createWindow(){
-    const win = new BrowserWindow({
-            width: 800,
-            heigth: 500,
-            webPreferences: {
-                nodeIntegration: true
-            }
-    });
-    win.loadFile('src/ui//templates/main.html')
-};
+function createWindow() {
+  const win = new BrowserWindow({
+    width: 800,
+    heigth: 500,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+  win.loadFile("src/ui//templates/main.html");
+}
 
-ipcMain.on('envio-datos-paciente', (e, args) => {
-    app.whenReady().then(recibir)
+ipcMain.on("envio-datos-paciente", (e, args) => {
+  app.allowRendererProcessReuse = false;
+  app.whenReady().then(recibir);
 });
 
-ipcMain.on('consulta-datos-paciente', (e, args) =>{
-    app.whenReady().then(consultar)
-})
+ipcMain.on("consulta-datos-paciente", (e, args) => {
+  app.whenReady().then(consultar);
+  app.allowRendererProcessReuse = false;
+});
 
-ipcMain.on('medicos-crear-eliminar', (e, args) =>{
-    app.whenReady().then(doctores)
-})
+ipcMain.on("medicos-crear-eliminar", (e, args) => {
+  app.whenReady().then(doctores);
+  app.allowRendererProcessReuse = false;
+});
 
-
-module.exports = {createWindow};
-/*
-
-
-const patient = {
-
-    dat_personales : {
-        cedula:  cedula.value,
-        //h_clinica = h_clinica.value,
-        nombres:  nombres.value,
-        apellidos: apellidos.value,
-        edad: edad.value
-        //f_nacimiento = f_nacimiento.value,
-    },
-
-    domicilio : {
-        pais : pais.value,
-        provincia : provincia.value,
-        canton : canton.value,
-        parroquia : parroquia.value,
-        ciudad : ciudad.value,
-        direccion : direccion.value,
-        sector : sector.value
-    }
-    /*
-    estudios = {
-        instruccion =  instruccion.value,
-        ocupacion = ocupacion.value,
-        ins_jefefamilia = ins_jefefamilia.value,
-        ocu_jefefamilia = ocu_jefefamilia.value
-    }
-    */
+module.exports = { createWindow };

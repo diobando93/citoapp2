@@ -56,6 +56,7 @@ function consulta_render() {
 }
 
 function retrive() {
+  datosResultado = [];
   console.log(cedula.value);
   console.log(pedido.value);
   datosResultado.push(cedula.value);

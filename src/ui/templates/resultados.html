@@ -12,20 +12,26 @@
 
 <body>
 
+    <!-- Ventana inicial de ingreso de cédula y No de Pedido  -->
     <div class="overlay" id="datosBusqueda">
+        <!-- Formulario de Ingreso de Datos -->
         <div class="form-popup" id="myForm">
-            <form  class="form-container">
+            <form class="form-container">
                 <h1>Datos de Busqueda</h1>
-
+                <!-- Cédula -->
                 <label for="Cédula"><b>Cédula</b></label>
                 <input type="text" placeholder="Ingrese la Cédula" name="cedula" id="cedula" required>
 
+                <!-- No de Pedido -->
                 <label for="NoMuestra"><b>Número de Pedido</b></label>
                 <input type="text" placeholder="Ingrese en número de muestra" name="nomuestra" id="pedido" required>
 
+                <!-- Boton Buscar -->
                 <button type="button" class="btn" onclick="retrive()">Buscar </button>
+
+                <!-- Boton Regresar -->
                 <div>
-                    <button type="button" class="btn cancel" >
+                    <button type="button" class="btn cancel">
                         <a href="main.html">Regresar</a>
                     </button>
                 </div>
@@ -33,6 +39,8 @@
         </div>
 
     </div>
+
+    <!-- Ventana de Resultados -->
     <div class="container">
         <form>
             <!-- Titulo -->
@@ -54,7 +62,7 @@
                             <label for="cedula1">Cedula:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for= cedula1 id="cedula1" name="cedula1">
+                            <label for=cedula1 id="cedula1" name="cedula1">
                         </div>
                     </div>
                     <!-- Row Nombre -->
@@ -63,7 +71,7 @@
                             <label for="pedido1">No Informe:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for = "pedido1" id="pedido1" name="pedido1">
+                            <label for="pedido1" id="pedido1" name="pedido1">
                         </div>
                     </div>
                     <!-- Row NO INFORME -->
@@ -81,7 +89,7 @@
                             <label for="fname">Fecha de Ingreso:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for = fechaIngreso id="fechaIngreso" name="fechaIngreso">
+                            <label for=fechaIngreso id="fechaIngreso" name="fechaIngreso">
                         </div>
                     </div>
                     <!-- Row Fecha de Muestra -->
@@ -90,7 +98,7 @@
                             <label for="fname">Fecha de Muestra:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for = 'fechaMuestra' id="fechaMuestra" name="fechaMuestra">
+                            <label for='fechaMuestra' id="fechaMuestra" name="fechaMuestra">
                         </div>
                     </div>
                     <!-- Row Establecimiento -->
@@ -99,7 +107,7 @@
                             <label for="fname">Establecimiento:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for = "establecimiento" id="establecimiento" name="establecimiento">
+                            <label for="establecimiento" id="establecimiento" name="establecimiento">
                         </div>
                     </div>
                     <!-- Row Edad -->
@@ -108,7 +116,7 @@
                             <label for="fname">Edad:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for ="edad" id="edad" name="edad">
+                            <label for="edad" id="edad" name="edad">
                         </div>
                     </div>
                     <!-- Row Residencia -->
@@ -123,7 +131,7 @@
                             <label for="fname">Provincia:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for = "provincia" id="provincia" name="provincia">
+                            <label for="provincia" id="provincia" name="provincia">
                         </div>
                     </div>
                     <!-- Row Canton -->
@@ -132,7 +140,7 @@
                             <label for="fname">Canton:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for = "canton" id="canton" name="canton">
+                            <label for="canton" id="canton" name="canton">
                         </div>
                     </div>
                     <!-- Row Direccion -->
@@ -141,93 +149,93 @@
                             <label for="fname">Parroquia:</label>
                         </div>
                         <div class="campoCorto">
-                            <label for = "parroquia" id="parroquia" name="parroquia">
+                            <label for="parroquia" id="parroquia" name="parroquia">
                         </div>
                     </div>
                 </div>
-            <!-- DATOS FICHAS ANTERIORES -->
+                <!-- DATOS FICHAS ANTERIORES -->
                 <div class="columnContenedor" style="box-shadow: 0 0 0 1px #0084ff; width:60%;">
-                <!-- Row Titulo DIAGNOSTICO -->
-                <div class="row">
-                    <h2 style="color:#040887">Diagnosticos</h2>
+                    <!-- Row Titulo DIAGNOSTICO -->
+                    <div class="row">
+                        <h2 style="color:#040887">Diagnosticos</h2>
+                    </div>
+                    <!-- Row ULTIMO DIAGNOSTICO -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Ultimo Diagnostico:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="udiagnostico" name="udiagnostico">
+                        </div>
+                    </div>
+                    <!-- Row DIAGNOSTICO Mas severo-->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Diagnostico mas severo:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="sdiagnostico" name="sdiagnostico">
+                        </div>
+                    </div>
+                    <!-- Row Num Informe -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Numero de Informe:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="numeroInforme" name="numeroInforme">
+                        </div>
+                    </div>
+                    <!-- Row Fecha de Informe -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Fecha de Infomre:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="fechaInforme" name="fechaInforme">
+                        </div>
+                    </div>
+                    <!-- Row Diagnostico -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">Diagnostico:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="Diagnostico" name="Diagnostico">
+                        </div>
+                    </div>
+                    <!-- Row Titulo DATOS ADICIONALES -->
+                    <div class="row">
+                        <h2 style="color:#040887">Datos Adicionales</h2>
+                    </div>
+                    <!-- Row Gestaciones -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">No de Gestaciones:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="gestaciones" name="gestaciones">
+                        </div>
+                    </div>
+                    <!-- Row Partos -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">No de Partos:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="partos" name="partos">
+                        </div>
+                    </div>
+                    <!-- Row Abortos -->
+                    <div class="row">
+                        <div class="campoCorto">
+                            <label for="fname">No de Abortos:</label>
+                        </div>
+                        <div class="campoCorto">
+                            <input type="text" id="abortos" name="abortos">
+                        </div>
+                    </div>
                 </div>
-                <!-- Row ULTIMO DIAGNOSTICO -->
-                <div class="row">
-                    <div class="campoCorto">
-                        <label for="fname">Ultimo Diagnostico:</label>
-                    </div>
-                    <div class="campoCorto">
-                        <input type="text" id="udiagnostico" name="udiagnostico">
-                    </div>
-                </div>
-                <!-- Row DIAGNOSTICO Mas severo-->
-                <div class="row">
-                    <div class="campoCorto">
-                        <label for="fname">Diagnostico mas severo:</label>
-                    </div>
-                    <div class="campoCorto">
-                        <input type="text" id="sdiagnostico" name="sdiagnostico">
-                    </div>
-                </div>
-                <!-- Row Num Informe -->
-                <div class="row">
-                    <div class="campoCorto">
-                        <label for="fname">Numero de Informe:</label>
-                    </div>
-                    <div class="campoCorto">
-                        <input type="text" id="numeroInforme" name="numeroInforme">
-                    </div>
-                </div>
-                <!-- Row Fecha de Informe -->
-                <div class="row">
-                    <div class="campoCorto">
-                        <label for="fname">Fecha de Infomre:</label>
-                    </div>
-                    <div class="campoCorto">
-                        <input type="text" id="fechaInforme" name="fechaInforme">
-                    </div>
-                </div>
-                <!-- Row Diagnostico -->
-                <div class="row">
-                    <div class="campoCorto">
-                        <label for="fname">Diagnostico:</label>
-                    </div>
-                    <div class="campoCorto">
-                        <input type="text" id="Diagnostico" name="Diagnostico">
-                    </div>
-                </div>
-                <!-- Row Titulo DATOS ADICIONALES -->
-                <div class="row">
-                    <h2 style="color:#040887">Datos Adicionales</h2>
-                </div>
-                <!-- Row Gestaciones -->
-                <div class="row">
-                    <div class="campoCorto">
-                        <label for="fname">No de Gestaciones:</label>
-                    </div>
-                    <div class="campoCorto">
-                        <input type="text" id="gestaciones" name="gestaciones">
-                    </div>
-                </div>
-                <!-- Row Partos -->
-                <div class="row">
-                    <div class="campoCorto">
-                        <label for="fname">No de Partos:</label>
-                    </div>
-                    <div class="campoCorto">
-                        <input type="text" id="partos" name="partos">
-                    </div>
-                </div>
-                <!-- Row Abortos -->
-                <div class="row">
-                    <div class="campoCorto">
-                        <label for="fname">No de Abortos:</label>
-                    </div>
-                    <div class="campoCorto">
-                        <input type="text" id="abortos" name="abortos">
-                    </div>
-                </div>
-            </div>
             </div>
             <!-- RESULTADOS ACTUALES -->
             <div class="row">
@@ -235,7 +243,7 @@
                     <label for="fname">Aspecto de cuello</label>
                 </div>
                 <div class="col-75">
-                    <select name="acuello" id="acuello" >
+                    <select name="acuello" id="acuello">
                         <option value="Normal">1 - Normal</option>
                         <option value="Regular">2 - Regular</option>
                         <option value="Malo">3 - Malo</option>
@@ -247,16 +255,16 @@
                     <label for="observaciones">Observaciones</label>
                 </div>
                 <div class="col-75">
-                    <input type = "text" name="observaciones" id="observaciones">
+                    <input type="text" name="observaciones" id="observaciones">
                 </div>
             </div>
-
+            <!-- RESULTADOS ACTUALES -->
             <div class="row">
                 <div class="col-25">
                     <label for="responsable">Responsable de la muestra`</label>
                 </div>
                 <div class="col-75">
-                    <input type = "text" name="responsable" id="responsable">
+                    <input type="text" name="responsable" id="responsable">
                 </div>
                 <div class="separator">
                 </div>
@@ -264,110 +272,242 @@
                     <label for="nplacas">No. Placas</label>
                 </div>
                 <div class="col-75">
-                    <input type = "text" name="noplacas" id="noplacas">
+                    <select name="acuello" id="acuello">
+                        <option value="Uno">1 - Uno</option>
+                        <option value="Dos">2 - Dos</option>
+                        <option value="Tres">3 - Tres</option>
+                    </select>
                 </div>
             </div>
-
+            <!-- Valoracion de la muestra -->
             <div class="row">
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup1" id="dat1">
                         <legend>Valoracion de la muestra: </legend>
+                        <!-- Muestra adecuada -->
                         <input type="radio" name="rddat1" id="madecuada" value="choice-1" checked="checked" />
                         <label for="radio-choice-1">Adecuada</label>
-
+                        <!-- Muestra inadecuada -->
                         <input type="radio" name="rddat1" id="minadecuada" value="choice-2" />
                         <label for="radio-choice-2">Inadecuada</label>
-                        <label for="noinformar">No se puede informar por: </label>
-                        <select name="noinformar" id="noinformar" >
-                            <option value="op1">1 - op1</option>
-                            <option value="op2">2 - op2</option>
-                            <option value="op3">3 - op3</option>
-                        </select>
+
                     </fieldset>
                 </div>
             </div>
-
+            <!-- Frotis -->
             <div class="row">
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup2" id="dat2">
                         <legend>Frotis: </legend>
-                        <select name="frotis" id="frotis" >
-                            <option value="op1">1 - op1</option>
-                            <option value="op2">2 - op2</option>
-                            <option value="op3">3 - op3</option>
+                        <select name="frotis" id="frotis">
+                            <option value="op1">1 - Limpio</option>
+                            <option value="op2">2 - Inflamatorio</option>
+                            <option value="op3">3 - Leve</option>
+                            <option value="op3">3 - Moderado</option>
+                            <option value="op3">3 - Severo</option>
                         </select>
                         <label for="fnoprocesada">No procesada por: </label>
-                        <input type = "text" name="fnoprocesada" id="fnoprocesada">
+                        <input type="text" name="fnoprocesada" id="fnoprocesada">
                     </fieldset>
                 </div>
             </div>
-
+            <!-- GERMENES -->
             <div class="row">
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup3" id="dat3">
                         <legend>Germenes </legend>
-                        <input type="radio" name="rddat1" id="fbacilar" value="choice-1"  />
+                        <input type="radio" name="rddat1" id="fbacilar" value="choice-1" />
                         <label for="radio-choice-1">Flora Bacilar</label>
+
                         <input type="radio" name="rddat2" id="fcocoide" value="choice-2" />
                         <label for="radio-choice-2">Flora Cocoide</label>
+
                         <input type="radio" name="rddat3" id="vbacteriana" value="choice-3" />
                         <label for="radio-choice-3">Vaginosis Bacteriana</label>
+
                         <input type="radio" name="rddat4" id="triconomas" value="choice-4" />
-                        <label for="radio-choice-4">Triconomas</label>
-                        <input type="radio" name="rddat5" id="actnomyces" value="choice-5" />
-                        <label for="radio-choice-5">Actnomyces</label>
-                        <input type="radio" name="rddat6" id="candida" value="choice-6" />
-                        <label for="radio-choice-6">Candida</label>
-                        <input type="radio" name="rddat7" id="herpes" value="choice-7" />
-                        <label for="radio-choice-7">Herpes</label>
-                        <input type="radio" name="rddat8" id="hpv" value="choice-8" />
-                        <label for="radio-choice-8">HPV Cam Sugestivos</label>
+                        <label for="radio-choice-4">Candida</label>
+
+                        <input type="radio" name="rddat5" id="leptorix" value="choice-5" />
+                        <label for="radio-choice-5">Leptotrix</label>
+
+                        <input type="radio" name="rddat6" id="actnomyces" value="choice-6" />
+                        <label for="radio-choice-6">Actnomyces</label>
+
+                        <input type="radio" name="rddat7" id="triconomas" value="choice-7" />
+                        <label for="radio-choice-7">Triconomas</label>
+
+                        <input type="radio" name="rddat8" id="citolisis" value="choice-8" />
+                        <label for="radio-choice-8">Citolisis</label>
+
+                        <input type="radio" name="rddat9" id="herpes" value="choice-9" />
+                        <label for="radio-choice-9">Sugetivo de Herpes</label>
+
+                        <input type="radio" name="rddat10" id="hpv" value="choice-10" />
+                        <label for="radio-choice-10">Sugestivo de HPV</label>
+
+                        <input type="radio" name="rddat11" id="hpv" value="choice-11" />
+                        <label for="radio-choice-11">Histocitos</label>
+
+                        <input type="radio" name="rddat12" id="actnomyces" value="choice-12" />
+                        <label for="radio-choice-12">Exudado Leucocitorio</label>
+
+                        <input type="radio" name="rddat12" id="actnomyces" value="choice-12" />
+                        <label for="radio-choice-12">Exudado Leucocitorio</label>
+
                         <input type="radio" name="rddat9" id="germenesotros" value="choice-9" />
                         <label for="radio-choice-9">Otros</label>
                     </fieldset>
                 </div>
             </div>
-
+            <!-- CELULAS -->
             <div class="row">
+                <!-- Tipo de Células -->
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup5" id="dat5">
                         <legend>Celulas </legend>
+
+                        <!-- Endocervicales -->
                         <label for="endocervicales">Endocervicales </label>
-                        <input type = "text" name="endocervicales" id="endocervicales">
+                        <input type="text" name="endocervicales" id="endocervicales">
+
+                        <!-- Resultado -->
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup1" id="dat1">
+                                <legend>Observación </legend>
+                                <!-- Presentes -->
+                                <input type="radio" name="rddat1" id="presentes" value="choice-1" />
+                                <label for="radio-choice-1">Presentes</label>
+                                <!-- Inflamadas -->
+                                <input type="radio" name="rddat1" id="inflamadas" value="choice-2" />
+                                <label for="radio-choice-2">Inflamadas</label>
+                                <!-- Reactivas -->
+                                <input type="radio" name="rddat1" id="reactivas" value="choice-3" />
+                                <label for="radio-choice-3">Reactivas</label>
+                                <!-- Reparación -->
+                                <input type="radio" name="rddat1" id="reparacion" value="choice-4" />
+                                <label for="radio-choice-4">Reparacion</label>
+                                <!-- Atípica -->
+                                <input type="radio" name="rddat1" id="atipicas" value="choice-5" />
+                                <label for="radio-choice-5">Atípicas</label>
+                                <!-- Displasicas -->
+                                <input type="radio" name="rddat1" id="displacica" value="choice-6" />
+                                <label for="radio-choice-6">Displasicas</label>
+                            </fieldset>
+                        </div>
+
                         <label for="metaplasticas">Metaplasticas </label>
-                        <input type = "text" name="metaplasticas" id="metaplasticas">
+                        <input type="text" name="metaplasticas" id="metaplasticas">
+
+                        <!-- Resultado -->
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup1" id="dat1">
+                                <legend>Observación </legend>
+                                <!-- Presentes -->
+                                <input type="radio" name="rddat1" id="presentes" value="choice-1" />
+                                <label for="radio-choice-1">Presentes</label>
+                                <!-- Inflamadas -->
+                                <input type="radio" name="rddat1" id="inflamadas" value="choice-2" />
+                                <label for="radio-choice-2">Inflamadas</label>
+                                <!-- Reactivas -->
+                                <input type="radio" name="rddat1" id="reactivas" value="choice-3" />
+                                <label for="radio-choice-3">Reactivas</label>
+                                <!-- Reparación -->
+                                <input type="radio" name="rddat1" id="reparacion" value="choice-4" />
+                                <label for="radio-choice-4">Reparacion</label>
+                                <!-- Atípica -->
+                                <input type="radio" name="rddat1" id="atipicas" value="choice-5" />
+                                <label for="radio-choice-5">Atípicas</label>
+                                <!-- Displasicas -->
+                                <input type="radio" name="rddat1" id="displacica" value="choice-6" />
+                                <label for="radio-choice-6">Displasicas</label>
+                            </fieldset>
+                        </div>
+
                         <label for="endometriales">Endometriales </label>
-                        <input type = "text" name="endometriales" id="endometriales">
+                        <input type="text" name="endometriales" id="endometriales">
+
+                        <!-- Resultado -->
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup1" id="dat1">
+                                <legend>Observación </legend>
+                                <!-- Presentes -->
+                                <input type="radio" name="rddat1" id="presentes" value="choice-1" />
+                                <label for="radio-choice-1">Presentes</label>
+                                <!-- Inflamadas -->
+                                <input type="radio" name="rddat1" id="inflamadas" value="choice-2" />
+                                <label for="radio-choice-2">Inflamadas</label>
+                                <!-- Reactivas -->
+                                <input type="radio" name="rddat1" id="reactivas" value="choice-3" />
+                                <label for="radio-choice-3">Reactivas</label>
+                                <!-- Reparación -->
+                                <input type="radio" name="rddat1" id="reparacion" value="choice-4" />
+                                <label for="radio-choice-4">Reparacion</label>
+                                <!-- Atípica -->
+                                <input type="radio" name="rddat1" id="atipicas" value="choice-5" />
+                                <label for="radio-choice-5">Atípicas</label>
+                                <!-- Displasicas -->
+                                <input type="radio" name="rddat1" id="displacica" value="choice-6" />
+                                <label for="radio-choice-6">Displasicas</label>
+                            </fieldset>
+                        </div>
+
                     </fieldset>
                 </div>
             </div>
-
+            <!--DIAGNOSTICO-->
             <div class="row">
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup4" id="dat4">
                         <legend>Resultados </legend>
-                        <label for="diagnostico">Diagnostico </label>
-                        <select name="diagnostico" id="diagnostico" >
-                            <option value="op1">1 - op1</option>
-                            <option value="op2">2 - op2</option>
-                            <option value="op3">3 - op3</option>
+                        <label for="diagnostico">Diagnostico Bethesda: </label>
+                        <select name="diagnostico" id="diagnostico">
+                            <option value="Negativo">1 - Negativo</option>
+                            <option value="Atipia Escamosa">2 - Atipia Escamosa (ASCUS)</option>
+                            <option value="Atipia Endocervical">3 - Atipia Endocervical (ASCUS)</option>
+                            <option value="Atipia Escamosa a favor de LIAG">3 - Atipia Escamosa a favor de LIAG (ASC-H)</option>
+                            <option value="LIE de bajo grado">3 - LIE de bajo grado</option>
+                            <option value="LIE de alto grado">3 - LIE de alto grado</option>
+                            <option value="Carcinoma">3 - Carcinoma</option>
                         </select>
-                        <label for="endocervicales">Recomendacion </label>
-                        <select name="recomendacion" id="recomendacion" >
-                            <option value="op1">1 - op1</option>
-                            <option value="op2">2 - op2</option>
-                            <option value="op3">3 - op3</option>
-                        </select>
-                        <label for="reobservaciones">Obsercaciones </label>
-                        <input type = "text" name="reobservaciones" id="reobservaciones">
-                        <input type="radio" name="rddat1" id="citotecnologo" value="choice-1" />
-                        <label for="radio-choice-1">Citotecnologo</label>
-                        <input type="radio" name="rddat2" id="citopatologo" value="choice-2" />
-                        <label for="radio-choice-2">Citopatologo</label>
                     </fieldset>
                 </div>
             </div>
-
+            <!--INDICE HORMONAL-->
+            <div class="row">
+                <label for="ihormonal">Indice Hormonal: </label>
+                <!--celulas parabasales-->
+                <div class="col-25">
+                    <label for="cparabasales">Celulas parabasales:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="icparabasal" name="icparabasal">
+                </div>
+                <!--celulas intermedias-->
+                <div class="col-25">
+                    <label for="fname">Celulas intermedias:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="icintermedias" name="icintermedias">
+                </div>
+                <!--celulas suerficiales-->
+                <div class="col-25">
+                    <label for="fname">Celulas superficiales:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="icsuperficiales" name="icsuperficiales">
+                </div>
+            </div>
+            <!--CONTROL-->
+            <div class="row">
+                <label for="control">Control: </label>
+                <input type="text" name="rcontrol" id="rcontrol">
+            </div>
+            <!--OBSERVACIONES-->
+            <div class="row">
+                <label for="reobservaciones">Obsercaciones </label>
+                <input type="text" name="reobservaciones" id="reobservaciones">
+            </div>
 
             <!-- BOTON CONSULTAR -->
             <div class="row">
@@ -380,6 +520,6 @@
 
         </form>
     </div>
-    <script src = "../scripts/resultados_render.js"> </script>
+    <script src="../scripts/resultados_render.js"></script>
 </body>
 </html>
