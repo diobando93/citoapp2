@@ -12,18 +12,18 @@ let parroquias = [];
 let numPedido = "";
 let hClinica = "";
 //let medicosBD = "";
-monentoActual = new Date();
-hora = monentoActual.getHours();
-minuto = monentoActual.getMinutes();
-segundo = monentoActual.getSeconds();
-hora = hora + " : " + minuto + " : " + segundo;
 //recibe datos desde el pedido_render
-function recibir() {
-  //MAL HACER UNA FUNCION DEL TIEMPOconsole.log(hora);
 
+//bug3: validar el formulario
+
+function recibir() {
+  //bug0: MAL HACER UNA FUNCION DEL TIEMPOconsole.log(hora);
+  //bug0: resuelto
+  console.log(hourNow());
   //Funcion para recibir el numero de cedula del textbox
   ipcMain.on("cedula", async (e, args) => {
     console.log(args + " numero de cedula ingresado"); // Imprime por consolo el numero de cedula
+
     const hcl = hcgen(args); // Llamado a la funcion para generar o responder con un numero de historia clinica
     hcl.then((hClinica) => {
       console.log(hClinica + " historia clinica"); // Imprime la historia clinica
@@ -49,84 +49,11 @@ function recibir() {
     cantones = [];
   });
 
-  //funcion para consulta de cantones
-  function canton(args) {
-    let results = ecuador.data.lookupProvinces(args);
-    results = results[0];
-    let canton = [];
-    for (var key in results.cities) {
-      canton.push(results.cities[key].name);
-    }
-    return canton;
-  }
-
   //Consuta de parroquias
   ipcMain.on("dropCanton", async (e, args) => {
     parroquias = parroquia(args);
     e.returnValue = JSON.stringify(parroquias);
   });
-
-  //funcion para consulta de parroquias
-  function parroquia(args) {
-    let result = ecuador.data.lookupCities(args);
-    results = result[0];
-    let parroquia = [];
-    for (var key in results.towns) {
-      parroquia.push(results.towns[key].name);
-    }
-    return parroquia;
-  }
-
-  // funcion para consulta o generacion de historias clinicas
-  async function hcgen(cedula) {
-    let cedula_buscar = await Patient.find(
-      { cedula: cedula },
-      "h_clinica"
-    ).exec();
-    let vereificar = false;
-    vereificar = isEmpty(cedula_buscar);
-    if (vereificar == true) {
-      console.log("genere codigo de historia clinica");
-      let hclinicaNew = await Hclinic.find({});
-      hclinicaNew = hclinicaNew[0];
-      let hclinicaNew1 = parseInt(hclinicaNew.h_clinica);
-      hclinicaNew1 = hclinicaNew1 + 2;
-      hclinicaNew1 = hclinicaNew1.toString();
-      hclinicaNew1 = hclinicaNew1.concat("-actualice");
-      return hclinicaNew1;
-    } else {
-      console.log("envie codigo de historia clinica");
-      cedula_buscar = cedula_buscar[0];
-      let hclinicaNew2 = cedula_buscar.h_clinica;
-      return hclinicaNew2;
-    }
-  }
-
-  //funcion para generacion de numeros de pedidos
-  // falta agregar el reinicio de fecha
-  async function pedidogen() {
-    let pedido_buscar = await Pedidocounter.find({});
-    let fecha = new Date().toISOString().slice(0, 10);
-    let verificar = false;
-    verificar = isEmpty(pedido_buscar);
-    if (verificar == true) {
-      let numero = fecha.split("-");
-      numero.push("1");
-      numero = numero.join("-");
-      return numero;
-    } else {
-      let counter = pedido_buscar[0];
-      let counter1 = counter.pedido_counter;
-      counter1 = counter1.split("-");
-      fechacompro = '"' + fecha;
-      let counter2 = parseInt(counter1[3]) + 1;
-      counter2 = counter2.toString();
-      let numero = fecha.split("-");
-      numero.push(counter2);
-      numero = numero.join("-");
-      return numero;
-    }
-  }
 
   //funcion para consultar los nombres de los doctors dependiendo del establecimiento
   ipcMain.on("dropMedicos", async (e, args) => {
@@ -144,19 +71,8 @@ function recibir() {
     e.returnValue = JSON.stringify(medicos);
   });
 
-  // funcion para consultar las provincias
-  function provinces() {
-    let results = ecuador.data.provinces;
-    let provincias = [];
-    for (var key in results) {
-      provincias.push(results[key].name);
-    }
-    return provincias;
-  }
-
   //funcion para validar los datos del formulario y ademas guardar en la bd de paciente y pedidos
   ipcMain.on("datos", async (e, args) => {
-    console.log("formulario correcto");
     let envia0 = true;
     let envia1 = true;
     let datosVacios = [args[0], args[1], args[2], args[3], args[4]];
@@ -166,11 +82,15 @@ function recibir() {
     let array2 = [];
     array = genHc.split("-");
     array2 = array[0].split('"');
-    console.log(array2[1]);
+    //console.log(array2[1]);
     //envia0 = validaciones.verificarVacio(datosVacios);
     //envia1 = validaciones.verificarNumero(datosNumeros);
 
+    // bug2: popup para preguntar si continuar en la pantalla de pedidos, entonces se debe resetear los campos
+    // si no se desea continuar regresar al main menu
+
     if (envia0 == true && envia1 === true) {
+      console.log("formulario correcto");
       if (array[1] == 'actualice"') {
         let actualizar = Hclinic.where({ _id: "5f1311fef9417d3136858ce8" });
         actualizar.updateOne({ $set: { h_clinica: array2[1] } }).exec();
@@ -181,7 +101,7 @@ function recibir() {
 
       const paciente = {
         fecha: new Date().toISOString().slice(0, 10),
-        hora: hora, //cambiar con el nuevo dato de la hora
+        hora: hourNow(),
         h_clinica: hClinica,
         cedula: args[0],
         apellidos: args[4],
@@ -191,7 +111,7 @@ function recibir() {
 
       const pedidoBD = {
         fecha: new Date().toISOString().slice(0, 10),
-        hora: hora, //cambiar con el nuevo dato de la hora
+        hora: hourNow(),
         h_clinica: hClinica,
         cedula: args[0],
         pedido: args[39],
@@ -269,11 +189,118 @@ function recibir() {
   });
 }
 
+// funcion para consultar las provincias
+function provinces() {
+  let results = ecuador.data.provinces;
+  let provincias = [];
+  for (var key in results) {
+    provincias.push(results[key].name);
+  }
+  return provincias;
+}
+
+//funcion para consulta de cantones
+function canton(args) {
+  let results = ecuador.data.lookupProvinces(args);
+  results = results[0];
+  let canton = [];
+  for (var key in results.cities) {
+    canton.push(results.cities[key].name);
+  }
+  return canton;
+}
+
+//funcion para consulta de parroquias
+function parroquia(args) {
+  let result = ecuador.data.lookupCities(args);
+  results = result[0];
+  let parroquia = [];
+  for (var key in results.towns) {
+    parroquia.push(results.towns[key].name);
+  }
+  return parroquia;
+}
+
+// funcion para consulta o generacion de historias clinicas
+async function hcgen(cedula) {
+  let cedula_buscar = await Patient.find(
+    { cedula: cedula },
+    "h_clinica"
+  ).exec();
+  let vereificar = false;
+  vereificar = isEmpty(cedula_buscar);
+  if (vereificar == true) {
+    console.log("genere codigo de historia clinica");
+    let hclinicaNew = await Hclinic.find({});
+    hclinicaNew = hclinicaNew[0];
+    let hclinicaNew1 = parseInt(hclinicaNew.h_clinica);
+    hclinicaNew1 = hclinicaNew1 + 2;
+    hclinicaNew1 = hclinicaNew1.toString();
+    hclinicaNew1 = hclinicaNew1.concat("-actualice");
+    return hclinicaNew1;
+  } else {
+    console.log("envie codigo de historia clinica");
+    cedula_buscar = cedula_buscar[0];
+    let hclinicaNew2 = cedula_buscar.h_clinica;
+    return hclinicaNew2;
+  }
+}
+
+//funcion para generacion de numeros de pedidos
+// bug1: falta agregar el reinicio de contador de acuerdo a la de fecha
+// bug1: listo
+async function pedidogen() {
+  let pedido_buscar = await Pedidocounter.find({});
+  let fecha = new Date().toISOString().slice(0, 10);
+  let verificar = false;
+  verificar = isEmpty(pedido_buscar);
+  if (verificar == true) {
+    let numero = fecha.split("-");
+    numero.push("1");
+    numero = numero.join("-");
+    return numero;
+  } else {
+    fecha1 = fecha.split("-");
+    let counter = pedido_buscar[0];
+    let counter1 = counter.pedido_counter;
+    counter1 = counter1.split("-");
+    mesBd = counter1[1];
+    diaBd = counter1[2];
+    mesNow = fecha1[1];
+    diaNow = fecha1[2];
+    mes = Math.abs(mesBd - mesNow);
+    dia = Math.abs(diaBd - diaNow);
+    if (mes == 0 && dia == 0) {
+      fechacompro = '"' + fecha;
+      let counter2 = parseInt(counter1[3]) + 1;
+      counter2 = counter2.toString();
+      let numero = fecha.split("-");
+      numero.push(counter2);
+      numero = numero.join("-");
+      return numero;
+    } else {
+      let numero = fecha.split("-");
+      numero.push("1");
+      numero = numero.join("-");
+      return numero;
+    }
+  }
+}
+
 function isEmpty(obj) {
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) return false;
   }
   return true;
+}
+
+function hourNow() {
+  monentoActual = new Date();
+  hora = monentoActual.getHours();
+  minuto = monentoActual.getMinutes();
+  segundo = monentoActual.getSeconds();
+  hora = hora + " : " + minuto + " : " + segundo;
+  return hora;
 }
 
 module.exports = { recibir };

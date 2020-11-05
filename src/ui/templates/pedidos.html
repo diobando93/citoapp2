@@ -4,6 +4,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+        /* Popup container - can be anything you want */
+        .popup {
+          position: relative;
+          display: inline-block;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        
+        /* The actual popup */
+        .popup .popuptext {
+          visibility: hidden;
+          width: 160px;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 8px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 125%;
+          left: 50%;
+          margin-left: -80px;
+        }
+        
+        /* Popup arrow */
+        .popup .popuptext::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #555 transparent transparent transparent;
+        }
+        
+        /* Toggle this class - hide and show the popup */
+        .popup .show {
+          visibility: visible;
+          -webkit-animation: fadeIn 1s;
+          animation: fadeIn 1s;
+        }
+        
+        /* Add animation (fade in the popup) */
+        @-webkit-keyframes fadeIn {
+          from {opacity: 0;} 
+          to {opacity: 1;}
+        }
+        
+        @keyframes fadeIn {
+          from {opacity: 0;}
+          to {opacity:1 ;}
+        }
+        </style>
     <link rel="stylesheet" href="../statics/stylepedidos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Laboratorios Citología</title>
@@ -33,7 +91,16 @@
                     <label for="fname">Historia Clinica</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="h_clinica" name="h_clinica">
+                    <label type="text" id="h_clinica" name="h_clinica">
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class="col-25">
+                    <label for="pedido">Numero de pedido</label>
+                </div>
+                <div class="col-75">
+                    <label type="text" id="pedido" name="pedido"></label>
                 </div>
             </div>
             <!-- Establecimiento -->
@@ -390,19 +457,20 @@
                         <label for="fname" style="width: 10%;">Meses</label>
                     </div>
 
-
                 </div>
             </div>
+
             <!-- Regresar -->
             <div class="row">
                 <a href="main.html" onclick="limpiar()">Regresar</a>
             </div>
             <!-- Grabar -->
             <div class="row">
-                <input type="button" value="Grabar" onclick="pedido_render()" style="background-color:#cff6ff">
-
+                <input type="button" value="Grabar" onclick="confirm()" style="background-color:#cff6ff">
             </div>
-
+            <div class="popup" onclick="myFunction()">Click me to toggle the popup!
+                <span class="popuptext" id="myPopup">A Simple Popup!</span>
+            </div>
             <script src="../scripts/pedidos_render.js"></script>
 
         </form>

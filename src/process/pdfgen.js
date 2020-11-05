@@ -1,1 +1,0 @@
-const PDFDocument = require("pdfkit");

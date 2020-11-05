@@ -1,7 +1,8 @@
 const electron = require("electron");
 const { ipcRenderer } = electron;
 let cedula = document.getElementById("Cedula");
-const h_clinica = document.getElementById("h_clinica");
+let h_clinica = document.getElementById("h_clinica");
+let pedido = document.getElementById("pedido");
 const establecimiento = document.getElementById("establecimiento");
 //const medicos = document.getElementById("medicos");
 const nombres = document.getElementById("Nombre");
@@ -54,6 +55,14 @@ var hClinica = "";
 
 var input = document.getElementById("Cedula");
 
+//bug0: imprimir el codigo de historia clinica
+//bug0: listo!
+//bug1: imprimir el codigo de pedido
+//bug1: listo!
+//bug3: cada enter en la parte de la cedula llama de nuevo a la funcion
+//bug4: popup para resetear los campos si desea continuar si no regresar al main menu
+//bug5: boton para limpiar el formulario noseeee
+
 input.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
     //console.log(cedula.value);
@@ -71,10 +80,19 @@ input.addEventListener("keyup", function (event) {
 
     ipcRenderer.on("numPedido", (e, args) => {
       numPedido = args;
+      array = [];
+      array = args.split('"');
+      pedido.innerHTML = array[1];
       //console.log(args);
     });
+
     ipcRenderer.on("hClinica", (e, args) => {
       hClinica = args;
+      array = [];
+      array2 = [];
+      array = args.split("-");
+      array2 = array[0].split('"');
+      h_clinica.innerHTML = array2[1];
       //console.log(args);
     });
 
@@ -231,6 +249,16 @@ function getMedico() {
       new Option(key.toString() + " - " + medicosDB[key].toString())
     );
   }
+}
+
+function confirm() {
+  var popup = document.getElementById("myForm");
+  popup.classList.toggle("show");
+}
+
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
 }
 
 function limpiar() {

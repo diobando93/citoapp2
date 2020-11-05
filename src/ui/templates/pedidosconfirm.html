@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../statics/stylepedidos.css" />
+    <link rel="stylesheet" href="../statics/styleresultados.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Laboratorios Citología</title>
+  </head>
+
+  <body>
+    <!-- Ventana inicial de ingreso de cédula y No de Pedido  -->
+    <div class="overlay" id="datosBusqueda">
+      <!-- Formulario de Ingreso de Datos -->
+      <div class="form-popup" id="myForm">
+        <form class="form-container">
+          <h1>Datos de Busqueda</h1>
+          <!-- Cédula -->
+          <label for="Cédula"><b>Cédula</b></label>
+          <input
+            type="text"
+            placeholder="Ingrese la Cédula"
+            name="cedula"
+            id="cedula"
+            required
+          />
+
+          <!-- No de Pedido -->
+          <label for="NoMuestra"><b>Número de Pedido</b></label>
+          <input
+            type="text"
+            placeholder="Ingrese en número de muestra"
+            name="nomuestra"
+            id="pedido"
+            required
+          />
+
+          <!-- Boton Buscar -->
+          <button type="button" class="btn" onclick="retrive()">Buscar</button>
+
+          <!-- Boton Regresar -->
+          <div>
+            <button type="button" class="btn cancel">
+              <a href="main.html">Regresar</a>
+            </button>
+          </div>
+          <script src="../scripts/pedidos_render.js"></script>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

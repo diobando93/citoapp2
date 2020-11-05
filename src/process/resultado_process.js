@@ -73,6 +73,9 @@ function consultar() {
   });
 }
 
+// bug0: generar un modelo de pdf adecuado
+// bug1: guardar cada pdf con un nombre distinto
+// bug2: crear carpeta general o por fecha?
 function genPDF() {
   if (resultPdf[6] == true) {
     muestraPDF = "xxx  Adecuada";
