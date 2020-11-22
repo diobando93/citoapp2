@@ -12,39 +12,46 @@ let edad = document.getElementById("edad");
 let provincia = document.getElementById("provincia");
 let canton = document.getElementById("canton");
 let parroquia = document.getElementById("parroquia");
-const udiagnostico = document.getElementById("udiagnostico");
-const sdiagnostico = document.getElementById("sdiagnostico");
-let hclinica = document.getElementById("numeroInforme");
-const fechaInforme = document.getElementById("fechaInforme");
-const gestaciones = document.getElementById("gestaciones");
-const partos = document.getElementById("partos");
-const abortos = document.getElementById("abortos");
+let udiagnostico = document.getElementById("udiagnostico");
+let sdiagnostico = document.getElementById("sdiagnostico");
+let hclinica = document.getElementById("hclinica");
+let fechaInforme = document.getElementById("fechaInforme");
+let gestaciones = document.getElementById("gestaciones");
+let partos = document.getElementById("partos");
+let abortos = document.getElementById("abortos");
+
 const acuello = document.getElementById("acuello");
 const observaciones = document.getElementById("observaciones");
 const responsable = document.getElementById("responsable");
 const noplacas = document.getElementById("noplacas");
 const madecuada = document.getElementById("madecuada");
 const minadecuada = document.getElementById("minadecuada");
-const noinformar = document.getElementById("noinformar");
 const frotis = document.getElementById("frotis");
-const fnoprocesada = document.getElementById("fnoprocesada");
+
 const fbacilar = document.getElementById("fbacilar");
 const fcocoide = document.getElementById("fcocoide");
 const vbacteriana = document.getElementById("vbacteriana");
-const triconomas = document.getElementById("triconomas");
-const actnomyces = document.getElementById("actnomyces");
 const candida = document.getElementById("candida");
+const leptotrix = document.getElementById("leptotrix");
+const actnomyces = document.getElementById("actnomyces");
+const triconomas = document.getElementById("triconomas");
+const citolisis = document.getElementById("citolisis");
 const herpes = document.getElementById("herpes");
 const hpv = document.getElementById("hpv");
+const histocitos = document.getElementById("histocitos");
+const exudado = document.getElementById("exudado");
 const germenesotros = document.getElementById("germenesotros");
+
 const endocervicales = document.getElementById("endocervicales");
 const metaplasticas = document.getElementById("metaplasticas");
 const endometriales = document.getElementById("endometriales");
+
 const diagnostico = document.getElementById("diagnostico");
-const recomendacion = document.getElementById("recomendacion");
+const icparabasal = document.getElementById("icparabasal");
+const icintermedias = document.getElementById("icintermedias");
+const icsuperficiales = document.getElementById("icsuperficiales");
+const rcontrol = document.getElementById("rcontrol");
 const reobservaciones = document.getElementById("reobservaciones");
-const citopatologo = document.getElementById("citopatologo");
-const citotecnologo = document.getElementById("citotecnologo");
 
 let datosResultado = [];
 
@@ -70,7 +77,26 @@ function retrive() {
     fmuestraPDF = pedidoRetrieved[0].f_muestra;
     partosPDF = pedidoRetrieved[0].num_partos;
     abortosPDF = pedidoRetrieved[0].num_abortos;
-    //pedido1.innerHTML = pedidoRetrieved[0].pedido;
+    cesareasPDF = pedidoRetrieved[0].num_cesareas;
+    medicoPDF = pedidoRetrieved[0].medico;
+
+    pedido1.innerHTML = pedidoRetrieved[0].pedido;
+    edad.innerHTML = pedidoRetrieved[0].edad;
+    fechaIngreso.innerHTML = pedidoRetrieved[0].fecha;
+    fechaMuestra.innerHTML = pedidoRetrieved[0].f_muestra;
+    establecimiento.innerHTML = pedidoRetrieved[0].establecimiento;
+    provincia.innerHTML = pedidoRetrieved[0].ubicacion.provincia;
+    canton.innerHTML = pedidoRetrieved[0].ubicacion.canton;
+    parroquia.innerHTML = pedidoRetrieved[0].ubicacion.parroquia;
+    udiagnostico.innerHTML = "preguntar dato 1";
+    sdiagnostico.innerHTML = "preguntar dato 2";
+    fechaInforme.innerHTML = "preguntar si es el actual 3";
+    gestaciones.innerHTML =
+      pedidoRetrieved[0].num_partos +
+      pedidoRetrieved[0].num_cesareas +
+      pedidoRetrieved[0].num_abortos;
+    partos.innerHTML = pedidoRetrieved[0].num_partos;
+    abortos.innerHTML = pedidoRetrieved[0].num_abortos;
     //datosResultado.push(args[])
   });
   ipcRenderer.on("pacienteRetrieved", (e, args) => {
@@ -83,6 +109,9 @@ function retrive() {
     //console.log(pacienteRetrieved[0].nombres);
     nombre.innerHTML =
       pacienteRetrieved[0].nombres + " " + pacienteRetrieved[0].apellidos;
+    cedula1.innerHTML = pacienteRetrieved[0].cedula;
+    hclinica.innerHTML = pacienteRetrieved[0].h_clinica;
+
     document.getElementById("datosBusqueda").style.display = "none";
   });
 }
@@ -94,26 +123,29 @@ function enviaDatos() {
   datosResultado.push(noplacas.value);
   datosResultado.push(madecuada.checked);
   datosResultado.push(minadecuada.checked);
-  datosResultado.push(noinformar.value);
   datosResultado.push(frotis.value);
-  datosResultado.push(fnoprocesada.value);
   datosResultado.push(fbacilar.checked);
   datosResultado.push(fcocoide.checked);
   datosResultado.push(vbacteriana.checked);
-  datosResultado.push(triconomas.checked);
-  datosResultado.push(actnomyces.checked);
   datosResultado.push(candida.checked);
+  datosResultado.push(leptotrix.checked);
+  datosResultado.push(actnomyces.checked);
+  datosResultado.push(triconomas.checked);
+  datosResultado.push(citolisis.checked);
   datosResultado.push(herpes.checked);
   datosResultado.push(hpv.checked);
+  datosResultado.push(histocitos.checked);
+  datosResultado.push(exudado.checked);
   datosResultado.push(germenesotros.checked);
   datosResultado.push(endocervicales.value);
   datosResultado.push(metaplasticas.value);
   datosResultado.push(endometriales.value);
   datosResultado.push(diagnostico.value);
-  datosResultado.push(recomendacion.value);
+  datosResultado.push(icparabasal.value);
+  datosResultado.push(icintermedias.value);
+  datosResultado.push(icsuperficiales.value);
+  datosResultado.push(rcontrol.value);
   datosResultado.push(reobservaciones.value);
-  datosResultado.push(citopatologo.checked);
-  datosResultado.push(citotecnologo.checked);
   datosResultado.push(hclinicaPDF);
   datosResultado.push(nombrePDF);
   datosResultado.push(edadPDF);
@@ -121,6 +153,8 @@ function enviaDatos() {
   datosResultado.push(fmuestraPDF);
   datosResultado.push(partosPDF);
   datosResultado.push(abortosPDF);
+  datosResultado.push(cesareasPDF);
+  datosResultado.push(medicoPDF);
   console.log(datosResultado);
   ipcRenderer.send("datosResultado", datosResultado);
 }

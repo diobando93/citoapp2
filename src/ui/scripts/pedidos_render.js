@@ -26,11 +26,14 @@ const f_muestra = document.getElementById("f_muestra");
 const f_menstruacion = document.getElementById("f_menstruacion");
 const metodo_planificacion = document.getElementById("metodo_planificacion");
 const num_partos = document.getElementById("num_partos");
+const num_cesareas = document.getElementById("num_cesareas");
 const num_abortos = document.getElementById("num_abortos");
 const edad_vid_sexual = document.getElementById("edad_vid_sexual");
 
 const embarazo = document.getElementById("embarazo");
 const lactancia = document.getElementById("lactancia");
+const now_niguno = document.getElementById("now_ninguna");
+
 const destruccion_local = document.getElementById("rdDestrlocal");
 const conizacion = document.getElementById("rdConizacion");
 const histectomia = document.getElementById("rdHistectomia");
@@ -39,6 +42,7 @@ const hormonoterapia = document.getElementById("rdHormonoterapia");
 const onco_otros = document.getElementById("rdTratamOncol");
 const citologiaSi = document.getElementById("rdSi");
 const citologiaNo = document.getElementById("rdNo");
+const some_ninguno = document.getElementById("rdNinguno");
 
 const NumCitologias = document.getElementById("numCitologias");
 const citologiaAnios = document.getElementById("numAnios");
@@ -124,6 +128,7 @@ input.addEventListener("keyup", function (event) {
       document.getElementById("dat2").style.display = "block";
       document.getElementById("dat3").style.display = "block";
       document.getElementById("num_partos").style.display = "block";
+      document.getElementById("num_cesareas").style.display = "block";
       document.getElementById("num_abortos").style.display = "block";
       document.getElementById("edad_vid_sexual").style.display = "block";
     }
@@ -177,6 +182,10 @@ function pedido_render() {
   var dropMedicos = dropBox.options[dropBox.selectedIndex].value;
   dropMedicos = dropMedicos.substring(dropMedicos.indexOf("-") + 1);
   datos.push(dropMedicos);
+  datos.push(num_cesareas.value);
+  datos.push(now_niguno.checked);
+  datos.push(some_ninguno.checked);
+
   console.log(datos);
   ipcRenderer.send("datos", datos);
   datos = [];
@@ -251,6 +260,7 @@ function getMedico() {
   }
 }
 
+/*
 function confirm() {
   var popup = document.getElementById("myForm");
   popup.classList.toggle("show");
@@ -264,3 +274,4 @@ function myFunction() {
 function limpiar() {
   //
 }
+*/

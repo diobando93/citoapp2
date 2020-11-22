@@ -139,16 +139,22 @@ function recibir() {
         fecha_ult_mestruacion: args[21],
         metodo_planificacion: args[22],
         num_partos: args[23],
+        num_cesareas: args[41],
         num_abortos: args[24],
         inicio_sexo: args[25],
+
         embarazada: args[26],
         lactancia: args[27],
+        now_ninguno: args[42],
+
         destruccion_local: args[28],
         conizacon: args[29],
         histectomia: args[30],
         radioterapia: args[31],
         hormonoterapia: args[32],
         otros: args[33],
+        some_ninguno: args[43],
+
         citologia: {
           Si: args[34],
           No: args[35],

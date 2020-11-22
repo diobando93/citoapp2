@@ -30,16 +30,21 @@ const Pedido = new Schema({
   fecha_ult_mestruacion: Date,
   metodo_planificacion: String,
   num_partos: String,
+  num_cesareas: String,
   num_abortos: String,
   inicio_sexo: String,
   embarazada: String,
   lactancia: String,
+  now_ninguno: String,
+
   destruccion_local: String,
   conizacon: String,
   histectomia: String,
   radioterapia: String,
   hormonoterapia: String,
   otros: String,
+  some_ninguno: String,
+
   citologia: {
     Si: String,
     No: String,
