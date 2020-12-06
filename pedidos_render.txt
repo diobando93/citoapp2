@@ -68,7 +68,8 @@ var input = document.getElementById("Cedula");
 //bug5: boton para limpiar el formulario noseeee
 
 input.addEventListener("keyup", function (event) {
-  if (event.keyCode === 13) {
+
+  if (event.keyCode == 13) {
     //console.log(cedula.value);
     event.preventDefault();
 
@@ -87,7 +88,7 @@ input.addEventListener("keyup", function (event) {
       array = [];
       array = args.split('"');
       pedido.innerHTML = array[1];
-      //console.log(args);
+      console.log(args);
     });
 
     ipcRenderer.on("hClinica", (e, args) => {
@@ -242,7 +243,7 @@ function getCanton() {
 function getMedico() {
   var dropBox = document.getElementById("establecimiento");
   var dropEstablecimineto = dropBox.options[dropBox.selectedIndex].value;
-  console.log(dropEstablecimineto);
+    console.log(dropEstablecimineto);
   var dropBox2 = document.getElementById("medicos");
   if (dropBox2.length > 0) {
     for (var i = dropBox2.length; i > -1; i--) {
@@ -260,67 +261,6 @@ function getMedico() {
   }
 }
 
-function limpiar() {
-  //
-  document.getElementById("Cedula").value = "";
-  document.getElementById("Nombre").value = "";
-
-  document.getElementById("establecimiento").value = "";
-  document.getElementById("establecimiento").style.display = "none";
-  document.getElementById("medicos").value = "";
-  document.getElementById("medicos").style.display = "none";
-  document.getElementById("Nombre").value = "";
-  document.getElementById("Nombre").style.display = "none";
-  document.getElementById("Apellido").value = "";
-  document.getElementById("Apellido").style.display = "none";
-  document.getElementById("edad").value = "";
-  document.getElementById("edad").style.display = "none";
-  document.getElementById("f_nacimiento").value = "20202/01/01";
-
-  document.getElementById("pais").value = "";
-  document.getElementById("pais").style.display = "none";
-  document.getElementById("provincia").value = "";
-  document.getElementById("provincia").style.display = "none";
-  document.getElementById("canton").value = "";
-  document.getElementById("canton").style.display = "none";
-  document.getElementById("parroquia").value = "";
-  document.getElementById("parroquia").style.display = "none";
-  document.getElementById("sector").value = "";
-  document.getElementById("sector").style.display = "none";
-  document.getElementById("instruccion").value = "";
-  document.getElementById("instruccion").style.display = "none";
-  document.getElementById("ocupacion").value = "";
-  document.getElementById("ocupacion").style.display = "none";
-  document.getElementById("ins_jefefamilia").value = "";
-  document.getElementById("ins_jefefamilia").style.display = "none";
-  document.getElementById("ocu_jefefamilia").value = "";
-  document.getElementById("ocu_jefefamilia").style.display = "none";
-  document.getElementById("telefono").value = "";
-  document.getElementById("telefono").style.display = "none";
-  document.getElementById("email").value = "";
-  document.getElementById("email").style.display = "none";
-  document.getElementById("telefonof").value = "";
-  document.getElementById("telefonof").style.display = "none";
-  document.getElementById("emailf").value = "";
-  document.getElementById("emailf").style.display = "none";
-  document.getElementById("f_muestra").value = "20202/01/01";
-
-  document.getElementById("f_menstruacion").value = "20202/01/01";
-
-  document.getElementById("metodo_planificacion").value = "";
-  document.getElementById("metodo_planificacion").style.display = "none";
-
-  document.getElementById("num_partos").style.display = "none";
-  document.getElementById("num_cesareas").style.display = "none";
-  document.getElementById("num_abortos").style.display = "none";
-  document.getElementById("edad_vid_sexual").style.display = "none";
-
-  document.getElementById("dat1").style.display = "none";
-  document.getElementById("dat2").style.display = "none";
-  document.getElementById("dat3").style.display = "none";
-  //
-}
-
 /*
 function confirm() {
   var popup = document.getElementById("myForm");
@@ -331,8 +271,74 @@ function myFunction() {
   var popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
 }
+*/
 
 function limpiar() {
-  //
+
+    //
+    document.getElementById("Cedula").value = '';
+    document.getElementById("Nombre").value = '';
+
+
+    document.getElementById("establecimiento").value = '';
+    document.getElementById("establecimiento").style.display = "none";
+    document.getElementById("medicos").value = '';
+    document.getElementById("medicos").style.display = "none";
+    document.getElementById("Nombre").value = '';
+    document.getElementById("Nombre").style.display = "none";
+    document.getElementById("Apellido").value = '';
+    document.getElementById("Apellido").style.display = "none";
+    document.getElementById("edad").value = '';
+    document.getElementById("edad").style.display = "none";
+    document.getElementById("f_nacimiento").value = '20202/01/01';
+
+
+    document.getElementById("pais").value = '';
+    document.getElementById("pais").style.display = "none";
+    document.getElementById("provincia").value = '';
+    document.getElementById("provincia").style.display = "none";
+    document.getElementById("canton").value = '';
+    document.getElementById("canton").style.display = "none";
+    document.getElementById("parroquia").value = '';
+    document.getElementById("parroquia").style.display = "none";
+    document.getElementById("sector").value = '';
+    document.getElementById("sector").style.display = "none";
+    document.getElementById("instruccion").value = '';
+    document.getElementById("instruccion").style.display = "none";
+    document.getElementById("ocupacion").value = '';
+    document.getElementById("ocupacion").style.display = "none";
+    document.getElementById("ins_jefefamilia").value = '';
+    document.getElementById("ins_jefefamilia").style.display = "none";
+    document.getElementById("ocu_jefefamilia").value = '';
+    document.getElementById("ocu_jefefamilia").style.display = "none";
+    document.getElementById("telefono").value = '';
+    document.getElementById("telefono").style.display = "none";
+    document.getElementById("email").value = '';
+    document.getElementById("email").style.display = "none";
+    document.getElementById("telefonof").value = '';
+    document.getElementById("telefonof").style.display = "none";
+    document.getElementById("emailf").value = '';
+    document.getElementById("emailf").style.display = "none";
+    document.getElementById("f_muestra").value = '20202/01/01';
+    
+    document.getElementById("f_menstruacion").value = '20202/01/01';
+
+    document.getElementById("metodo_planificacion").value = '';
+    document.getElementById("metodo_planificacion").style.display = "none";
+
+    document.getElementById("num_partos").style.display = "none";
+    document.getElementById("num_cesareas").style.display = "none";
+    document.getElementById("num_abortos").style.display = "none";
+    document.getElementById("edad_vid_sexual").style.display = "none";
+
+    document.getElementById("dat1").style.display = "none";
+    document.getElementById("dat2").style.display = "none";
+    document.getElementById("dat3").style.display = "none";
+    //
+    
+    
+    
+    
+    
 }
-*/
+

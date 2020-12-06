@@ -86,49 +86,57 @@ function consultar() {
 // bug1: guardar cada pdf con un nombre distinto
 // bug2: crear carpeta general o por fecha?
 function genPDF() {
+  escribirGermenes = [];
+
   if (resultPdf[6] == true) {
     muestraPDF = "Adecuada";
   } else {
     muestraPDF = "Inadecuada";
   }
-  if ((resultPdf[9] = true)) {
-    germenes1 = "Flora Bacilar";
+  if (resultPdf[9] == true) {
+    escribirGermenes.push("Flora Bacilar");
   }
-  if ((resultPdf[10] = true)) {
-    germenes2 = "Flora Cocoide";
+  if (resultPdf[10] == true) {
+    escribirGermenes.push("Flora Cocoide");
   }
-  if ((resultPdf[11] = true)) {
-    germenes3 = "Vaginosis Bacteriana";
+  if (resultPdf[11] == true) {
+    escribirGermenes.push("Vaginosis Bacteriana");
   }
-  if ((resultPdf[12] = true)) {
-    germenes4 = "Candida";
+  if (resultPdf[12] == true) {
+    escribirGermenes.push("Candida");
   }
-  if ((resultPdf[13] = true)) {
-    germenes5 = "Leptotrix";
+  if (resultPdf[13] == true) {
+    escribirGermenes.push("Leptotrix");
   }
-  if ((resultPdf[14] = true)) {
-    germenes6 = "Actnomyces";
+  if (resultPdf[14] == true) {
+    escribirGermenes.push("Actnomyces");
   }
-  if ((resultPdf[15] = true)) {
-    germenes7 = "Triconomas";
+  if (resultPdf[15] == true) {
+    escribirGermenes.push("Triconomas");
   }
-  if ((resultPdf[16] = true)) {
-    germenes8 = "Citolisis";
+  if (resultPdf[16] == true) {
+    escribirGermenes.push("Citolisis");
   }
-  if ((resultPdf[17] = true)) {
-    germenes9 = "Sugestivo de Herpes";
+  if (resultPdf[17] == true) {
+    escribirGermenes.push("Sugestivo de Herpes");
   }
-  if ((resultPdf[18] = true)) {
-    germenes10 = "Sugestivo HPV";
+  if (resultPdf[18] == true) {
+    escribirGermenes.push("Sugestivo HPV");
   }
-  if ((resultPdf[19] = true)) {
-    germenes11 = "Histocitos";
+  if (resultPdf[19] == true) {
+    escribirGermenes.push("Histocitos");
   }
-  if ((resultPdf[20] = true)) {
-    germenes12 = "Exudado Leucocitorio";
+  if (resultPdf[20] == true) {
+    escribirGermenes.push("Exudado Leucocitorio");
   }
-  if ((resultPdf[21] = true)) {
-    germenes13 = "Otros";
+  if (resultPdf[21] == true) {
+    escribirGermenes.push("Otros");
+  }
+
+  for (var key in escribirGermenes) {
+    //console.log(escribirGermenes[key]);
+    aux = "los germenes son: ";
+    aux2 = escribirGermenes[key] + "\n";
   }
 
   const doc = new PDFDocument();

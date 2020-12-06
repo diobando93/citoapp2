@@ -111,9 +111,9 @@
               type="date"
               id="f_nacimiento"
               name="f_nacimiento"
-              value="2018-07-22"
+              value="2021-01-01"
               min="1900-01-01"
-              max="2018-12-31"
+              max="2100-12-31"
               style="display: none"
             />
           </div>
@@ -306,9 +306,9 @@
               type="date"
               id="f_muestra"
               name="f_muestra"
-              value="2018-07-22"
+              value="2021-01-01"
               min="1900-01-01"
-              max="2018-12-31"
+              max="2100-12-31"
               style="display: none"
             />
           </div>
@@ -331,9 +331,9 @@
               type="date"
               id="f_menstruacion"
               name="f_menstruacion"
-              value="2018-07-22"
+              value="2021-01-01"
               min="1900-01-01"
-              max="2018-12-31"
+              max="2100-12-31"
               style="display: none"
             />
           </div>
@@ -569,23 +569,39 @@
           </div>
         </div>
 
-        <!-- Regresar -->
+        <div class="separator"></div>
+
+        <!-- Botones de Grabar-->
         <div class="row">
-          <a href="main.html" onclick="limpiar()">Regresar</a>
-        </div>
-        <!-- Grabar -->
-        <div class="row">
+          <!-- Regresar-->
           <input
             type="button"
-            value="Grabar"
+            value="Regresar"
+            onclick="limpiar()"
+            style="background-color: #cff6ff"
+          />
+
+          <div class="col-25" style="width: 100px"></div>
+
+          <!-- Grabar y Continuar-->
+          <input
+            type="button"
+            value="Grabar y Continuar"
+            onclick="limpiar()"
+            style="background-color: #cff6ff"
+          />
+
+          <div class="column"></div>
+
+          <!-- Grabar y Cerrar-->
+          <input
+            type="button"
+            value="Grabar y Cerrar"
             onclick="pedido_render()"
             style="background-color: #cff6ff"
           />
         </div>
-        <div class="popup" onclick="myFunction()">
-          Click me to toggle the popup!
-          <span class="popuptext" id="myPopup">A Simple Popup!</span>
-        </div>
+
         <script src="../scripts/pedidos_render.js"></script>
       </form>
     </div>
