@@ -9,17 +9,36 @@ let pedidosWindows;
 //falta crear una pantalla por cada icono del menu por ejemplo pantalla pedidos
 //como esta el process se confunde
 
-/*
 app.on("ready", () => {
-  mainWindows = new BrowserWindow({
+  var mainWindows = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
     },
   });
   mainWindows.loadFile("src/ui//templates/main.html");
-});
-*/
 
+  var pedidosWindow = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    width: 800,
+    height: 800,
+    show: false,
+  });
+  pedidosWindow.loadFile("src/ui//templates/pedidos.html");
+
+  ipcMain.on("envio-datos-paciente", (e, args) => {
+    //app.allowRendererProcessReuse = false;
+    pedidosWindow.show();
+    mainWindows.hide();
+    app.whenReady().then(recibir);
+    ipcMain.on("regresar", (e, args) => {
+      console.log("regrese");
+    });
+  });
+});
+
+/*
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
@@ -30,11 +49,9 @@ function createWindow() {
   });
   win.loadFile("src/ui//templates/main.html");
 }
-
+*/
+/*
 ipcMain.on("envio-datos-paciente", (e, args) => {
-  //pedidosWindows = new BrowserWindow({ width: 800, height: 800 });
-  //pedidosWindows.loadFile("src/ui/templates/pedidos.html");
-  //recibir;
   app.allowRendererProcessReuse = false;
   app.whenReady().then(recibir);
 });
@@ -48,5 +65,6 @@ ipcMain.on("medicos-crear-eliminar", (e, args) => {
   app.whenReady().then(doctores);
   app.allowRendererProcessReuse = false;
 });
+*/
 
-module.exports = { createWindow };
+//module.exports = { createWindow };

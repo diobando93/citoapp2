@@ -1,5 +1,6 @@
-const electron = require("electron");
-const { ipcRenderer } = electron;
+const { ipcRenderer } = require("electron");
+//const electron = require("electron");
+//const { ipcRenderer } = require("electron");
 let cedula = document.getElementById("Cedula");
 let h_clinica = document.getElementById("h_clinica");
 let pedido = document.getElementById("pedido");
@@ -319,6 +320,13 @@ function limpiar() {
   document.getElementById("dat2").style.display = "none";
   document.getElementById("dat3").style.display = "none";
   //
+}
+
+function regresar() {
+  console.log("regresar");
+  ipcRenderer.on("regresar", (e, args) => {
+    console.log("regresar al main");
+  });
 }
 
 /*

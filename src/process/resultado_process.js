@@ -132,12 +132,23 @@ function genPDF() {
   if (resultPdf[21] == true) {
     escribirGermenes.push("Otros");
   }
-
+  console.log(escribirGermenes.length);
+  aux1 = 0;
+  control = 0;
   for (var key in escribirGermenes) {
     //console.log(escribirGermenes[key]);
     aux = "los germenes son: ";
-    aux2 = escribirGermenes[key] + "\n";
+    escribirGermenes[key] = " " + escribirGermenes[key] + " ";
+
+    //aux1 = aux1 + 1;
   }
+  console.log(escribirGermenes);
+  fechaToma = resultPdf[35].split("T");
+  fechaToma = fechaToma[0];
+  fecha1 = fechaNow();
+  //Expected output should be: "1 year, 5 months".
+  //diffDate(new Date(fechaToma), new Date(fechaNow));
+  console.log(fechaToma);
 
   const doc = new PDFDocument();
   doc.pipe(fs.createWriteStream("output.pdf"));
@@ -154,7 +165,7 @@ function genPDF() {
       130
     )
     .moveDown()
-    .text("Fecha toma: " + resultPdf[35], 100, 160)
+    .text("Fecha toma: " + fechaToma, 100, 160)
     .moveDown()
     .text("Solicitado por: ")
     .moveDown()
@@ -165,14 +176,23 @@ function genPDF() {
     .moveDown()
     .text("Frotis: " + resultPdf[8], 100, 250)
     .moveDown()
-    .text("Gérmenes")
+    .text("Gérmenes:")
     .moveDown()
-    .text(resultPdf[9], 50, 290)
-    .text(resultPdf[10], 150, 290)
-    .text(resultPdf[11], 250, 290)
-    .text(resultPdf[12], 400, 290);
+    .text(" ")
+    .moveDown()
+    .text(escribirGermenes, 100, 300);
 
   doc.end();
+}
+
+function fechaNow() {
+  monentoActual = new Date();
+  year = monentoActual.getFullYear();
+  month = monentoActual.getMonth();
+  day = monentoActual.getDate();
+  console.log(year + "-" + month + "-" + day);
+  actual = year + "-" + month + "-" + day;
+  return actual;
 }
 
 module.exports = { consultar };

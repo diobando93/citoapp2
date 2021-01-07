@@ -118,7 +118,7 @@ function recibir() {
         edad: args[5],
         medico: args[40],
         establecimiento: args[2],
-        telefonof: args[16],
+        telefono: args[16],
         email: args[17],
         telefonof: args[18],
         emailf: args[19],
