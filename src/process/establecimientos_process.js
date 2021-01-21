@@ -1,13 +1,15 @@
 const { ipcMain } = require('electron');
 const Establecimiento = require('../models/establecimiento.js');
-const Medicos = require('../models/medicos.js');
+const Patient = require("../models/patient.js");
+const hclinic = require("../models/h_clinic.js");
 
 let EST = [];
 
-console.log("CARGANDO DOCTORES PROCESS")
+console.log("CARGANDO ESTABLECIMIENTOS PROCESS")
 
-function doctores() {
+function estab() {
 
+    //checkEstablecimientos();
     ipcMain.on("consulta-establecimientos", async (e, args) => {
 
         EST = await checkEstablecimientos();
@@ -15,37 +17,23 @@ function doctores() {
 
     });
 
-    ipcMain.on('datos', async (e, args) => {
-        console.log(args);
-        const doctor = {
-            nombre: args[0],
-            apellido: args[1],
-            institucion: args[2]
-        }
-        const newMedico = new Medicos(doctor);
-        const MedicoSaved = await newMedico.save();
+    //checkEstablecimientos();
+    ipcMain.on("add-establecimientos", async (e, args) => {
+        guardarEstablecimiento(args);
     });
 
+}
 
-    ipcMain.on("consulta-doctores", async (e, args) => {
+function guardarEstablecimiento(arg) {
 
-        console.log(args)
-        medicos = [];
+    const establecimiento = new Establecimiento({
+        Nombre: arg
+    })
 
-        medicos_buscar = await Medicos.find({ institucion: args });
-
-        //console.log(medicos_buscar);
-
-        for (var key in medicos_buscar) {
-            let nombreCompleto =
-                medicos_buscar[key].nombre + " " + medicos_buscar[key].apellido;
-            medicos.push(nombreCompleto);
-        }
-
-        //console.log(medicos);
-        e.returnValue = JSON.stringify(medicos);
-
+    establecimiento.save((err, document) => {
+        if (err) console.log(err);
     });
+
 }
 
 async function checkEstablecimientos() {
@@ -80,5 +68,8 @@ async function checkEstablecimientos() {
     return DBestablecimientos;
 }
 
+function consultar() { }
 
-module.exports = {doctores};
+function cancelar() { }
+
+module.exports = { estab };

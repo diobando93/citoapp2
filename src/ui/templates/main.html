@@ -1,66 +1,99 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="../statics/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Laboratorios Citología</title>
   </head>
 
   <body>
-    <div class="sidenav">
-      <button class="dropdown-btn">
-        Producción
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-container">
-        <a id="pedidos"> Pedidos </a>
-        <a id="resultados" href="resultados.html"> Resultados </a>
-        <a href="#">Retiro de informes</a>
+
+      <!-- SECCION DE SIDENAV-->
+      <div class="sidenav">
+          <!--OPCION PRODUCCION-->
+          <button class="dropdown-btn">
+              Producción<i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+              <!--BOTON PEDIDOS-->
+              <a id="pedidos">
+                  Pedidos
+              </a>
+              <!--BOTON RESULATDOS-->
+              <a id="resultados">
+                  Resultados
+              </a>
+              <!--BOTON INFORMES-->
+              <a id="retiro de infomres">
+                  Retiro de informes
+              </a>
+          </div>
+          <!--OPCION REPORTES-->
+          <button class="dropdown-btn">
+              Reportes<i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+              <!--BOTON Pedidos-->
+              <a href="#">Pedidos</a>
+              <!--BOTON Resultados-->
+              <a href="#">Resultados</a>
+              <!--BOTON Historicos-->
+              <a href="#">Historicos</a>
+          </div>
+          <!--OPCION REPORTES-->
+          <button class="dropdown-btn">
+              Seguimiento<i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+              <!--BOTON PACIENTES-->
+              <a id='pacientes'>
+                  Pacientes
+              </a>
+              <!--BOTON DOCTORES-->
+              <a id='doctores'>
+                  Doctores
+              </a>
+              <!--BOTON ESTABLECIMIENTOS-->
+              <a id='establecimientos'>
+                  Establecimientos
+              </a>
+          </div>
+          <!--OPCION CORRELACIONES-->
+          <button class="dropdown-btn">
+              Correlaciones
+              <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+              <a href="#">Citología</a>
+              <a href="#">Controles posteriores</a>
+          </div>
+          <button class="dropdown-btn">
+              Estadísticas
+              <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+              <a href="#">General</a>
+              <a href="#">Otros</a>
+          </div>
+
+          <button class="dropdown-btn" id="salir">
+              Salir
+              <i class="fa"></i>
+          </button>
+
       </div>
-      <button class="dropdown-btn">
-        Reportes
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-container">
-        <a id="consultaPedidos" href="consultaPedidos.html"> Pedidos </a>
-        <a href="#">Resultados</a>
-        <a href="#">Historicos</a>
+
+      <!-- SECCION MAIN DE LA PANTALLA -->
+      <div class="main">
+          <h2>CitoApp</h2>
+          <p>Desarrollado por Eter</p>
       </div>
-      <button class="dropdown-btn">
-        Seguimiento
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-container">
-        <a href="#">Pacientes</a>
-        <a id="doctores" href="doctores.html"> Doctores</a>
-      </div>
-      <button class="dropdown-btn">
-        Correlaciones
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-container">
-        <a href="#">Citología</a>
-        <a href="#">Controles posteriores</a>
-      </div>
-      <button class="dropdown-btn">
-        Estadísticas
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-container">
-        <a href="#">General</a>
-        <a href="#">Otros</a>
-      </div>
-    </div>
-    <div class="main">
-      <h2>CitoApp</h2>
-      <p>Desarrollado por Eter</p>
-    </div>
-    <script src="../scripts/main_render.js"></script>
+
+      <!--LLAMADO AL SCRIPT-->
+      <script src="../scripts/main_render.js"></script>
+
   </body>
 </html>

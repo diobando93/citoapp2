@@ -11,6 +11,8 @@ let cantones = [];
 let parroquias = [];
 let numPedido = "";
 let hClinica = "";
+
+console.log("CARGANDO PEDIDO PROCESS");
 //let medicosBD = "";
 //recibe datos desde el pedido_render
 
@@ -20,8 +22,18 @@ function recibir() {
   //bug0: MAL HACER UNA FUNCION DEL TIEMPOconsole.log(hora);
   //bug0: resuelto
   console.log(hourNow());
+  /*
+    ipcMain.on("exit-pedidos", (e, args) => {
+        console.log(args);
+        ipcMain.removeListener("cedula", async (e, args) => {
+
+        });
+
+    });
+    */
+
   //Funcion para recibir el numero de cedula del textbox
-  ipcMain.on("cedula", async (e, args) => {
+  ipcMain.once("cedula", async (e, args) => {
     console.log(args + " numero de cedula ingresado"); // Imprime por consolo el numero de cedula
 
     const hcl = hcgen(args); // Llamado a la funcion para generar o responder con un numero de historia clinica
@@ -88,11 +100,10 @@ function recibir() {
 
     // bug2: popup para preguntar si continuar en la pantalla de pedidos, entonces se debe resetear los campos
     // si no se desea continuar regresar al main menu
-
     if (envia0 == true && envia1 === true) {
       console.log("formulario correcto");
       if (array[1] == 'actualice"') {
-        let actualizar = Hclinic.where({ _id: "5f1311fef9417d3136858ce8" });
+        let actualizar = Hclinic.where({ _id: "5fcd4685b3b8b747e6347f82" });
         actualizar.updateOne({ $set: { h_clinica: array2[1] } }).exec();
         hClinica = array2[1];
       } else {
@@ -180,7 +191,7 @@ function recibir() {
       //const newPC = new Pedidocounter(pedidogenCounter);
       //const PCSaved = await newPC.save();
       let actualizarPC = Pedidocounter.where({
-        _id: "5f5802815a5736164e9858a0",
+        _id: "5fcd4784b3b8b747e6347f85",
       });
       actualizarPC.updateOne({ $set: { pedido_counter: args[39] } }).exec();
       //const pedidotSaved = await newPedido.save();

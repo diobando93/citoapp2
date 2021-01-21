@@ -11,599 +11,522 @@
 
   <body>
     <div class="container">
-      <form>
-        <!-- Titulo Identificación -->
-        <div class="row">
-          <div class="titulo-principal">
-            <h1>Identificación / Pedidos</h1>
-          </div>
-        </div>
-        <!-- Cedula e Historia Clinica -->
-        <div class="row">
-          <div class="col-25">
-            <label for="fname">Cedula</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="Cedula" name="Cedu" />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="fname">Historia Clinica</label>
-          </div>
-          <div class="col-75">
-            <label type="text" id="h_clinica" name="h_clinica"></label>
-          </div>
-        </div>
+        <form>
+            <!-- Titulo Identificación -->
+            <div class="row">
+                <div class="titulo-principal">
+                    <h1>Identificación / Pedidos</h1>
+                </div>
+            </div>
+            <!-- Cedula e Historia Clinica -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Cedula</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Cedula" name="Cedu" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="fname">Historia Clinica</label>
+                </div>
+                <div class="col-75">
+                    <label type="text" id="h_clinica" name="h_clinica"></label>
+                </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="pedido">Numero de pedido</label>
-          </div>
-          <div class="col-75">
-            <label type="text" id="pedido" name="pedido"></label>
-          </div>
-        </div>
-        <!-- Establecimiento -->
-        <div class="row">
-          <div class="col-25">
-            <label for="fname">Establecimiento</label>
-          </div>
-          <div class="col-75">
-            <select
-              name="establecimiento"
-              id="establecimiento"
-              style="display: none"
-              onclick="getMedico()"
-            >
-              <option value="Zurita">1 - Zurita</option>
-              <option value="Medicamental">2 - Medicamental</option>
-              <option value="Interno">3 - Interno</option>
-            </select>
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="Medicos">Medicos</label>
-          </div>
-          <div class="col-75">
-            <select name="medicos" id="medicos" style="display: none"></select>
-          </div>
-        </div>
-        <!-- Nombres y Apellidos -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Nombres</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="Nombre"
-              name="Nombres"
-              style="display: none"
-            />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Apellidos</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="Apellido"
-              name="Apellidos"
-              style="display: none"
-            />
-          </div>
-        </div>
-        <!-- Edad y Fecha de Nacimiento -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Edad</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="edad" name="edad" style="display: none" />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Fecha de nacimiento</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="date"
-              id="f_nacimiento"
-              name="f_nacimiento"
-              value="2021-01-01"
-              min="1900-01-01"
-              max="2100-12-31"
-              style="display: none"
-            />
-          </div>
-        </div>
-        <!-- Pais y Provincia -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">País</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="pais" name="pais" style="display: none" />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Provincia</label>
-          </div>
-          <div class="col-75">
-            <select
-              name="provincia"
-              id="provincia"
-              style="display: none"
-              onclick="getProvincia()"
-            ></select>
-          </div>
-        </div>
-        <!-- Canton parroquia -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Cantón</label>
-          </div>
-          <div class="col-75">
-            <select
-              name="canton"
-              id="canton"
-              style="display: none"
-              onclick="getCanton()"
-            ></select>
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Parroquía</label>
-          </div>
-          <div class="col-75">
-            <select
-              id="parroquia"
-              name="parroquia"
-              style="display: none"
-            ></select>
-          </div>
-        </div>
-        <!-- Ciudad Sector -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Sector</label>
-          </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="pedido">Numero de pedido</label>
+                </div>
+                <div class="col-75">
+                    <label type="text" id="pedido" name="pedido"></label>
+                </div>
+            </div>
+            <!-- Establecimiento -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Establecimiento</label>
+                </div>
+                <div class="col-75">
+                    <select name="establecimiento"
+                            id="establecimiento"
+                            style="display: none"
+                            onclick="getMedico()">
+                        <option value="Zurita">1 - Zurita</option>
+                        <option value="Medicamental">2 - Medicamental</option>
+                        <option value="Interno">3 - Interno</option>
+                    </select>
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="Medicos">Medicos</label>
+                </div>
+                <div class="col-75">
+                    <select name="medicos" id="medicos" style="display: none"></select>
+                </div>
+            </div>
+            <!-- Nombres y Apellidos -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Nombres</label>
+                </div>
+                <div class="col-75">
+                    <input type="text"
+                           id="Nombre"
+                           name="Nombres"
+                           style="display: none" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Apellidos</label>
+                </div>
+                <div class="col-75">
+                    <input type="text"
+                           id="Apellido"
+                           name="Apellidos"
+                           style="display: none" />
+                </div>
+            </div>
+            <!-- Edad y Fecha de Nacimiento -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Edad</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="edad" name="edad" style="display: none" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Fecha de nacimiento</label>
+                </div>
+                <div class="col-75">
+                    <input type="date"
+                           id="f_nacimiento"
+                           name="f_nacimiento"
+                           value="2021-01-01"
+                           min="1900-01-01"
+                           max="2100-12-31"
+                           style="display: none" />
+                </div>
+            </div>
+            <!-- Pais y Provincia -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">País</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="pais" name="pais" style="display: none" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Provincia</label>
+                </div>
+                <div class="col-75">
+                    <select name="provincia"
+                            id="provincia"
+                            style="display: none"
+                            onclick="getProvincia()"></select>
+                </div>
+            </div>
+            <!-- Canton parroquia -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Cantón</label>
+                </div>
+                <div class="col-75">
+                    <select name="canton"
+                            id="canton"
+                            style="display: none"
+                            onclick="getCanton()"></select>
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Parroquía</label>
+                </div>
+                <div class="col-75">
+                    <select id="parroquia"
+                            name="parroquia"
+                            style="display: none"></select>
+                </div>
+            </div>
+            <!-- Ciudad Sector -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Sector</label>
+                </div>
 
-          <div class="col-75">
-            <select name="sector" id="sector" style="display: none">
-              <option value="Rural">1 - Rural</option>
-              <option value="Urbano">2 - Urbano</option>
-            </select>
-          </div>
-        </div>
-        <!-- Instruccion ocupacion -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Instruccion</label>
-          </div>
-          <div class="col-75">
-            <select name="instruccion" id="instruccion" style="display: none">
-              <option value="Básica">1 - Básica</option>
-              <option value="Primaria">2 - Primaria</option>
-              <option value="Secundária">3 - Secundária</option>
-              <option value="Superior">3 - Superior</option>
-            </select>
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Ocupacion</label>
-          </div>
-          <div class="col-75">
-            <select name="ocupacion" id="ocupacion" style="display: none">
-              <option value="Estudiante">1 - Estudiante</option>
-              <option value="Trabajos Ocasionales">
-                2 - Trabajos Ocasionales
-              </option>
-              <option value="Autoempleada">3 - Autoempleada</option>
-              <option value="Empleado Público">4 - Empleado Público</option>
-              <option value="Empleado Privado">5 - Empleado Privado</option>
-              <option value="Ocupaciones del Hogar">
-                6 - Ocupaciones del Hogar
-              </option>
-            </select>
-          </div>
-        </div>
-        <!-- ins_jefefamilia ocu_jefefamilia -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Instruccion jefe de famila</label>
-          </div>
-          <div class="col-75">
-            <select
-              name="ins_jefefamilia"
-              id="ins_jefefamilia"
-              style="display: none"
-            >
-              <option value="Básica">1 - Básica</option>
-              <option value="Primaria">2 - Primaria</option>
-              <option value="Secundária">3 - Secundária</option>
-              <option value="Superior">3 - Superior</option>
-            </select>
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Ocupacion jefe de famila</label>
-          </div>
-          <div class="col-75">
-            <select
-              name="ocu_jefefamilia"
-              id="ocu_jefefamilia"
-              style="display: none"
-            >
-              <option value="Estudiante">1 - Estudiante</option>
-              <option value="Trabajos Ocasionales">
-                2 - Trabajos Ocasionales
-              </option>
-              <option value="Autoempleada">3 - Autoempleada</option>
-              <option value="Empleado Público">4 - Empleado Público</option>
-              <option value="Empleado Privado">5 - Empleado Privado</option>
-              <option value="Ocupaciones del Hogar">
-                6 - Ocupaciones del Hogar
-              </option>
-            </select>
-          </div>
-        </div>
-        <!-- est_toma_muestra  f_muestra -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Telefono</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="telefono"
-              name="telefono"
-              style="display: none"
-            />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Email</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="email" name="email" style="display: none" />
-          </div>
-        </div>
+                <div class="col-75">
+                    <select name="sector" id="sector" style="display: none">
+                        <option value="Rural">1 - Rural</option>
+                        <option value="Urbano">2 - Urbano</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Instruccion ocupacion -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Instruccion</label>
+                </div>
+                <div class="col-75">
+                    <select name="instruccion" id="instruccion" style="display: none">
+                        <option value="Básica">1 - Básica</option>
+                        <option value="Primaria">2 - Primaria</option>
+                        <option value="Secundária">3 - Secundária</option>
+                        <option value="Superior">3 - Superior</option>
+                    </select>
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Ocupacion</label>
+                </div>
+                <div class="col-75">
+                    <select name="ocupacion" id="ocupacion" style="display: none">
+                        <option value="Estudiante">1 - Estudiante</option>
+                        <option value="Trabajos Ocasionales">
+                            2 - Trabajos Ocasionales
+                        </option>
+                        <option value="Autoempleada">3 - Autoempleada</option>
+                        <option value="Empleado Público">4 - Empleado Público</option>
+                        <option value="Empleado Privado">5 - Empleado Privado</option>
+                        <option value="Ocupaciones del Hogar">
+                            6 - Ocupaciones del Hogar
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <!-- ins_jefefamilia ocu_jefefamilia -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Instruccion jefe de famila</label>
+                </div>
+                <div class="col-75">
+                    <select name="ins_jefefamilia"
+                            id="ins_jefefamilia"
+                            style="display: none">
+                        <option value="Básica">1 - Básica</option>
+                        <option value="Primaria">2 - Primaria</option>
+                        <option value="Secundária">3 - Secundária</option>
+                        <option value="Superior">3 - Superior</option>
+                    </select>
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Ocupacion jefe de famila</label>
+                </div>
+                <div class="col-75">
+                    <select name="ocu_jefefamilia"
+                            id="ocu_jefefamilia"
+                            style="display: none">
+                        <option value="Estudiante">1 - Estudiante</option>
+                        <option value="Trabajos Ocasionales">
+                            2 - Trabajos Ocasionales
+                        </option>
+                        <option value="Autoempleada">3 - Autoempleada</option>
+                        <option value="Empleado Público">4 - Empleado Público</option>
+                        <option value="Empleado Privado">5 - Empleado Privado</option>
+                        <option value="Ocupaciones del Hogar">
+                            6 - Ocupaciones del Hogar
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <!-- est_toma_muestra  f_muestra -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Telefono</label>
+                </div>
+                <div class="col-75">
+                    <input type="text"
+                           id="telefono"
+                           name="telefono"
+                           style="display: none" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Email</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="email" name="email" style="display: none" />
+                </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Telefono familiar</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="telefonof"
-              name="telefonof"
-              style="display: none"
-            />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Email familiar</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="text"
-              id="emailf"
-              name="emailf"
-              style="display: none"
-            />
-          </div>
-        </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Telefono familiar</label>
+                </div>
+                <div class="col-75">
+                    <input type="text"
+                           id="telefonof"
+                           name="telefonof"
+                           style="display: none" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Email familiar</label>
+                </div>
+                <div class="col-75">
+                    <input type="text"
+                           id="emailf"
+                           name="emailf"
+                           style="display: none" />
+                </div>
+            </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Fecha toma de muestra</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="date"
-              id="f_muestra"
-              name="f_muestra"
-              value="2021-01-01"
-              min="1900-01-01"
-              max="2100-12-31"
-              style="display: none"
-            />
-          </div>
-        </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Fecha toma de muestra</label>
+                </div>
+                <div class="col-75">
+                    <input type="date"
+                           id="f_muestra"
+                           name="f_muestra"
+                           value="2021-01-01"
+                           min="1900-01-01"
+                           max="2100-12-31"
+                           style="display: none" />
+                </div>
+            </div>
 
-        <!------------------------------------------------->
-        <!-- Titulo Antecedentes -->
-        <div class="row">
-          <div class="titulo-principal">
-            <h1>Antecedentes</h1>
-          </div>
-        </div>
-        <!-- f_ultimamenstruacion   f_muestra -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Fecha de ultima menstruación</label>
-          </div>
-          <div class="col-75">
-            <input
-              type="date"
-              id="f_menstruacion"
-              name="f_menstruacion"
-              value="2021-01-01"
-              min="1900-01-01"
-              max="2100-12-31"
-              style="display: none"
-            />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Método de planificación familiar</label>
-          </div>
-          <div class="col-75">
-            <select
-              id="metodo_planificacion"
-              name="metodo_planificacion"
-              style="display: none"
-            >
-              <option value="Anticonceptivos orales">
-                1 - Anticonceptivos orales
-              </option>
-              <option value="Anticonceptivos inyectables">
-                2 - Anticonceptivos inyectables
-              </option>
-              <option value="Anticonceptivos transdermicos">
-                3 - Anticonceptivos transdermicos (parches)
-              </option>
-              <option value="Anticonceptivos de depósito">
-                4 - Anticonceptivos de depósito ( implanon, norplant)
-              </option>
-              <option value="Endoceptivos">5 - Endoceptivos (mirena)</option>
-              <option value="Métodos de barrera ">
-                6 - Métodos de barrera (condon, DIU)
-              </option>
-              <option value="Hormonales tópicos ">
-                7 - Hormonales tópicos (anillo vaginal)
-              </option>
-            </select>
-          </div>
-        </div>
-        <!-- Numero de partos   Numero de abortos -->
-        <div class="row">
-          <div class="col-25" style="width: 100px">
-            <label for="lname">Numero de Partos:</label>
-          </div>
-          <div class="col-75" style="width: 60px">
-            <input
-              type="text"
-              id="num_partos"
-              name="num_partos"
-              style="display: none; width: 50px"
-            />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25" style="width: 100px">
-            <label for="lname">Numero de Cesareas:</label>
-          </div>
-          <div class="col-75" style="width: 60px">
-            <input
-              type="text"
-              id="num_cesareas"
-              name="num_cesareas"
-              style="display: none; width: 50px"
-            />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25" style="width: 100px">
-            <label for="lname">Numero de Abortos:</label>
-          </div>
-          <div class="col-75" style="width: 60px">
-            <input
-              type="text"
-              id="num_abortos"
-              name="num_abortos"
-              style="display: none; width: 50px"
-            />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25" style="width: 100px">
-            <label for="lname">Edad de inicio vida sexual:</label>
-          </div>
-          <div class="col-75" style="width: 60px">
-            <input
-              type="text"
-              id="edad_vid_sexual"
-              name="edad_vid_sexual"
-              style="display: none; width: 50px"
-            />
-          </div>
-        </div>
+            <!------------------------------------------------->
+            <!-- Titulo Antecedentes -->
+            <div class="row">
+                <div class="titulo-principal">
+                    <h1>Antecedentes</h1>
+                </div>
+            </div>
+            <!-- f_ultimamenstruacion   f_muestra -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Fecha de ultima menstruación</label>
+                </div>
+                <div class="col-75">
+                    <input type="date"
+                           id="f_menstruacion"
+                           name="f_menstruacion"
+                           value="2021-01-01"
+                           min="1900-01-01"
+                           max="2100-12-31"
+                           style="display: none" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25">
+                    <label for="lname">Método de planificación familiar</label>
+                </div>
+                <div class="col-75">
+                    <select id="metodo_planificacion"
+                            name="metodo_planificacion"
+                            style="display: none">
+                        <option value="Anticonceptivos orales">
+                            1 - Anticonceptivos orales
+                        </option>
+                        <option value="Anticonceptivos inyectables">
+                            2 - Anticonceptivos inyectables
+                        </option>
+                        <option value="Anticonceptivos transdermicos">
+                            3 - Anticonceptivos transdermicos (parches)
+                        </option>
+                        <option value="Anticonceptivos de depósito">
+                            4 - Anticonceptivos de depósito ( implanon, norplant)
+                        </option>
+                        <option value="Endoceptivos">5 - Endoceptivos (mirena)</option>
+                        <option value="Métodos de barrera ">
+                            6 - Métodos de barrera (condon, DIU)
+                        </option>
+                        <option value="Hormonales tópicos ">
+                            7 - Hormonales tópicos (anillo vaginal)
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <!-- Numero de partos   Numero de abortos -->
+            <div class="row">
+                <div class="col-25" style="width: 100px">
+                    <label for="lname">Numero de Partos:</label>
+                </div>
+                <div class="col-75" style="width: 60px">
+                    <input type="text"
+                           id="num_partos"
+                           name="num_partos"
+                           style="display: none; width: 50px" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25" style="width: 100px">
+                    <label for="lname">Numero de Cesareas:</label>
+                </div>
+                <div class="col-75" style="width: 60px">
+                    <input type="text"
+                           id="num_cesareas"
+                           name="num_cesareas"
+                           style="display: none; width: 50px" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25" style="width: 100px">
+                    <label for="lname">Numero de Abortos:</label>
+                </div>
+                <div class="col-75" style="width: 60px">
+                    <input type="text"
+                           id="num_abortos"
+                           name="num_abortos"
+                           style="display: none; width: 50px" />
+                </div>
+                <div class="separator"></div>
+                <div class="col-25" style="width: 100px">
+                    <label for="lname">Edad de inicio vida sexual:</label>
+                </div>
+                <div class="col-75" style="width: 60px">
+                    <input type="text"
+                           id="edad_vid_sexual"
+                           name="edad_vid_sexual"
+                           style="display: none; width: 50px" />
+                </div>
+            </div>
 
-        <!-- Otros Datos -->
-        <div class="row">
-          <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup" id="dat1" style="display: none">
-              <legend>Actualemente en:</legend>
-              <input
-                type="radio"
-                name="rddat1"
-                id="embarazo"
-                value="choice-1"
-                checked="checked"
-              />
-              <label for="radio-choice-1">Embarazo</label>
+            <!-- Otros Datos -->
+            <div class="row">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" id="dat1" style="display: none">
+                        <legend>Actualemente en:</legend>
+                        <input type="radio"
+                               name="rddat1"
+                               id="embarazo"
+                               value="choice-1"
+                               checked="checked" />
+                        <label for="radio-choice-1">Embarazo</label>
 
-              <input
-                type="radio"
-                name="rddat1"
-                id="lactancia"
-                value="choice-2"
-              />
-              <label for="radio-choice-2">Lactancia</label>
+                        <input type="radio"
+                               name="rddat1"
+                               id="lactancia"
+                               value="choice-2" />
+                        <label for="radio-choice-2">Lactancia</label>
 
-              <input
-                type="radio"
-                name="rddat1"
-                id="now_ninguna"
-                value="choice-3"
-              />
-              <label for="radio-choice-3">Ninguna</label>
-            </fieldset>
-          </div>
-        </div>
-        <!-- Otros Datos -->
-        <div class="row">
-          <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup" id="dat2" style="display: none">
-              <legend>Alguna vez le practicaron:</legend>
-              <input
-                type="radio"
-                name="rddat2"
-                id="rdDestrlocal"
-                value="choice-1"
-                checked="checked"
-              />
-              <label for="radio-choice-1">DestrucciónLocal</label>
+                        <input type="radio"
+                               name="rddat1"
+                               id="now_ninguna"
+                               value="choice-3" />
+                        <label for="radio-choice-3">Ninguna</label>
+                    </fieldset>
+                </div>
+            </div>
+            <!-- Otros Datos -->
+            <div class="row">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" id="dat2" style="display: none">
+                        <legend>Alguna vez le practicaron:</legend>
+                        <input type="radio"
+                               name="rddat2"
+                               id="rdDestrlocal"
+                               value="choice-1"
+                               checked="checked" />
+                        <label for="radio-choice-1">DestrucciónLocal</label>
 
-              <input
-                type="radio"
-                name="rddat2"
-                id="rdConizacion"
-                value="choice-2"
-              />
-              <label for="radio-choice-2">Conización</label>
+                        <input type="radio"
+                               name="rddat2"
+                               id="rdConizacion"
+                               value="choice-2" />
+                        <label for="radio-choice-2">Conización</label>
 
-              <input
-                type="radio"
-                name="rddat2"
-                id="rdHistectomia"
-                value="choice-3"
-              />
-              <label for="radio-choice-3">Histectomía</label>
+                        <input type="radio"
+                               name="rddat2"
+                               id="rdHistectomia"
+                               value="choice-3" />
+                        <label for="radio-choice-3">Histectomía</label>
 
-              <input
-                type="radio"
-                name="rddat2"
-                id="rdRadioterapia"
-                value="choice-4"
-              />
-              <label for="radio-choice-4">Radioterapia</label>
+                        <input type="radio"
+                               name="rddat2"
+                               id="rdRadioterapia"
+                               value="choice-4" />
+                        <label for="radio-choice-4">Radioterapia</label>
 
-              <input
-                type="radio"
-                name="rddat2"
-                id="rdHormonoterapia"
-                value="choice-5"
-              />
-              <label for="radio-choice-5">Hormonoterapia</label>
+                        <input type="radio"
+                               name="rddat2"
+                               id="rdHormonoterapia"
+                               value="choice-5" />
+                        <label for="radio-choice-5">Hormonoterapia</label>
 
-              <input
-                type="radio"
-                name="rddat2"
-                id="rdTratamOncol"
-                value="choice-6"
-              />
-              <label for="radio-choice-6"
-                >Tratamiento Oncologico u otros
-              </label>
+                        <input type="radio"
+                               name="rddat2"
+                               id="rdTratamOncol"
+                               value="choice-6" />
+                        <label for="radio-choice-6">
+                            Tratamiento Oncologico u otros
+                        </label>
 
-              <input
-                type="radio"
-                name="rddat2"
-                id="rdNinguno"
-                value="choice-7"
-              />
-              <label for="radio-choice-5">Ninguna</label>
-            </fieldset>
-          </div>
-        </div>
-        <!-- Otros Datos -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Se ha realizado una citología: </label>
-          </div>
+                        <input type="radio"
+                               name="rddat2"
+                               id="rdNinguno"
+                               value="choice-7" />
+                        <label for="radio-choice-5">Ninguna</label>
+                    </fieldset>
+                </div>
+            </div>
+            <!-- Otros Datos -->
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Se ha realizado una citología: </label>
+                </div>
 
-          <div
-            id="dat3"
-            style="
+                <div id="dat3"
+                     style="
               box-shadow: 0 0 0 1px #0084ff;
               float: left;
               width: 70%;
               margin-top: 6px;
               padding-top: 10px;
-              display: none;
-            "
-          >
-            <div class="row">
-              <input type="radio" id="rdSi" name="rdCitologia" value="Si" />
-              <label for="male">Si</label><br />
-              <input type="radio" id="rdNo" name="rdCitologia" value="No" />
-              <label for="female">No</label><br />
+              display: none;">
+
+                    <div class="row">
+                        <input type="radio" id="rdSi" name="rdCitologia" value="Si" />
+                        <label for="male">Si</label><br />
+                        <input type="radio" id="rdNo" name="rdCitologia" value="No" />
+                        <label for="female">No</label><br />
+                    </div>
+
+                    <div class="row">
+                        <label for="fname" style="width: 10%">Cuantas</label>
+                        <input type="text"
+                               id="numCitologias"
+                               name="numCitologias"
+                               style="width: 10%" />
+                        <label for="fname" style="width: 10%">Hace Cuanto</label>
+                        <input type="text"
+                               id="numAnios"
+                               name="numAnios"
+                               style="width: 10%" />
+                        <label for="fname" style="width: 10%">Anios</label>
+                        <input type="text"
+                               id="numMeses"
+                               name="numMeses"
+                               style="width: 10%" />
+                        <label for="fname" style="width: 10%">Meses</label>
+                    </div>
+                </div>
             </div>
 
+            <div class="separator"></div>
+
+            <!-- Botones de Grabar-->
             <div class="row">
-              <label for="fname" style="width: 10%">Cuantas</label>
-              <input
-                type="text"
-                id="numCitologias"
-                name="numCitologias"
-                style="width: 10%"
-              />
-              <label for="fname" style="width: 10%">Hace Cuanto</label>
-              <input
-                type="text"
-                id="numAnios"
-                name="numAnios"
-                style="width: 10%"
-              />
-              <label for="fname" style="width: 10%">Anios</label>
-              <input
-                type="text"
-                id="numMeses"
-                name="numMeses"
-                style="width: 10%"
-              />
-              <label for="fname" style="width: 10%">Meses</label>
+                <!-- Regresar-->
+                <input type="button"
+                       id="btnRegresar"
+                       class="btn"
+                       value="Regresar"
+                       onclick="cerrarPedidos()" />
+
+                <!-- <div class="col-25" style="width: 100px"></div>-->
+
+                <div class="column"></div>
+
+                <!-- Grabar y Cerrar-->
+                <input type="button"
+                       class="btn"
+                       value="Grabar y Cerrar"
+                       onclick="guardarcerrar()" />
             </div>
-          </div>
-        </div>
 
-        <div class="separator"></div>
-
-        <!-- Botones de Grabar-->
-        <div class="row">
-          <!-- Regresar-->
-          <input
-            type="button"
-            value="Regresar"
-            onclick="regresar()"
-            style="background-color: #cff6ff"
-          />
-
-          <div class="col-25" style="width: 100px"></div>
-
-          <!-- Grabar y Continuar-->
-          <input
-            type="button"
-            value="Grabar y Continuar"
-            onclick="limpiar()"
-            style="background-color: #cff6ff"
-          />
-
-          <div class="column"></div>
-
-          <!-- Grabar y Cerrar-->
-          <input
-            type="button"
-            value="Grabar y Cerrar"
-            onclick="pedido_render()"
-            style="background-color: #cff6ff"
-          />
-        </div>
-
-        <script src="../scripts/pedidos_render.js"></script>
-      </form>
+            <script src="../scripts/pedidos_render.js"></script>
+        </form>
     </div>
   </body>
 </html>
