@@ -8,7 +8,7 @@ console.log("CARGANDO DOCTORES PROCESS")
 
 function doctores() {
 
-    ipcMain.on("consulta-establecimientos", async (e, args) => {
+    ipcMain.on("consulta-establecimientos-d", async (e, args) => {
 
         EST = await checkEstablecimientos();
         e.returnValue = JSON.stringify(EST);

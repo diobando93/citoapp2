@@ -5,7 +5,7 @@ const hclinic = require("../models/h_clinic.js");
 
 let ficha = [];
 
-console.log("CARGANDO ESTABLECIMIENTOS PROCESS");
+console.log("CARGANDO PACIENTES PROCESS");
 
 function pacientes() {
   //checkEstablecimientos();
@@ -16,9 +16,6 @@ function pacientes() {
   });
 
   //checkEstablecimientos();
-  ipcMain.on("add-establecimientos", async (e, args) => {
-    guardarEstablecimiento(args);
-  });
 }
 
 function guardarEstablecimiento(arg) {
@@ -40,7 +37,7 @@ async function checkPacientes() {
   if (personas.length == 0) {
     console.log("no existen pacientes registrados aún");
   }
-  console.log(personas);
+  //console.log(personas);
   /* 
   else {
     for (var key in personas) {

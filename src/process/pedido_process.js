@@ -33,7 +33,7 @@ function recibir() {
     */
 
   //Funcion para recibir el numero de cedula del textbox
-  ipcMain.once("cedula", async (e, args) => {
+  ipcMain.on("cedula", async (e, args) => {
     console.log(args + " numero de cedula ingresado"); // Imprime por consolo el numero de cedula
 
     const hcl = hcgen(args); // Llamado a la funcion para generar o responder con un numero de historia clinica
@@ -251,7 +251,7 @@ async function hcgen(cedula) {
     let hclinicaNew = await Hclinic.find({});
     hclinicaNew = hclinicaNew[0];
     let hclinicaNew1 = parseInt(hclinicaNew.h_clinica);
-    hclinicaNew1 = hclinicaNew1 + 2;
+    hclinicaNew1 = hclinicaNew1 + 1;
     hclinicaNew1 = hclinicaNew1.toString();
     hclinicaNew1 = hclinicaNew1.concat("-actualice");
     return hclinicaNew1;

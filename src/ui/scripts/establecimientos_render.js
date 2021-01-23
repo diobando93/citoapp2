@@ -54,7 +54,7 @@ function establecimientos_render() {
     let establecimientosDB = [];
 
     establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
-    console.log(establecimientosDB);
+    //console.log(establecimientosDB);
 
     actualizar_tabla(establecimientosDB);
 

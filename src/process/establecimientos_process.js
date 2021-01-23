@@ -11,7 +11,6 @@ function estab() {
 
     //checkEstablecimientos();
     ipcMain.on("consulta-establecimientos", async (e, args) => {
-
         EST = await checkEstablecimientos();
         e.returnValue = JSON.stringify(EST);
 
@@ -52,6 +51,7 @@ async function checkEstablecimientos() {
 
         }
     } else {
+
 
     }
 

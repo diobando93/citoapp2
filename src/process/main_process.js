@@ -1,5 +1,12 @@
+//Invoca a todos los process
 const { BrowserWindow, ipcMain, app } = require("electron");
+const { recibir } = require("./pedido_process.js");
+const { consultar } = require("./resultado_process.js");
+const { pacientes } = require("./pacientes_process.js");
+const { doctores } = require("./doctores_process.js");
+const { estab } = require("./establecimientos_process.js");
 
+//Variables para creaci�n de ventanas
 let mainWindows;
 let pedidosWindow;
 let resultadosWindow;
@@ -11,143 +18,41 @@ let pacientesWindow;
 //como esta el process se confunde
 
 app.on("ready", () => {
-  mainWindows = new BrowserWindow({
-    webPreferences: {
-      nodeIntegration: true,
-    },
-    width: 900,
-    height: 800,
-  });
-  mainWindows.loadFile("src/ui//templates/main.html");
+  abrirMain();
+  app.whenReady().then(recibir);
+  app.whenReady().then(consultar);
+  app.whenReady().then(pacientes);
+  app.whenReady().then(doctores);
+  app.whenReady().then(estab);
 
   //---------------OPCION PEDIDOS
   ipcMain.on("envio-datos-paciente", (e, args) => {
-    const { recibir } = require("./pedido_process.js");
-
-    pedidosWindow = new BrowserWindow({
-      webPreferences: {
-        nodeIntegration: true,
-      },
-      width: 900,
-      height: 800,
-      show: false,
-    });
-    pedidosWindow.loadFile("src/ui//templates/pedidos.html");
-    //app.allowRendererProcessReuse = false;
-    pedidosWindow.show();
-    mainWindows.hide();
-    app.whenReady().then(recibir);
-
-    ipcMain.once("regresar-pedidos", (e, args) => {
-      console.log(args);
-      mainWindows.show();
-      pedidosWindow.close();
-      pedidosWindow.destroy();
-    });
+    abrirPantalla(args[0], args[1]);
   });
 
   //---------------OPCION RESULTADOS
   ipcMain.on("consulta-datos-paciente", (e, args) => {
-    const { consultar } = require("./resultado_process.js");
+    abrirPantalla(args[0], args[1]);
+  });
 
-    resultadosWindow = new BrowserWindow({
-      webPreferences: {
-        nodeIntegration: true,
-      },
-      width: 900,
-      height: 800,
-      show: false,
-    });
-    resultadosWindow.loadFile("src/ui//templates/resultados.html");
-    //app.allowRendererProcessReuse = false;
-    resultadosWindow.show();
-    mainWindows.hide();
-    app.whenReady().then(consultar);
-
-    ipcMain.once("regresar-resultados", (e, args) => {
-      console.log(args);
-      mainWindows.show();
-      resultadosWindow.close();
-      resultadosWindow.destroy();
-    });
+  //---------------OPCION RETIRO DE INFORMES
+  ipcMain.on("consulta-informes", (e, args) => {
+    abrirPantalla(args[0], args[1]);
   });
 
   //---------------OPCION PACIENTES
   ipcMain.on("paciente-consultar", (e, args) => {
-    const { pacientes } = require("./pacientes_process.js");
-
-    pacientesWindow = new BrowserWindow({
-      webPreferences: {
-        nodeIntegration: true,
-      },
-      width: 900,
-      height: 800,
-      show: false,
-    });
-    pacientesWindow.loadFile("src/ui//templates/consultaPedidos.html");
-    //app.allowRendererProcessReuse = false;
-    pacientesWindow.show();
-    mainWindows.hide();
-    app.whenReady().then(pacientes);
-
-    ipcMain.once("regresar-pacientes", (e, args) => {
-      console.log(args);
-      mainWindows.show();
-      pacientesWindow.close();
-      pacientesWindow.destroy();
-    });
+    abrirPantalla(args[0], args[1]);
   });
 
   //---------------OPCION DOCTORES
   ipcMain.on("medicos-crear-eliminar", (e, args) => {
-    const { doctores } = require("./doctores_process.js");
-
-    doctoresWindow = new BrowserWindow({
-      webPreferences: {
-        nodeIntegration: true,
-      },
-      width: 900,
-      height: 800,
-      show: false,
-    });
-    doctoresWindow.loadFile("src/ui//templates/doctores.html");
-    //app.allowRendererProcessReuse = false;
-    doctoresWindow.show();
-    mainWindows.hide();
-    app.whenReady().then(doctores);
-
-    ipcMain.once("regresar-doctores", (e, args) => {
-      console.log(args);
-      mainWindows.show();
-      doctoresWindow.close();
-      doctoresWindow.destroy();
-    });
+    abrirPantalla(args[0], args[1]);
   });
 
   //---------------OPCION ESTABLECIMIENTOS
   ipcMain.on("establecimientos-crear-eliminar", (e, args) => {
-    const { estab } = require("./establecimientos_process.js");
-
-    establecimientosWindow = new BrowserWindow({
-      webPreferences: {
-        nodeIntegration: true,
-      },
-      width: 900,
-      height: 800,
-      show: false,
-    });
-    establecimientosWindow.loadFile("src/ui//templates/establecimientos.html");
-    //app.allowRendererProcessReuse = false;
-    establecimientosWindow.show();
-    mainWindows.hide();
-    app.whenReady().then(estab);
-
-    ipcMain.once("regresar-establecimientos", (e, args) => {
-      console.log(args);
-      mainWindows.show();
-      establecimientosWindow.close();
-      establecimientosWindow.destroy();
-    });
+    abrirPantalla(args[0], args[1]);
   });
 
   //---------------SALIR
@@ -157,6 +62,39 @@ app.on("ready", () => {
     mainWindows.destroy();
   });
 });
+
+function abrirPantalla(direccion, codRegreso) {
+  let ventana = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    width: 900,
+    height: 800,
+    show: false,
+  });
+  ventana.loadFile(direccion);
+
+  ventana.show();
+  mainWindows.hide;
+
+  ipcMain.once(codRegreso, (e, args) => {
+    console.log(args);
+    mainWindows.show();
+    ventana.close();
+    ventana.destroy();
+  });
+}
+
+function abrirMain() {
+  mainWindows = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    width: 900,
+    height: 800,
+  });
+  mainWindows.loadFile("src/ui//templates/main.html");
+}
 
 /*
 function createWindow() {

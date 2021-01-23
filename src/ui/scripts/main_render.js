@@ -28,25 +28,47 @@ for (i = 0; i < dropdown.length - 1; i++) {
 //Listener de boton PEDIDOS
 document.getElementById("pedidos").addEventListener("click", function (e) {
   pedido = true;
-  ipcRenderer.send("envio-datos-paciente", pedido);
+  ipcRenderer.send("envio-datos-paciente", [
+    "src/ui//templates/pedidos.html",
+    "regresar-pedidos",
+  ]);
 });
 
 //Listener de boton RESULTADOS
 document.getElementById("resultados").addEventListener("click", function (e) {
   resultado = true;
-  ipcRenderer.send("consulta-datos-paciente", resultado);
+  ipcRenderer.send("consulta-datos-paciente", [
+    "src/ui//templates/resultados.html",
+    "regresar-resultados",
+  ]);
+});
+
+//Listener de boton de retiro de informes
+
+document.getElementById("rInformes").addEventListener("click", function (e) {
+  resultado = true;
+  ipcRenderer.send("consulta-informes", [
+    "src/ui//templates/consultaInformes.html",
+    "regresar-informes",
+  ]);
 });
 
 //Listener de botones CONSULTA DE PEDIDOS
 document.getElementById("pacientes").addEventListener("click", function (e) {
   resultado = true;
-  ipcRenderer.send("paciente-consultar", resultado);
+  ipcRenderer.send("paciente-consultar", [
+    "src/ui//templates/consultaPedidos.html",
+    "regresar-pacientes",
+  ]);
 });
 
 //Listener de boton DOCTORES
 document.getElementById("doctores").addEventListener("click", function (e) {
   resultado = true;
-  ipcRenderer.send("medicos-crear-eliminar", resultado);
+  ipcRenderer.send("medicos-crear-eliminar", [
+    "src/ui//templates/doctores.html",
+    "regresar-doctores",
+  ]);
 });
 
 //Listener de boton ESTABLECIMIENTOS
@@ -54,7 +76,10 @@ document
   .getElementById("establecimientos")
   .addEventListener("click", function (e) {
     resultado = true;
-    ipcRenderer.send("establecimientos-crear-eliminar", resultado);
+    ipcRenderer.send("establecimientos-crear-eliminar", [
+      "src/ui//templates/establecimientos.html",
+      "regresar-establecimientos",
+    ]);
   });
 
 //Listener de boton SALIR
