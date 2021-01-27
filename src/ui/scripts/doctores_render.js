@@ -15,9 +15,9 @@ function buscarDoctores() {
 
 function limpiar_tabla(listaDoctores) {
 
-    for (var del in listaDoctores) {
+    for (i = 0; i < listaDoctores - 1; i++) {
 
-        document.getElementById("myTable").deleteRow(0);
+        document.getElementById("myTable").deleteRow(1);
     }
 
 }
@@ -25,10 +25,14 @@ function limpiar_tabla(listaDoctores) {
 function medicos_render() {
     datos.push(nombres.value);
     datos.push(apellidos.value);
-    datos.push(establecimiento.value);
+    var institucion = establecimiento.value;
+    institucion = institucion.substring(institucion.indexOf("-") + 2);
+    datos.push(institucion);
     console.log(datos)
     ipcRenderer.send('datos', datos);
     datos = [];
+
+    location.reload();
 }
 
 function actualizar_establecimientos() {
@@ -37,6 +41,9 @@ function actualizar_establecimientos() {
 
     //Colocar establecimientos en drop down
     var dropBox = document.getElementById("establecimiento");
+
+    dropBox.options.add(new Option(" "));
+
     for (var key in lista) {
         dropBox.options.add(
             new Option(key.toString() + " - " + lista[key].toString())
@@ -47,20 +54,27 @@ function actualizar_establecimientos() {
 
 function getDoctores() {
 
+    //Limpiar tabla de doctores
+    limpiar_tabla(table.rows.length);
+
     var institucion = establecimiento.value;
     institucion = institucion.substring(institucion.indexOf("-") + 2);
+    //console.log(institucion);
 
     let doctoresDB = [];
 
     doctoresDB = JSON.parse(ipcRenderer.sendSync('consulta-doctores', institucion));
-    //console.log(doctoresDB);
+    console.log(doctoresDB);
 
-    console.log(table.rows.length)
+    //console.log(table.rows.length)
 
-    if (table.rows.length != 1) {
+    //Limpiar tabla de doctores
+    //limpiar_tabla(doctoresDB);
+
+    //if (table.rows.length != 1) {
         //Limpiar tabla de doctores
-        limpiar_tabla(doctoresDB);
-    }
+    //    limpiar_tabla(doctoresDB);
+    //}
     
     //Actualizar tabla de doctores
     actualizar_tabla(doctoresDB);
@@ -91,11 +105,12 @@ function actualizar_tabla(listaDoctores) {
 
     for (var i in listaDoctores) {
 
-        var row = table.insertRow(i);
+        var row = table.insertRow();
+        row.classList.add("w3-hover-table")
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
 
-        cell1.innerHTML = i;
+        cell1.innerHTML = parseInt(i) + 1;
         cell2.innerHTML = listaDoctores[i];
     }
 

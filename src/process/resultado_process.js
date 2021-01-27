@@ -23,12 +23,14 @@ function consultar() {
     //console.log(args);
     const paciente = await Patient.find({ cedula: args[0] });
     const pedido = await Pedido.find({ cedula: args[0], pedido: args[1] });
+    const resultado = await Results.find({ cedula: args[0], pedido: args[1] });
 
     e.reply("pacienteRetrieved", JSON.stringify(paciente));
     //console.log(paciente);
     //console.log("este pedido");
     e.reply("pedidoRetrieved", JSON.stringify(pedido));
     //console.log(pedido);
+    e.reply("resultadoRetrived", JSON.stringify(resultado));
   });
 
   ipcMain.on("datosResultado", async (e, args) => {
@@ -228,7 +230,7 @@ function genPDF() {
   //ESCRIBIR PDF
 
   const doc = new PDFDocument({ margin: 25 });
-  doc.pipe(fs.createWriteStream(resultPdf[31] + "_" + resultPdf[1] + ".pdf"));
+  doc.pipe(fs.createWriteStream(resultPdf[0] + "_" + resultPdf[1] + ".pdf"));
   doc
     .font("Times-Roman", 13)
     .moveDown()

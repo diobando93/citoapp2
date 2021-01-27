@@ -54,6 +54,10 @@ const icsuperficiales = document.getElementById("icsuperficiales");
 const rcontrol = document.getElementById("rcontrol");
 const reobservaciones = document.getElementById("reobservaciones");
 
+let pacienteRetrieved = [];
+let pedidoRetrieved = [];
+let resultadosRetrived = [];
+
 let datosResultado = [];
 
 function consulta_render() {
@@ -64,6 +68,9 @@ function consulta_render() {
 }
 
 function retrive() {
+  let valPedido = true;
+  let valPaciente = true;
+  let valResultado = true;
   datosResultado = [];
   console.log(cedula.value);
   console.log(pedido.value);
@@ -71,53 +78,87 @@ function retrive() {
   datosResultado.push(pedido.value);
   ipcRenderer.send("consulta", datosResultado);
   ipcRenderer.on("pedidoRetrieved", (e, args) => {
-    const pedidoRetrieved = JSON.parse(args);
-    console.log(pedidoRetrieved);
-    edadPDF = pedidoRetrieved[0].edad;
-    fumPDF = pedidoRetrieved[0].fecha_ult_mestruacion;
-    console.log("day");
-    console.log(fumPDF);
-    fmuestraPDF = pedidoRetrieved[0].f_muestra;
-    partosPDF = pedidoRetrieved[0].num_partos;
-    abortosPDF = pedidoRetrieved[0].num_abortos;
-    cesareasPDF = pedidoRetrieved[0].num_cesareas;
-    medicoPDF = pedidoRetrieved[0].medico;
-    telefono = pedidoRetrieved[0].telefono;
-    console.log(telefono);
-
-    pedido1.innerHTML = pedidoRetrieved[0].pedido;
-    edad.innerHTML = pedidoRetrieved[0].edad;
-    fechaIngreso.innerHTML = pedidoRetrieved[0].fecha;
-    fechaMuestra.innerHTML = pedidoRetrieved[0].f_muestra;
-    establecimiento.innerHTML = pedidoRetrieved[0].establecimiento;
-    provincia.innerHTML = pedidoRetrieved[0].ubicacion.provincia;
-    canton.innerHTML = pedidoRetrieved[0].ubicacion.canton;
-    parroquia.innerHTML = pedidoRetrieved[0].ubicacion.parroquia;
-    udiagnostico.innerHTML = "preguntar dato 1";
-    sdiagnostico.innerHTML = "preguntar dato 2";
-    fechaInforme.innerHTML = "preguntar si es el actual 3";
-    gestaciones.innerHTML =
-      pedidoRetrieved[0].num_partos +
-      pedidoRetrieved[0].num_cesareas +
-      pedidoRetrieved[0].num_abortos;
-    partos.innerHTML = pedidoRetrieved[0].num_partos;
-    abortos.innerHTML = pedidoRetrieved[0].num_abortos;
+    pedidoRetrieved = JSON.parse(args);
+    if (pedidoRetrieved.length == 0) {
+      //alert("No existe el paciente");
+      valPedido = false;
+      console.log("no existe pedido no llenar el formulario");
+    } else {
+      console.log(pedidoRetrieved);
+      edadPDF = pedidoRetrieved[0].edad;
+      fumPDF = pedidoRetrieved[0].fecha_ult_mestruacion;
+      console.log("day");
+      console.log(fumPDF);
+      fmuestraPDF = pedidoRetrieved[0].f_muestra;
+      partosPDF = pedidoRetrieved[0].num_partos;
+      abortosPDF = pedidoRetrieved[0].num_abortos;
+      cesareasPDF = pedidoRetrieved[0].num_cesareas;
+      medicoPDF = pedidoRetrieved[0].medico;
+      telefono = pedidoRetrieved[0].telefono;
+      console.log(telefono);
+    }
     //datosResultado.push(args[])
   });
   ipcRenderer.on("pacienteRetrieved", (e, args) => {
-    const pacienteRetrieved = JSON.parse(args);
-    console.log(pacienteRetrieved);
-    nombrePDF =
-      pacienteRetrieved[0].nombres + " " + pacienteRetrieved[0].apellidos;
-    hclinicaPDF = pacienteRetrieved[0].h_clinica;
+    pacienteRetrieved = JSON.parse(args);
+    if (pacienteRetrieved == 0) {
+      valPaciente = false;
+      console.log("no existe paciente no llenar el formulario");
+    } else {
+      console.log(pacienteRetrieved);
+      nombrePDF =
+        pacienteRetrieved[0].nombres + " " + pacienteRetrieved[0].apellidos;
+      hclinicaPDF = pacienteRetrieved[0].h_clinica;
+      //console.log(pacienteRetrieved[0].nombres);
+    }
+  });
 
-    //console.log(pacienteRetrieved[0].nombres);
-    nombre.innerHTML =
-      pacienteRetrieved[0].nombres + " " + pacienteRetrieved[0].apellidos;
-    cedula1.innerHTML = pacienteRetrieved[0].cedula;
-    hclinica.innerHTML = pacienteRetrieved[0].h_clinica;
+  ipcRenderer.on("resultadoRetrived", (e, args) => {
+    resultadosRetrived = JSON.parse(args);
+    //let comprobar = false;
+    //comprobar = isEmpty(args);
+    if (resultadosRetrived.length == 0) {
+      valResultado = false;
+      console.log("llenar formulario de resultados");
+      //validar con el paso o no a la siguiente pantalla
+    } else {
+      console.log("el resultado ya existe no pasar");
+      console.log(resultadosRetrived);
+    }
 
-    document.getElementById("datosBusqueda").style.display = "none";
+    if (valPedido == true && valPaciente == true && valResultado == false) {
+      document.getElementById("datosBusqueda").style.display = "none";
+
+      nombre.innerHTML =
+        pacienteRetrieved[0].nombres + " " + pacienteRetrieved[0].apellidos;
+      cedula1.innerHTML = pacienteRetrieved[0].cedula;
+      hclinica.innerHTML = pacienteRetrieved[0].h_clinica;
+      pedido1.innerHTML = pedidoRetrieved[0].pedido;
+      edad.innerHTML = pedidoRetrieved[0].edad;
+      fechaIngreso.innerHTML = pedidoRetrieved[0].fecha;
+      fechaMuestra.innerHTML = pedidoRetrieved[0].f_muestra;
+      establecimiento.innerHTML = pedidoRetrieved[0].establecimiento;
+      provincia.innerHTML = pedidoRetrieved[0].ubicacion.provincia;
+      canton.innerHTML = pedidoRetrieved[0].ubicacion.canton;
+      parroquia.innerHTML = pedidoRetrieved[0].ubicacion.parroquia;
+      udiagnostico.innerHTML = "preguntar dato 1";
+      sdiagnostico.innerHTML = "preguntar dato 2";
+      fechaInforme.innerHTML = "preguntar si es el actual 3";
+      gestaciones.innerHTML =
+        pedidoRetrieved[0].num_partos +
+        pedidoRetrieved[0].num_cesareas +
+        pedidoRetrieved[0].num_abortos;
+      partos.innerHTML = pedidoRetrieved[0].num_partos;
+      abortos.innerHTML = pedidoRetrieved[0].num_abortos;
+    } else if (valPedido == false) {
+      alert("Numero de pedido incorrecto");
+    } else if (valPaciente == false) {
+      alert("Numero de cedula incorrecto");
+    } else if (valResultado == true) {
+      alert("El resultado ya esta registrado");
+    }
+
+    // validar verificando si el objeto esta vacio o no
   });
 }
 

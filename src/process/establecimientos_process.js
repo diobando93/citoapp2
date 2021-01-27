@@ -21,6 +21,19 @@ function estab() {
         guardarEstablecimiento(args);
     });
 
+    ipcMain.on("delete-establecimiento", async (e, args) => {
+        borrarEstablecimiento(args);
+        console.log("terminó")
+    });
+
+}
+
+function borrarEstablecimiento(arg) {
+
+    Establecimiento.deleteOne({ Nombre: arg }, function (err) {
+        if (err) console.log(err);
+    });
+
 }
 
 function guardarEstablecimiento(arg) {

@@ -7,6 +7,7 @@ let table = document.getElementById("myTable");
 function actualizar_tabla(par0, par1, par2, par3) {
   for (var i in par0) {
     var row = table.insertRow(i);
+      row.classList.add("w3-hover-table")
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);

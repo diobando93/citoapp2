@@ -75,7 +75,7 @@ function abrirPantalla(direccion, codRegreso) {
   ventana.loadFile(direccion);
 
   ventana.show();
-  mainWindows.hide;
+  mainWindows.hide();
 
   ipcMain.once(codRegreso, (e, args) => {
     console.log(args);

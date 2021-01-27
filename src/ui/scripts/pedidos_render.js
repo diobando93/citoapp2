@@ -5,8 +5,9 @@ let h_clinica = document.getElementById("h_clinica");
 let pedido = document.getElementById("pedido");
 const establecimiento = document.getElementById("establecimiento");
 //const medicos = document.getElementById("medicos");
-const nombres = document.getElementById("Nombre");
-const apellidos = document.getElementById("Apellido");
+let nombres = document.getElementById("Nombre");
+let apellidos = document.getElementById("Apellido");
+
 const edad = document.getElementById("edad");
 const f_nacimiento = document.getElementById("f_nacimiento");
 const pais = document.getElementById("pais");
@@ -67,16 +68,16 @@ var input = document.getElementById("Cedula");
 //bug4: popup para resetear los campos si desea continuar si no regresar al main menu
 //bug5: boton para limpiar el formulario noseeee
 
-//Lisener en cmapo de cédula para empezar la pantalla de pedidos
+//Lisener en cmapo de cï¿½dula para empezar la pantalla de pedidos
 input.addEventListener("keyup", function (event) {
   //Si la tecla presionada es ENTER
   if (event.keyCode === 13) {
     event.preventDefault();
 
     //Recibir arreglo de provincias
-      provinciasDB = [];
-      console.log(cedula.value);
-      provinciasDB = JSON.parse(ipcRenderer.sendSync("cedula", cedula.value));
+    provinciasDB = [];
+    console.log(cedula.value);
+    provinciasDB = JSON.parse(ipcRenderer.sendSync("cedula", cedula.value));
 
     //Colocar provincias en drop down
     var dropBox = document.getElementById("provincia");
@@ -97,49 +98,70 @@ input.addEventListener("keyup", function (event) {
 
     //Recibir y Presentar Numero de Historia Clinica
     ipcRenderer.on("hClinica", (e, args) => {
+      //// como hacer???? que te salga el nombre cuando exista
+      //quitar las comillas cuando se guarde el hclinica y el pedido
+      // guardar bien el pdf
+      // validar el pdf
+      // abrir pdf desde una pantalla
+      console.log(args);
       hClinica = args;
-      array = [];
+      arrayClinica = [];
+      arrayNombre = [];
+      arrayApellido = "";
+      array = args.split(" ");
+      console.log(array[0]);
+      console.log(array[1]);
+      console.log(array[2]);
+      console.log(array[3]);
+      arrayClinica = array[0].split('"');
+      arrayNombre = array[1];
+      console.log(arrayNombre);
       array2 = [];
-      array = args.split("-");
+      array3 = [];
+      array = array[0].split('"');
       array2 = array[0].split('"');
-      h_clinica.innerHTML = array2[1];
+      array3 = array2[0].split(" ");
+      console.log(array3);
+      console.log(array);
+      console.log(array2);
+      h_clinica.innerHTML = arrayClinica[1];
+      nombres.innerHTML = arrayNombre;
       console.log(args);
     });
 
-
     var x = document.getElementById("Nombre");
-      if (x.style.display === "none") {
-          document.getElementById("h_clinica").style.display = "block";
-          document.getElementById("pedido").style.display = "block";
-          document.getElementById("establecimiento").style.display = "block";
-          document.getElementById("medicos").style.display = "block";
-          document.getElementById("Nombre").style.display = "block";
-          document.getElementById("edad").style.display = "block";
-          document.getElementById("Apellido").style.display = "block";
-          document.getElementById("f_nacimiento").style.display = "block";
-          document.getElementById("pais").style.display = "block";
-          document.getElementById("provincia").style.display = "block";
-          document.getElementById("canton").style.display = "block";
-          document.getElementById("parroquia").style.display = "block";
-          document.getElementById("sector").style.display = "block";
-          document.getElementById("instruccion").style.display = "block";
-          document.getElementById("ocupacion").style.display = "block";
-          document.getElementById("ins_jefefamilia").style.display = "block";
-          document.getElementById("ocu_jefefamilia").style.display = "block";
-          document.getElementById("telefono").style.display = "block";
-          document.getElementById("email").style.display = "block";
-          document.getElementById("telefonof").style.display = "block";
-          document.getElementById("emailf").style.display = "block";
-          document.getElementById("f_muestra").style.display = "block";
-          document.getElementById("f_menstruacion").style.display = "block";
-          document.getElementById("metodo_planificacion").style.display = "block";
-          document.getElementById("dat1").style.display = "block";
-          document.getElementById("dat2").style.display = "block";
-          document.getElementById("dat3").style.display = "block";
-          document.getElementById("num_partos").style.display = "block";
-          document.getElementById("num_cesareas").style.display = "block";
-          document.getElementById("num_abortos").style.display = "block";
-          document.getElementById("edad_vid_sexual").style.display = "block";
+    if (x.style.display === "none") {
+      document.getElementById("h_clinica").style.display = "block";
+      document.getElementById("pedido").style.display = "block";
+      document.getElementById("establecimiento").style.display = "block";
+      document.getElementById("medicos").style.display = "block";
+      document.getElementById("Nombre").style.display = "block";
+      document.getElementById("edad").style.display = "block";
+      document.getElementById("Apellido").style.display = "block";
+      document.getElementById("f_nacimiento").style.display = "block";
+      document.getElementById("pais").style.display = "block";
+      document.getElementById("provincia").style.display = "block";
+      document.getElementById("canton").style.display = "block";
+      document.getElementById("parroquia").style.display = "block";
+      document.getElementById("sector").style.display = "block";
+      document.getElementById("instruccion").style.display = "block";
+      document.getElementById("ocupacion").style.display = "block";
+      document.getElementById("ins_jefefamilia").style.display = "block";
+      document.getElementById("ocu_jefefamilia").style.display = "block";
+      document.getElementById("telefono").style.display = "block";
+      document.getElementById("email").style.display = "block";
+      document.getElementById("telefonof").style.display = "block";
+      document.getElementById("emailf").style.display = "block";
+      document.getElementById("f_muestra").style.display = "block";
+      document.getElementById("f_menstruacion").style.display = "block";
+      document.getElementById("metodo_planificacion").style.display = "block";
+      document.getElementById("dat1").style.display = "block";
+      document.getElementById("dat2").style.display = "block";
+      document.getElementById("dat3").style.display = "block";
+      document.getElementById("num_partos").style.display = "block";
+      document.getElementById("num_cesareas").style.display = "block";
+      document.getElementById("num_abortos").style.display = "block";
+      document.getElementById("edad_vid_sexual").style.display = "block";
     }
   }
 });
@@ -276,7 +298,6 @@ function limpiar() {
   //document.getElementById("Cedula").value = "";
   document.getElementById("Nombre").value = "";
 
-
   document.getElementById("h_clinica").value = "";
   document.getElementById("h_clinica").style.display = "none";
   document.getElementById("pedido").value = "";
@@ -338,34 +359,27 @@ function limpiar() {
   //
 }
 
-
 function guardarcerrar() {
-
-    console.log("CERRAR");
-    pedido_render();
-    limpiar();
-    ipcRenderer.send("regresar-pedidos", "regresar-pedidos");
-    //window.location.replace("main.html");
-
+  console.log("CERRAR");
+  pedido_render();
+  limpiar();
+  ipcRenderer.send("regresar-pedidos", "regresar-pedidos");
+  //window.location.replace("main.html");
 }
 
-
 function guardarcontinuar() {
-
-    console.log("Guardar continuar");
-    pedido_render();
-    limpiar();
-
+  console.log("Guardar continuar");
+  pedido_render();
+  limpiar();
 }
 
 function cerrarPedidos() {
-
-    limpiar();
-    ipcRenderer.send("regresar-pedidos", "regresar-pedidos");
-   //window.close('pedidos.html');
-   // window.open('main.html');
-   //console.log("cerrar");
-   //window.location.replace("main.html");
+  limpiar();
+  ipcRenderer.send("regresar-pedidos", "regresar-pedidos");
+  //window.close('pedidos.html');
+  // window.open('main.html');
+  //console.log("cerrar");
+  //window.location.replace("main.html");
 }
 
 /*

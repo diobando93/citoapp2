@@ -94,7 +94,7 @@ function recibir() {
     let array2 = [];
     array = genHc.split("-");
     array2 = array[0].split('"');
-    //console.log(array2[1]);
+    //console.log(array2[1].replace(/['"]+/g, ""));
     //envia0 = validaciones.verificarVacio(datosVacios);
     //envia1 = validaciones.verificarNumero(datosNumeros);
 
@@ -125,7 +125,7 @@ function recibir() {
         hora: hourNow(),
         h_clinica: hClinica,
         cedula: args[0],
-        pedido: args[39],
+        pedido: args[39].replace(/['"]+/g, ""),
         edad: args[5],
         medico: args[40],
         establecimiento: args[2],
@@ -191,9 +191,11 @@ function recibir() {
       //const newPC = new Pedidocounter(pedidogenCounter);
       //const PCSaved = await newPC.save();
       let actualizarPC = Pedidocounter.where({
-        _id: "5fcd4784b3b8b747e6347f85",
+        _id: "5f5802815a5736164e9858a0",
       });
-      actualizarPC.updateOne({ $set: { pedido_counter: args[39] } }).exec();
+      actualizarPC
+        .updateOne({ $set: { pedido_counter: args[39].replace(/['"]+/g, "") } })
+        .exec();
       //const pedidotSaved = await newPedido.save();
       //const newHclinica = new Hclinic(hclinica);
       //const hclinicaSaved = await newHclinica.save();
@@ -240,10 +242,7 @@ function parroquia(args) {
 
 // funcion para consulta o generacion de historias clinicas
 async function hcgen(cedula) {
-  let cedula_buscar = await Patient.find(
-    { cedula: cedula },
-    "h_clinica"
-  ).exec();
+  let cedula_buscar = await Patient.find({ cedula: cedula }).exec();
   let vereificar = false;
   vereificar = isEmpty(cedula_buscar);
   if (vereificar == true) {
@@ -258,7 +257,12 @@ async function hcgen(cedula) {
   } else {
     console.log("envie codigo de historia clinica");
     cedula_buscar = cedula_buscar[0];
-    let hclinicaNew2 = cedula_buscar.h_clinica;
+    let hclinicaNew2 =
+      cedula_buscar.h_clinica +
+      " " +
+      cedula_buscar.nombres +
+      " " +
+      cedula_buscar.apellidos;
     return hclinicaNew2;
   }
 }
