@@ -1,40 +1,23 @@
 const { ipcMain } = require("electron");
-const Establecimiento = require("../models/establecimiento.js");
 const Patient = require("../models/patient.js");
-const hclinic = require("../models/h_clinic.js");
 
 let ficha = [];
 
 console.log("CARGANDO PACIENTES PROCESS");
 
 function pacientes() {
-  //checkEstablecimientos();
   ipcMain.on("consulta-pacientes", async (e, args) => {
     ficha = await checkPacientes();
     e.returnValue = JSON.stringify(ficha);
-    //e.returnValue = JSON.stringify(EST);
-  });
-
-  //checkEstablecimientos();
-}
-
-function guardarEstablecimiento(arg) {
-  const establecimiento = new Establecimiento({
-    Nombre: arg,
-  });
-
-  establecimiento.save((err, document) => {
-    if (err) console.log(err);
   });
 }
 
 async function checkPacientes() {
-  let DBpacientesNombres = [];
-  let DBpacientesApellido = [];
-
   let personas = await Patient.find();
 
   if (personas.length == 0) {
+    //alert("No existen pacientes registrados");
+
     console.log("no existen pacientes registrados aún");
   }
   //console.log(personas);
@@ -66,9 +49,5 @@ async function checkPacientes() {
   return DBestablecimientos;
   */
 }
-
-function consultar() {}
-
-function cancelar() {}
 
 module.exports = { pacientes };

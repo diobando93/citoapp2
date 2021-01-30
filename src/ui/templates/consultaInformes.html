@@ -21,13 +21,13 @@
       <div class="form-popup" id="myForm">
         <form class="form-container">
           <!-- Boton Buscar -->
-          <button type="button" class="btn" onclick="pacientes_consulta()">
+          <button type="button" class="btn" onclick="informes_consulta()">
             Buscar
           </button>
 
           <!-- Boton Regresar -->
           <div>
-            <button type="button" class="btn cancel" onclick="exitPacientes()">
+            <button type="button" class="btn cancel" onclick="exitInformes()">
               Regresar
             </button>
           </div>
@@ -40,7 +40,7 @@
         <!-- Titulo Establecimientos -->
         <div class="row">
           <div class="titulo-principal">
-            <h1>Consulta de Pacientes</h1>
+            <h1>Consulta de Informes</h1>
           </div>
         </div>
         <div class="row">
@@ -50,14 +50,14 @@
         <input
           type="text"
           id="myInput"
-          onkeyup="buscarPacientes()"
+          onkeyup="buscarInformes()"
           placeholder="Search for names.."
           title="Type in a name"
         />
 
         <table id="myTable">
           <tr class="header">
-            <th style="width: 60%">Pacientes</th>
+            <th style="width: 60%">Informes</th>
           </tr>
         </table>
 
@@ -69,11 +69,11 @@
             id="btnRegresar"
             class="btn"
             value="Regresar"
-            onclick="exitPacientes()"
+            onclick="exitInformes()"
           />
         </div>
 
-        <script src="../scripts/consultaPedidos_render.js"></script>
+        <script src="../scripts/consultaInformes_render.js"></script>
       </form>
     </div>
   </body>

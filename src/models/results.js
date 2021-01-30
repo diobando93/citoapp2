@@ -1,6 +1,8 @@
 const { model, Schema } = require("mongoose");
 
 const Resultados = new Schema({
+  fecha: String,
+  hora: String,
   h_clinica: String,
   cedula: String,
   pedido: String,

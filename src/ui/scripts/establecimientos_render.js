@@ -1,129 +1,132 @@
-const electron = require('electron');
+const electron = require("electron");
 const { ipcRenderer } = electron;
 
 let table = document.getElementById("myTable");
 
-
 function limpiar_tabla(listaEstablecimientos) {
-
-    for (var del in listaEstablecimientos) {
-        
-        document.getElementById("myTable").deleteRow(1);
-    }
-
+  for (var del in listaEstablecimientos) {
+    document.getElementById("myTable").deleteRow(1);
+  }
 }
 
 function actualizar_tabla(listaEstablecimientos) {
+  for (var i in listaEstablecimientos) {
+    var row = table.insertRow();
+    row.classList.add("w3-hover-table");
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
 
-    for (var i in listaEstablecimientos) {
+    cell1.innerHTML = parseInt(i) + 1;
+    cell2.innerHTML = listaEstablecimientos[i];
+  }
 
-        var row = table.insertRow();
-        row.classList.add("w3-hover-table")
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
+  for (var i = 1; i < table.rows.length; i++) {
+    table.rows[i].addEventListener("click", function () {
+      //rIndex = this.rowIndex;
+      //alert(this.cells[1].innerHTML);
+      let nombre = this.cells[1].innerHTML;
+      //document.getElementById("fname").value = this.cells[0].innerHTML;
+      //document.getElementById("lname").value = this.cells[1].innerHTML;
+      //document.getElementById("age").value = this.cells[2].innerHTML;
+      if (confirm("Borrar Registro?" + " " + this.cells[1].innerHTML)) {
+        txt = "You pressed OK!";
 
-        cell1.innerHTML = parseInt(i) + 1;
-        cell2.innerHTML = listaEstablecimientos[i];
-    }
+        for (var i = 1; i < table.rows.length; i++) {
+          table.rows[i].removeEventListener("click", function () {});
+        }
 
-    for (var i = 1; i < table.rows.length; i++) {
-        table.rows[i].addEventListener("click", function () {
-            //rIndex = this.rowIndex;
-            //alert(this.cells[1].innerHTML);
-            let nombre = this.cells[1].innerHTML
-            //document.getElementById("fname").value = this.cells[0].innerHTML;
-            //document.getElementById("lname").value = this.cells[1].innerHTML;
-            //document.getElementById("age").value = this.cells[2].innerHTML;
-            if (confirm("Borrar Registro?")) {
-                txt = "You pressed OK!";
+        let establecimientosDB = [];
+        establecimientosDB = JSON.parse(
+          ipcRenderer.sendSync(
+            "consulta-establecimientos",
+            "consulta-establecimientos"
+          )
+        );
 
-                for (var i = 1; i < table.rows.length; i++) {
+        //limpiar tabla
+        limpiar_tabla(establecimientosDB);
 
-                    table.rows[i].removeEventListener("click", function () { });
-                }
+        ipcRenderer.send("delete-establecimiento", nombre);
 
-                let establecimientosDB = [];
-                establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
+        location.reload();
 
-                //limpiar tabla
-                limpiar_tabla(establecimientosDB)
+        //Obtener registros de establecimientos
+        //establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
 
-                ipcRenderer.send("delete-establecimiento", nombre);
-
-                location.reload();
-
-                //Obtener registros de establecimientos
-                //establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
-
-                //Actualizar tabla
-                //actualizar_tabla(establecimientosDB);
-
-            } else {
-                txt = "You pressed Cancel!";
-            }
-        });
-    }
-
+        //Actualizar tabla
+        //actualizar_tabla(establecimientosDB);
+      } else {
+        txt = "You pressed Cancel!";
+      }
+    });
+  }
 }
 
 function add_render() {
+  let establecimientosDB = [];
+  establecimientosDB = JSON.parse(
+    ipcRenderer.sendSync(
+      "consulta-establecimientos",
+      "consulta-establecimientos"
+    )
+  );
 
-    let establecimientosDB = [];
-    establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
+  //limpiar tabla
+  limpiar_tabla(establecimientosDB);
 
-    //limpiar tabla
-    limpiar_tabla(establecimientosDB)
+  //Aï¿½adir registro en BD
+  let nombre = document.getElementById("nuevoEstab").value;
+  ipcRenderer.send("add-establecimientos", nombre);
 
-    //Añadir registro en BD
-    let nombre = document.getElementById("nuevoEstab").value;
-    ipcRenderer.send("add-establecimientos", nombre);
+  //Obtener registros de establecimientos
+  establecimientosDB = JSON.parse(
+    ipcRenderer.sendSync(
+      "consulta-establecimientos",
+      "consulta-establecimientos"
+    )
+  );
 
-    //Obtener registros de establecimientos
-    establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
-
-    //Actualizar tabla
-    actualizar_tabla(establecimientosDB);
-
+  //Actualizar tabla
+  actualizar_tabla(establecimientosDB);
 }
 
 function establecimientos_render() {
+  document.getElementById("botonesBusqueda").style.display = "none";
 
-    document.getElementById("botonesBusqueda").style.display = "none";
+  //Recibir arreglo de establecimientos
+  let establecimientosDB = [];
 
-    //Recibir arreglo de establecimientos
-    let establecimientosDB = [];
+  establecimientosDB = JSON.parse(
+    ipcRenderer.sendSync(
+      "consulta-establecimientos",
+      "consulta-establecimientos"
+    )
+  );
+  //console.log(establecimientosDB);
 
-    establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
-    //console.log(establecimientosDB);
-
-    actualizar_tabla(establecimientosDB);
-
+  actualizar_tabla(establecimientosDB);
 }
 
 function exitEstablecimientos() {
-
-    ipcRenderer.send("regresar-establecimientos", "regresar-establecimientos");
-
+  ipcRenderer.send("regresar-establecimientos", "regresar-establecimientos");
 }
 
 function buscarEstablecimiento() {
+  var input, filter, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
 
-    var input, filter, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
 
-    tr = table.getElementsByTagName("tr");
-
-    for (i = 1; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
     }
-
+  }
 }

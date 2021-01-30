@@ -152,10 +152,13 @@ function retrive() {
       abortos.innerHTML = pedidoRetrieved[0].num_abortos;
     } else if (valPedido == false) {
       alert("Numero de pedido incorrecto");
+      ipcRenderer.send("regresar-resultados", "regresar-resultados");
     } else if (valPaciente == false) {
       alert("Numero de cedula incorrecto");
+      ipcRenderer.send("regresar-resultados", "regresar-resultados");
     } else if (valResultado == true) {
       alert("El resultado ya esta registrado");
+      ipcRenderer.send("regresar-resultados", "regresar-resultados");
     }
 
     // validar verificando si el objeto esta vacio o no

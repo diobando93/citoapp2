@@ -5,6 +5,7 @@ const { consultar } = require("./resultado_process.js");
 const { pacientes } = require("./pacientes_process.js");
 const { doctores } = require("./doctores_process.js");
 const { estab } = require("./establecimientos_process.js");
+const { reports } = require("./informes_process.js");
 
 //Variables para creaci�n de ventanas
 let mainWindows;
@@ -22,6 +23,7 @@ app.on("ready", () => {
   app.whenReady().then(recibir);
   app.whenReady().then(consultar);
   app.whenReady().then(pacientes);
+  app.whenReady().then(reports);
   app.whenReady().then(doctores);
   app.whenReady().then(estab);
 
@@ -38,6 +40,7 @@ app.on("ready", () => {
   //---------------OPCION RETIRO DE INFORMES
   ipcMain.on("consulta-informes", (e, args) => {
     abrirPantalla(args[0], args[1]);
+    console.log(args[0]);
   });
 
   //---------------OPCION PACIENTES

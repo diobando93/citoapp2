@@ -37,6 +37,8 @@ function consultar() {
     //console.log(args);
 
     const resultadoBD = {
+      fecha: new Date().toISOString().slice(0, 10),
+      hora: hourNow(),
       h_clinica: args[31],
       cedula: args[0],
       pedido: args[1],
@@ -315,6 +317,15 @@ function genPDF() {
     .text("Observaciones: " + resultPdf[30], 30, 600);
 
   doc.end();
+}
+
+function hourNow() {
+  monentoActual = new Date();
+  hora = monentoActual.getHours();
+  minuto = monentoActual.getMinutes();
+  segundo = monentoActual.getSeconds();
+  hora = hora + " : " + minuto + " : " + segundo;
+  return hora;
 }
 
 module.exports = { consultar };

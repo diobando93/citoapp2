@@ -45,7 +45,7 @@ document.getElementById("resultados").addEventListener("click", function (e) {
 
 //Listener de boton de retiro de informes
 
-document.getElementById("rInformes").addEventListener("click", function (e) {
+document.getElementById("informes").addEventListener("click", function (e) {
   resultado = true;
   ipcRenderer.send("consulta-informes", [
     "src/ui//templates/consultaInformes.html",
