@@ -1,137 +1,154 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="../statics/stylepedidos.css" />
     <link rel="stylesheet" href="../statics/styleresultados.css" />
     <link rel="stylesheet" href="../statics/styleestablecimientos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 
     <title>Laboratorios Citología</title>
-</head>
+  </head>
 
   <body>
-      <!---------------------------------------------------------------------------------------------------------------------------->
-      <!-- Ventana inicial   -->
-      <div class="overlay" id="botonesBusqueda">
-          <!-- Formulario de Ingreso de Datos -->
-          <div class="form-popup" id="myForm">
-              <form class="form-container">
+    <!---------------------------------------------------------------------------------------------------------------------------->
+    <!-- Ventana inicial   -->
+    <div class="overlay" id="botonesBusqueda">
+      <!-- Formulario de Ingreso de Datos -->
+      <div class="form-popup" id="myForm">
+        <form class="form-container">
+          <!-- Boton Buscar -->
+          <button
+            type="button"
+            class="btn"
+            onclick="actualizar_establecimientos()"
+          >
+            Buscar
+          </button>
 
-                  <!-- Boton Buscar -->
-                  <button type="button" class="btn" onclick="actualizar_establecimientos()">Buscar</button>
-
-                  <!-- Boton Regresar -->
-                  <div>
-                      <button type="button" class="btn cancel" onclick="exitDoctores()">Regresar</button>
-                  </div>
-              </form>
+          <!-- Boton Regresar -->
+          <div>
+            <button type="button" class="btn cancel" onclick="exitDoctores()">
+              Regresar
+            </button>
           </div>
+        </form>
       </div>
-      <!---------------------------------------------------------------------------------------------------------------------------->
-      <div class="container">
-          <form>
-              <!-- Titulo Identificación -->
-              <div class="row">
-                  <div class="titulo-principal">
-                      <h1>Establecimientos</h1>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-25">
-                      <label for="fname">Establecimiento</label>
-                  </div>
-                  <div class="col-75">
-                      <select name="establecimiento" id="establecimiento" onchange="getDoctores()">
-                      </select>
-                  </div>
-              </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------->
+    <div class="container">
+      <form>
+        <!-- Titulo Identificación -->
+        <div class="row">
+          <div class="titulo-principal">
+            <h1>Establecimientos</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Establecimiento</label>
+          </div>
+          <div class="col-75">
+            <select
+              name="establecimiento"
+              id="establecimiento"
+              onchange="getDoctores()"
+            ></select>
+          </div>
+        </div>
 
-              <!-- Titulo Establecimientos -->
-              <div class="row">
-                  <div class="titulo-principal">
-                      <h1>Doctores</h1>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-25">
+        <!-- Titulo Establecimientos -->
+        <div class="row">
+          <div class="titulo-principal">
+            <h1>Doctores</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25"></div>
+        </div>
 
-                  </div>
-              </div>
+        <input
+          type="text"
+          id="myInput"
+          onkeyup="buscarDoctores()"
+          placeholder="Search for names.."
+          title="Type in a name"
+        />
 
-              <input type="text" id="myInput" onkeyup="buscarDoctores()" placeholder="Search for names.." title="Type in a name">
+        <div class="w3-container">
+          <table
+            class="w3-table-all w3-card-4 w3-hoverable"
+            id="myTable"
+            style="width: 70%"
+          >
+            <tr class="header">
+              <!--<th style="width:60%;">Doctores</th>-->
+              <td style="background-color: #aaa; width: 5%">No.</td>
+              <td style="background-color: #aaa">Doctor</td>
+            </tr>
+          </table>
+        </div>
 
-              <div class="w3-container">
+        <div class="row">
+          <div class="col-25"></div>
+        </div>
 
-                  <table class="w3-table-all w3-card-4 w3-hoverable" id="myTable" style="width: 70%">
-                      <tr class="header">
-                          <!--<th style="width:60%;">Doctores</th>-->
-                          <td style="background-color: #aaa; width: 5%">No.</td>
-                          <td style="background-color: #aaa">Doctor</td>
+        <!-- Titulo Establecimientos -->
+        <div class="row">
+          <div class="titulo-principal">
+            <h1>Añadir Doctores</h1>
+          </div>
+        </div>
 
-                      </tr>
-                  </table>
+        <!-- Nombres y Apellidos -->
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Nombres</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="Nombre" name="Nombres" />
+          </div>
+          <div class="separator"></div>
+          <div class="col-25">
+            <label for="lname">Apellidos</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="Apellido" name="Apellidos" />
+          </div>
+        </div>
 
-              </div>
+        <!-- Botones de Grabar-->
+        <div class="row">
+          <!-- Regresar-->
+          <input
+            type="button"
+            id="btnRegresar"
+            class="btn"
+            value="Regresar"
+            onclick="exitDoctores()"
+          />
 
-              <div class="row">
-                  <div class="col-25">
+          <!-- <div class="col-25" style="width: 100px"></div>-->
+          <div class="column"></div>
 
-                  </div>
-              </div>
+          <!-- Grabar y Cerrar-->
+          <input
+            type="button"
+            class="btn"
+            value="Grabar y Cerrar"
+            onclick="medicos_render()"
+          />
+        </div>
 
-              <!-- Titulo Establecimientos -->
-              <div class="row">
-                  <div class="titulo-principal">
-                      <h1>Añadir Doctores</h1>
-                  </div>
-              </div>
-
-              <!-- Nombres y Apellidos -->
-              <div class="row">
-                  <div class="col-25">
-                      <label for="lname">Nombres</label>
-                  </div>
-                  <div class="col-75">
-                      <input type="text" id="Nombre" name="Nombres">
-                  </div>
-                  <div class="separator">
-
-                  </div>
-                  <div class="col-25">
-                      <label for="lname">Apellidos</label>
-                  </div>
-                  <div class="col-75">
-                      <input type="text" id="Apellido" name="Apellidos">
-                  </div>
-              </div>
-
-              <!-- Botones de Grabar-->
-              <div class="row">
-                  <!-- Regresar-->
-                  <input type="button"
-                         id="btnRegresar"
-                         class="btn"
-                         value="Regresar"
-                         onclick="exitDoctores()" />
-
-                  <!-- <div class="col-25" style="width: 100px"></div>-->
-                  <div class="column"></div>
-
-                  <!-- Grabar y Cerrar-->
-                  <input type="button"
-                         class="btn"
-                         value="Grabar y Cerrar"
-                         onclick="medicos_render()" />
-              </div>
-
-              <script src="../scripts/doctores_render.js"></script>
-
-          </form>
-      </div>
+        <script src="../scripts/doctores_render.js"></script>
+      </form>
+    </div>
   </body>
 </html>

@@ -1,17 +1,20 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="../statics/stylepedidos.css" />
     <link rel="stylesheet" href="../statics/styleestablecimientos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 
     <title>Laboratorios Citología</title>
-</head>
+  </head>
 
   <body>
     <!---------------------------------------------------------------------------------------------------------------------------->
@@ -36,43 +39,56 @@
     </div>
     <!---------------------------------------------------------------------------------------------------------------------------->
     <div class="container">
-        <form>
-            <!-- Titulo Establecimientos -->
-            <div class="row">
-                <div class="titulo-principal">
-                    <h1>Consulta de Pacientes</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25"></div>
-            </div>
+      <form>
+        <!-- Titulo Establecimientos -->
+        <div class="row">
+          <div class="titulo-principal">
+            <h1>Consulta de Pacientes</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25"></div>
+        </div>
 
-            <input type="text"
-                   id="myInput"
-                   onkeyup="buscarPacientes()"
-                   placeholder="Search for names.."
-                   title="Type in a name" />
+        <input
+          type="text"
+          id="myInput"
+          onkeyup="buscarPacientes()"
+          placeholder="Search for names.."
+          title="Type in a name"
+        />
 
-            <div class="w3-container">
-                <table class="w3-table-all w3-card-4 w3-hoverable" id="myTable" style="width: 70%">
-                    <tr class="header">
-                    </tr>
-                </table>
+        <div class="w3-container">
+          <table
+            class="w3-table-all w3-card-4 w3-hoverable"
+            id="myTable"
+            style="width: 70%"
+          >
+            <tr class="header">
+              <!--<th style="width:60%;">Establecimiento</th>-->
+              <td style="background-color: #aaa; width: 5%">No.</td>
+              <td style="background-color: #aaa">Nombre</td>
+              <td style="background-color: #aaa">Apellido</td>
+              <td style="background-color: #aaa">Cédula</td>
+              <td style="background-color: #aaa">Histora Clínica</td>
+            </tr>
+          </table>
+        </div>
 
-            </div>
+        <!-- Botones de Grabar-->
+        <div class="row">
+          <!-- Regresar-->
+          <input
+            type="button"
+            id="btnRegresar"
+            class="btn"
+            value="Regresar"
+            onclick="exitPacientes()"
+          />
+        </div>
 
-                <!-- Botones de Grabar-->
-                <div class="row">
-                    <!-- Regresar-->
-                    <input type="button"
-                           id="btnRegresar"
-                           class="btn"
-                           value="Regresar"
-                           onclick="exitPacientes()" />
-                </div>
-
-                <script src="../scripts/consultaPedidos_render.js"></script>
-        </form>
+        <script src="../scripts/consultaPedidos_render.js"></script>
+      </form>
     </div>
   </body>
 </html>

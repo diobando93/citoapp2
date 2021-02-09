@@ -5,6 +5,8 @@ const Resultados = new Schema({
   hora: String,
   h_clinica: String,
   cedula: String,
+  nombres: String,
+  apellidos: String,
   pedido: String,
   aspecto_cuello: String,
   observaciones: String,

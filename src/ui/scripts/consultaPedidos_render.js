@@ -5,7 +5,7 @@ let table = document.getElementById("myTable");
 
 function actualizar_tabla(par0, par1, par2, par3) {
   for (var i in par0) {
-    var row = table.insertRow(i);
+    var row = table.insertRow();
     row.classList.add("w3-hover-table");
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
@@ -13,7 +13,7 @@ function actualizar_tabla(par0, par1, par2, par3) {
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
 
-    cell1.innerHTML = i;
+    cell1.innerHTML = parseInt(i) + 1;
     cell2.innerHTML = par0[i];
     cell3.innerHTML = par1[i];
     cell4.innerHTML = par2[i];

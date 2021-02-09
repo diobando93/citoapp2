@@ -35,12 +35,16 @@ function consultar() {
 
   ipcMain.on("datosResultado", async (e, args) => {
     //console.log(args);
-
+    let aux = args[32].split(" ");
+    let name = aux[0];
+    let lastName = aux[1];
     const resultadoBD = {
       fecha: new Date().toISOString().slice(0, 10),
       hora: hourNow(),
       h_clinica: args[31],
       cedula: args[0],
+      nombres: name,
+      apellidos: lastName,
       pedido: args[1],
       aspecto_cuello: args[2],
       observaciones: args[3],
