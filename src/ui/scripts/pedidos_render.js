@@ -72,7 +72,23 @@ var input = document.getElementById("Cedula");
 input.addEventListener("keyup", function (event) {
   //Si la tecla presionada es ENTER
   if (event.keyCode === 13) {
-    event.preventDefault();
+      event.preventDefault();
+
+    //Recibir arreglo de instituciones
+    let establecimientosDB = [];
+
+    establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
+
+      //Colocar establecimientos en drop down
+      var dropBox = document.getElementById("establecimiento");
+
+      dropBox.options.add(new Option(" "));
+
+      for (var key in establecimientosDB) {
+          dropBox.options.add(
+              new Option(key.toString() + " - " + establecimientosDB[key].toString())
+          );
+      }
 
     //Recibir arreglo de provincias
     provinciasDB = [];
@@ -81,6 +97,8 @@ input.addEventListener("keyup", function (event) {
 
     //Colocar provincias en drop down
     var dropBox = document.getElementById("provincia");
+
+    dropBox.options.add(new Option(" "));
     for (var key in provinciasDB) {
       dropBox.options.add(
         new Option(key.toString() + " - " + provinciasDB[key].toString())
@@ -235,6 +253,7 @@ function getProvincia() {
     }
   }
   var dropBox3 = document.getElementById("parroquia");
+  dropBox3.options.add(new Option(" "));
   if (dropBox3.length > 0) {
     for (var i = dropBox3.length; i > -1; i--) {
       dropBox3.options.remove(i);
@@ -242,6 +261,7 @@ function getProvincia() {
   }
   cantonesDB = JSON.parse(ipcRenderer.sendSync("dropProvincia", dropProvincia));
   //console.log(cantonesDB);
+  dropBox2.options.add(new Option(" "));
   for (var key in cantonesDB) {
     dropBox2.options.add(
       new Option(key.toString() + " - " + cantonesDB[key].toString())
@@ -263,6 +283,7 @@ function getCanton() {
   }
   parroquiasDB = JSON.parse(ipcRenderer.sendSync("dropCanton", dropCanton));
   //console.log(parroquiasDB);
+  dropBox2.options.add(new Option(" "));
   for (var key in parroquiasDB) {
     dropBox2.options.add(
       new Option(key.toString() + " - " + parroquiasDB[key].toString())
@@ -271,19 +292,28 @@ function getCanton() {
 }
 
 function getMedico() {
+
+  //Recibir variable de establecimiento
   var dropBox = document.getElementById("establecimiento");
   var dropEstablecimineto = dropBox.options[dropBox.selectedIndex].value;
+  dropEstablecimineto = dropEstablecimineto.substring(dropEstablecimineto.indexOf("-") + 2);;
   console.log(dropEstablecimineto);
+
+  //Limpiar dropdown de Medicos
   var dropBox2 = document.getElementById("medicos");
   if (dropBox2.length > 0) {
     for (var i = dropBox2.length; i > -1; i--) {
       dropBox2.options.remove(i);
     }
   }
+
+  //Buscar Medicos de establecimiento
   medicosDB = JSON.parse(
     ipcRenderer.sendSync("dropMedicos", dropEstablecimineto)
-  );
-  console.log(medicosDB);
+    );
+    console.log(medicosDB);
+
+  //Colocar medicos en dropdown
   for (var key in medicosDB) {
     dropBox2.options.add(
       new Option(key.toString() + " - " + medicosDB[key].toString())

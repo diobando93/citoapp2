@@ -16,7 +16,7 @@ function doctores() {
     });
 
     ipcMain.on('datos', async (e, args) => {
-        console.log(args);
+        //console.log(args);
         const doctor = {
             nombre: args[0],
             apellido: args[1],
@@ -29,7 +29,7 @@ function doctores() {
 
     ipcMain.on("consulta-doctores", async (e, args) => {
 
-        console.log(args)
+        //console.log(args)
         medicos = [];
 
         medicos_buscar = await Medicos.find({ institucion: args });
@@ -45,6 +45,11 @@ function doctores() {
         //console.log(medicos);
         e.returnValue = JSON.stringify(medicos);
 
+    });
+
+    ipcMain.on("delete-doctor", async (e, args) => {
+        borrarDoctor(args[0], args[1], args[2]);
+        //console.log(args[0], args[1], args[2]);
     });
 }
 
@@ -78,6 +83,14 @@ async function checkEstablecimientos() {
 
     //console.log(DBestablecimientos);
     return DBestablecimientos;
+}
+
+function borrarDoctor(name,lastname,institution) {
+
+    Medicos.deleteOne({ nombre: name, apellido: lastname, institucion: institution }, function (err) {
+        if (err) console.log(err);
+    });
+
 }
 
 

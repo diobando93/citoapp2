@@ -21,7 +21,8 @@ function informes_consulta() {
     pedidoTabla.push(informesDB[key].pedido);
     hclinicaTabla.push(informesDB[key].h_clinica);
     fechaTabla.push(informesDB[key].fecha);
-  }
+    }
+
   actualizarTabla(cedulaTabla, pedidoTabla, hclinicaTabla, fechaTabla);
   console.log(informesDB);
 }
@@ -41,10 +42,12 @@ function actualizarTabla(par0, par1, par2, par3) {
     cell3.innerHTML = par1[i];
     cell4.innerHTML = par2[i];
     cell5.innerHTML = par3[i];
-  }
-  for (var i = 1; i < table.rows.length; i++) {
-    table.rows[i].addEventListener("click", function () {
-      console.log("vamos a beber");
+    }
+
+  for (var i = 0; i < table.rows.length; i++) {
+      table.rows[i].addEventListener("click", function () {
+        alert("vamos a beber");
+        console.log("vamos a beber");
     });
   }
 }

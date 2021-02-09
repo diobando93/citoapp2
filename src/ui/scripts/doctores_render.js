@@ -9,6 +9,23 @@ let table = document.getElementById("myTable");
 
 function buscarDoctores() {
 
+    var input, filter, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
 
 
 }
@@ -36,6 +53,8 @@ function medicos_render() {
 }
 
 function actualizar_establecimientos() {
+
+    console.log("entro");
 
     let lista = establecimientos_render();
 
@@ -112,6 +131,55 @@ function actualizar_tabla(listaDoctores) {
 
         cell1.innerHTML = parseInt(i) + 1;
         cell2.innerHTML = listaDoctores[i];
+    }
+
+    for (var i = 1; i < table.rows.length; i++) {
+        table.rows[i].addEventListener("click", function () {
+            //rIndex = this.rowIndex;
+            var institucion = establecimiento.value;
+            institucion = institucion.substring(institucion.indexOf("-") + 2);
+
+            var doct = this.cells[1].innerHTML
+            var apell = doct.split(" ")[1];
+            console.log(apell);
+            var nom = doct.split(" ")[0];
+            console.log(nom);
+
+            if (confirm("Borrar Registro?" + " " + this.cells[1].innerHTML)) {
+                txt = "You pressed OK!";
+
+                for (var i = 1; i < table.rows.length; i++) {
+                    table.rows[i].removeEventListener("click", function () { });
+                }
+
+                let doctoresDB = [];
+
+                doctoresDB = JSON.parse(ipcRenderer.sendSync('consulta-doctores', institucion));
+                //console.log(doctoresDB);
+
+
+                //limpiar tabla
+                limpiar_tabla(doctoresDB.length+1);
+
+                ipcRenderer.send("delete-doctor", [nom, apell, institucion]);
+
+                location.reload();
+
+                //Obtener registros de establecimientos
+                //establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
+
+                //Actualizar tabla
+                //actualizar_tabla(establecimientosDB);
+            } else {
+                txt = "You pressed Cancel!";
+
+            }
+
+
+
+
+        });
+
     }
 
 }

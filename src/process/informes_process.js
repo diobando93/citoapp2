@@ -7,7 +7,8 @@ console.log("CARGANDO INFORMES PROCESS");
 
 function reports() {
   ipcMain.on("consulta-informes", async (e, args) => {
-    ficha = await checkInformes();
+      ficha = await checkInformes();
+      //console.log(ficha);
     e.returnValue = JSON.stringify(ficha);
   });
   //  ipcMain.on("hola", (e, args) => {

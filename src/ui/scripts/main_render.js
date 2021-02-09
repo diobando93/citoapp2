@@ -47,7 +47,7 @@ document.getElementById("resultados").addEventListener("click", function (e) {
 
 document.getElementById("informes").addEventListener("click", function (e) {
   resultado = true;
-  ipcRenderer.send("consulta-informes", [
+  ipcRenderer.send("informes-consultar", [
     "src/ui//templates/consultaInformes.html",
     "regresar-informes",
   ]);

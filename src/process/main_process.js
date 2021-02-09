@@ -38,7 +38,7 @@ app.on("ready", () => {
   });
 
   //---------------OPCION RETIRO DE INFORMES
-  ipcMain.on("consulta-informes", (e, args) => {
+    ipcMain.on("informes-consultar", (e, args) => {
     abrirPantalla(args[0], args[1]);
     console.log(args[0]);
   });
