@@ -59,6 +59,7 @@ let pedidoRetrieved = [];
 let resultadosRetrived = [];
 
 let datosResultado = [];
+let fechaMuestraRender = "";
 
 function consulta_render() {
   ipcRenderer.on("response", (e, args) => {
@@ -136,7 +137,9 @@ function retrive() {
       pedido1.innerHTML = pedidoRetrieved[0].pedido;
       edad.innerHTML = pedidoRetrieved[0].edad;
       fechaIngreso.innerHTML = pedidoRetrieved[0].fecha;
-      fechaMuestra.innerHTML = pedidoRetrieved[0].f_muestra;
+      fechaMuestraRender = pedidoRetrieved[0].f_muestra.split("T");
+      fechaMuestraRender = fechaMuestraRender[0];
+      fechaMuestra.innerHTML = fechaMuestraRender;
       establecimiento.innerHTML = pedidoRetrieved[0].establecimiento;
       provincia.innerHTML = pedidoRetrieved[0].ubicacion.provincia;
       canton.innerHTML = pedidoRetrieved[0].ubicacion.canton;
@@ -145,9 +148,9 @@ function retrive() {
       sdiagnostico.innerHTML = "preguntar dato 2";
       fechaInforme.innerHTML = "preguntar si es el actual 3";
       gestaciones.innerHTML =
-        pedidoRetrieved[0].num_partos +
-        pedidoRetrieved[0].num_cesareas +
-        pedidoRetrieved[0].num_abortos;
+        parseInt(pedidoRetrieved[0].num_partos) +
+        parseInt(pedidoRetrieved[0].num_cesareas) +
+        parseInt(pedidoRetrieved[0].num_abortos);
       partos.innerHTML = pedidoRetrieved[0].num_partos;
       abortos.innerHTML = pedidoRetrieved[0].num_abortos;
     } else if (valPedido == false) {

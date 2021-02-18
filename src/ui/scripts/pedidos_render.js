@@ -22,7 +22,7 @@ const ocu_jefefamilia = document.getElementById("ocu_jefefamilia");
 const telefono = document.getElementById("telefono");
 const email = document.getElementById("email");
 const telefonof = document.getElementById("telefonof");
-const emmailf = document.getElementById("emailf");
+const emmailf = " ";
 const f_muestra = document.getElementById("f_muestra");
 const f_menstruacion = document.getElementById("f_menstruacion");
 const metodo_planificacion = document.getElementById("metodo_planificacion");
@@ -72,23 +72,28 @@ var input = document.getElementById("Cedula");
 input.addEventListener("keyup", function (event) {
   //Si la tecla presionada es ENTER
   if (event.keyCode === 13) {
-      event.preventDefault();
+    event.preventDefault();
 
     //Recibir arreglo de instituciones
     let establecimientosDB = [];
 
-    establecimientosDB = JSON.parse(ipcRenderer.sendSync("consulta-establecimientos", "consulta-establecimientos"));
+    establecimientosDB = JSON.parse(
+      ipcRenderer.sendSync(
+        "consulta-establecimientos",
+        "consulta-establecimientos"
+      )
+    );
 
-      //Colocar establecimientos en drop down
-      var dropBox = document.getElementById("establecimiento");
+    //Colocar establecimientos en drop down
+    var dropBox = document.getElementById("establecimiento");
 
-      dropBox.options.add(new Option(" "));
+    dropBox.options.add(new Option(" "));
 
-      for (var key in establecimientosDB) {
-          dropBox.options.add(
-              new Option(key.toString() + " - " + establecimientosDB[key].toString())
-          );
-      }
+    for (var key in establecimientosDB) {
+      dropBox.options.add(
+        new Option(key.toString() + " - " + establecimientosDB[key].toString())
+      );
+    }
 
     //Recibir arreglo de provincias
     provinciasDB = [];
@@ -292,11 +297,12 @@ function getCanton() {
 }
 
 function getMedico() {
-
   //Recibir variable de establecimiento
   var dropBox = document.getElementById("establecimiento");
   var dropEstablecimineto = dropBox.options[dropBox.selectedIndex].value;
-  dropEstablecimineto = dropEstablecimineto.substring(dropEstablecimineto.indexOf("-") + 2);;
+  dropEstablecimineto = dropEstablecimineto.substring(
+    dropEstablecimineto.indexOf("-") + 2
+  );
   console.log(dropEstablecimineto);
 
   //Limpiar dropdown de Medicos
@@ -310,8 +316,8 @@ function getMedico() {
   //Buscar Medicos de establecimiento
   medicosDB = JSON.parse(
     ipcRenderer.sendSync("dropMedicos", dropEstablecimineto)
-    );
-    console.log(medicosDB);
+  );
+  console.log(medicosDB);
 
   //Colocar medicos en dropdown
   for (var key in medicosDB) {
@@ -369,8 +375,8 @@ function limpiar() {
   document.getElementById("email").style.display = "none";
   document.getElementById("telefonof").value = "";
   document.getElementById("telefonof").style.display = "none";
-  document.getElementById("emailf").value = "";
-  document.getElementById("emailf").style.display = "none";
+  //document.getElementById("emailf").value = "";
+  //document.getElementById("emailf").style.display = "none";
   document.getElementById("f_muestra").value = "20202/01/01";
 
   document.getElementById("f_menstruacion").value = "20202/01/01";

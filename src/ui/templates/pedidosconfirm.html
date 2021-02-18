@@ -14,6 +14,7 @@
   </head>
 
   <body>
+    <!---------------------------------------------------------------------------------------------------------------------------->
     <!-- Ventana inicial de ingreso de cédula y No de Pedido  -->
     <div class="overlay" id="datosBusqueda">
       <!-- Formulario de Ingreso de Datos -->
@@ -29,29 +30,18 @@
             id="cedula"
             required
           />
-
-          <!-- No de Pedido -->
-          <label for="NoMuestra"><b>Número de Pedido</b></label>
-          <input
-            type="text"
-            placeholder="Ingrese en número de muestra"
-            name="nomuestra"
-            id="pedido"
-            required
-          />
-
           <!-- Boton Buscar -->
           <button type="button" class="btn" onclick="retrive()">Buscar</button>
 
           <!-- Boton Regresar -->
           <div>
-            <button type="button" class="btn cancel">
-              <a href="main.html">Regresar</a>
+            <button type="button" class="btn cancel" onclick="cancelar()">
+              Regresar
             </button>
           </div>
-          <script src="../scripts/pedidos_render.js"></script>
         </form>
       </div>
     </div>
+    <script src="../scripts/pedidosconfirm_render.js"></script>
   </body>
 </html>
