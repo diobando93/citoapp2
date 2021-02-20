@@ -77,6 +77,7 @@ function abrirPantalla(direccion, codRegreso) {
     height: 800,
     show: false,
   });
+
   ventana.loadFile(direccion);
 
   ventana.show();
@@ -88,6 +89,8 @@ function abrirPantalla(direccion, codRegreso) {
     ventana.close();
     ventana.destroy();
   });
+
+  //ipcMain.once()
 }
 
 function abrirMain() {

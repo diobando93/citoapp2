@@ -5,6 +5,7 @@ const Hclinic = require("../models/h_clinic.js");
 const Pedidocounter = require("../models/pedidocounter.js");
 const Medicos = require("../models/medicos.js");
 const validaciones = require("./validaciones.js");
+
 let ecuador = require("ecuador-postal-codes");
 let provincias = [];
 let cantones = [];
@@ -12,7 +13,6 @@ let parroquias = [];
 let numPedido = "";
 let hClinica = "";
 
-console.log("CARGANDO PEDIDO PROCESS");
 //let medicosBD = "";
 //recibe datos desde el pedido_render
 
@@ -22,6 +22,7 @@ function recibir() {
   //bug0: MAL HACER UNA FUNCION DEL TIEMPOconsole.log(hora);
   //bug0: resuelto
   console.log(hourNow());
+
   /*
     ipcMain.on("exit-pedidos", (e, args) => {
         console.log(args);

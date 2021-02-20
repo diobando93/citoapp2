@@ -68,6 +68,10 @@ var input = document.getElementById("Cedula");
 //bug4: popup para resetear los campos si desea continuar si no regresar al main menu
 //bug5: boton para limpiar el formulario noseeee
 
+ipcRenderer.on("saludos", (e, args) => {
+  console.log(args);
+});
+
 //Lisener en cmapo de c�dula para empezar la pantalla de pedidos
 input.addEventListener("keyup", function (event) {
   //Si la tecla presionada es ENTER

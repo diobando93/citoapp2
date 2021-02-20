@@ -29,7 +29,7 @@ for (i = 0; i < dropdown.length - 1; i++) {
 document.getElementById("pedidos").addEventListener("click", function (e) {
   pedido = true;
   ipcRenderer.send("envio-datos-paciente", [
-    "src/ui//templates/pedidos.html",
+    "src/ui//templates/pedidosconfirm.html",
     "regresar-pedidos",
   ]);
 });

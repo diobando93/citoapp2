@@ -11,34 +11,6 @@
   </head>
 
   <body>
-    <!-- Ventana inicial de ingreso de cédula y No de Pedido  -->
-    <div class="overlay" id="datosBusqueda">
-      <!-- Formulario de Ingreso de Datos -->
-      <div class="form-popup" id="myForm">
-        <form class="form-container">
-          <h1>Datos de Busqueda</h1>
-          <!-- Cédula -->
-          <label for="Cédula"><b>Cédula</b></label>
-          <input
-            type="text"
-            placeholder="Ingrese la Cédula"
-            name="cedula"
-            id="cedula"
-            required
-          />
-          <!-- Boton Buscar -->
-          <button type="button" class="btn" onclick="retrive()">Buscar</button>
-
-          <!-- Boton Regresar -->
-          <div>
-            <button type="button" class="btn cancel" onclick="cerrarPedidos()">
-              Regresar
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
     <div class="container">
       <form>
         <!-- Titulo Identificación -->
@@ -53,7 +25,7 @@
             <label for="fname">Cedula</label>
           </div>
           <div class="col-75">
-            <input type="text" id="Cedula" name="Cedu" />
+            <label type="text" id="Cedula" name="Cedu" />
           </div>
           <div class="separator"></div>
           <div class="col-25">
@@ -99,7 +71,7 @@
             <label for="lname">Nombres</label>
           </div>
           <div class="col-75">
-            <input
+            <label
               type="text"
               id="Nombre"
               name="Nombres"
@@ -111,7 +83,7 @@
             <label for="lname">Apellidos</label>
           </div>
           <div class="col-75">
-            <input
+            <label
               type="text"
               id="Apellido"
               name="Apellidos"
@@ -132,7 +104,7 @@
             <label for="lname">Fecha de nacimiento</label>
           </div>
           <div class="col-75">
-            <input
+            <label
               type="date"
               id="f_nacimiento"
               name="f_nacimiento"
