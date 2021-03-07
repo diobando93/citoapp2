@@ -20,7 +20,7 @@ let pacientesWindow;
 //como esta el process se confunde
 
 app.on("ready", () => {
-  abrirMain();
+  abrirMain("src/ui//templates/main.html");
   app.whenReady().then(recibir);
   app.whenReady().then(consultar);
   app.whenReady().then(pacientes);
@@ -31,33 +31,44 @@ app.on("ready", () => {
 
   //---------------OPCION PEDIDOS
   ipcMain.on("envio-datos-paciente", (e, args) => {
-    abrirPantalla(args[0], args[1]);
+    abrirPantalla(args[0], args[1], args[2]);
+  });
+
+  //---------------OPCION PEDIDO Existe
+  ipcMain.on("pantalla1", (e, args) => {
+    console.log(args[3]);
+    abriPantallaPedidos(args[0], args[1], args[2], args[3]);
+  });
+
+  //---------------OPCION PEDIDO No Existe
+  ipcMain.on("pantalla2", (e, args) => {
+    console.log(args[3]);
+    abriPantallaPedidos(args[0], args[1], args[2], args[3]);
   });
 
   //---------------OPCION RESULTADOS
   ipcMain.on("consulta-datos-paciente", (e, args) => {
-    abrirPantalla(args[0], args[1]);
+    abrirPantalla(args[0], args[1], args[2]);
   });
 
   //---------------OPCION RETIRO DE INFORMES
   ipcMain.on("informes-consultar", (e, args) => {
-    abrirPantalla(args[0], args[1]);
-    console.log(args[0]);
+    abrirPantalla(args[0], args[1], args[2]);
   });
 
   //---------------OPCION PACIENTES
   ipcMain.on("paciente-consultar", (e, args) => {
-    abrirPantalla(args[0], args[1]);
+    abrirPantalla(args[0], args[1], args[2]);
   });
 
   //---------------OPCION DOCTORES
   ipcMain.on("medicos-crear-eliminar", (e, args) => {
-    abrirPantalla(args[0], args[1]);
+    abrirPantalla(args[0], args[1], args[2]);
   });
 
   //---------------OPCION ESTABLECIMIENTOS
   ipcMain.on("establecimientos-crear-eliminar", (e, args) => {
-    abrirPantalla(args[0], args[1]);
+    abrirPantalla(args[0], args[1], args[2]);
   });
 
   //---------------SALIR
@@ -68,7 +79,7 @@ app.on("ready", () => {
   });
 });
 
-function abrirPantalla(direccion, codRegreso) {
+function abrirPantalla(direccion1, direccion2, codRegreso) {
   let ventana = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
@@ -78,14 +89,15 @@ function abrirPantalla(direccion, codRegreso) {
     show: false,
   });
 
-  ventana.loadFile(direccion);
+  ventana.loadFile(direccion1);
 
   ventana.show();
-  mainWindows.hide();
+  mainWindows.close();
+  mainWindows.destroy();
 
   ipcMain.once(codRegreso, (e, args) => {
     console.log(args);
-    mainWindows.show();
+    abrirMain(direccion2);
     ventana.close();
     ventana.destroy();
   });
@@ -93,7 +105,30 @@ function abrirPantalla(direccion, codRegreso) {
   //ipcMain.once()
 }
 
-function abrirMain() {
+function abriPantallaPedidos(direccion1, direccion2, codRegreso, cedula) {
+  let ventana = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    width: 900,
+    height: 800,
+    show: false,
+  });
+  ventana.loadFile(direccion1);
+  ventana.on("ready-to-show", () => {
+    ventana.webContents.send("cedulaConfirm", cedula);
+    ventana.show();
+  });
+  mainWindows.close();
+  mainWindows.destroy();
+  ipcMain.once(codRegreso, (e, args) => {
+    abrirMain(direccion2);
+    ventana.close();
+    ventana.destroy();
+  });
+}
+
+function abrirMain(direccion) {
   mainWindows = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
@@ -101,7 +136,8 @@ function abrirMain() {
     width: 900,
     height: 800,
   });
-  mainWindows.loadFile("src/ui//templates/main.html");
+  mainWindows.loadFile(direccion);
+  //mainWindows.loadFile("src/ui//templates/main.html");
 }
 
 /*

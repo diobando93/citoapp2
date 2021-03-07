@@ -13,7 +13,6 @@ let provincia = document.getElementById("provincia");
 let canton = document.getElementById("canton");
 let parroquia = document.getElementById("parroquia");
 let udiagnostico = document.getElementById("udiagnostico");
-let sdiagnostico = document.getElementById("sdiagnostico");
 let hclinica = document.getElementById("hclinica");
 let fechaInforme = document.getElementById("fechaInforme");
 let gestaciones = document.getElementById("gestaciones");
@@ -145,7 +144,6 @@ function retrive() {
       canton.innerHTML = pedidoRetrieved[0].ubicacion.canton;
       parroquia.innerHTML = pedidoRetrieved[0].ubicacion.parroquia;
       udiagnostico.innerHTML = "preguntar dato 1";
-      sdiagnostico.innerHTML = "preguntar dato 2";
       fechaInforme.innerHTML = "preguntar si es el actual 3";
       gestaciones.innerHTML =
         parseInt(pedidoRetrieved[0].num_partos) +

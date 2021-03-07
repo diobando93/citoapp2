@@ -30,6 +30,7 @@ document.getElementById("pedidos").addEventListener("click", function (e) {
   pedido = true;
   ipcRenderer.send("envio-datos-paciente", [
     "src/ui//templates/pedidosconfirm.html",
+    "src/ui//templates/main.html",
     "regresar-pedidos",
   ]);
 });
@@ -39,6 +40,7 @@ document.getElementById("resultados").addEventListener("click", function (e) {
   resultado = true;
   ipcRenderer.send("consulta-datos-paciente", [
     "src/ui//templates/resultados.html",
+    "src/ui//templates/main.html",
     "regresar-resultados",
   ]);
 });
@@ -49,6 +51,7 @@ document.getElementById("informes").addEventListener("click", function (e) {
   resultado = true;
   ipcRenderer.send("informes-consultar", [
     "src/ui//templates/consultaInformes.html",
+    "src/ui//templates/main.html",
     "regresar-informes",
   ]);
 });
@@ -58,6 +61,7 @@ document.getElementById("pacientes").addEventListener("click", function (e) {
   resultado = true;
   ipcRenderer.send("paciente-consultar", [
     "src/ui//templates/consultaPedidos.html",
+    "src/ui//templates/main.html",
     "regresar-pacientes",
   ]);
 });
@@ -67,6 +71,7 @@ document.getElementById("doctores").addEventListener("click", function (e) {
   resultado = true;
   ipcRenderer.send("medicos-crear-eliminar", [
     "src/ui//templates/doctores.html",
+    "src/ui//templates/main.html",
     "regresar-doctores",
   ]);
 });
@@ -78,6 +83,7 @@ document
     resultado = true;
     ipcRenderer.send("establecimientos-crear-eliminar", [
       "src/ui//templates/establecimientos.html",
+      "src/ui//templates/main.html",
       "regresar-establecimientos",
     ]);
   });

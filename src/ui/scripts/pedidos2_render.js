@@ -8,7 +8,7 @@ const establecimiento = document.getElementById("establecimiento");
 let nombres = document.getElementById("Nombre");
 let apellidos = document.getElementById("Apellido");
 
-let edad = document.getElementById("edad");
+let edadRender = document.getElementById("edad");
 let f_nacimiento = document.getElementById("f_nacimiento");
 const pais = document.getElementById("pais");
 const provincia = document.getElementById("provincia");
@@ -58,10 +58,7 @@ var medicosDB = [];
 var numPedido = "";
 var hClinica = "";
 var cedulaDB = "";
-var nombresDB = "";
-var apellidosDB = "";
 var edadDB = "";
-var fechaDB = "";
 
 var input = document.getElementById("Cedula");
 
@@ -75,9 +72,9 @@ var input = document.getElementById("Cedula");
 
 ipcRenderer.on("cedulaConfirm", (e, args) => {
   console.log(args);
-  cedula.innerHTML = args;
   cedulaDB = args;
-  //console.log(cedula.value);
+  cedula.innerHTML = args;
+
   //Recibir arreglo de instituciones
   let establecimientosDB = [];
 
@@ -101,7 +98,7 @@ ipcRenderer.on("cedulaConfirm", (e, args) => {
 
   //Recibir arreglo de provincias
   provinciasDB = [];
-  //console.log(cedula.value);
+  console.log(cedula.value);
   provinciasDB = JSON.parse(ipcRenderer.sendSync("cedula", args));
 
   //Colocar provincias en drop down
@@ -123,37 +120,28 @@ ipcRenderer.on("cedulaConfirm", (e, args) => {
     console.log(args);
   });
 
-  //Recibir y Presentar Numero
+  //Recibir y Presentar Numero de Historia Clinica
   ipcRenderer.on("hClinica", (e, args) => {
-    let fechaNacimiento = "";
-    console.log(JSON.parse(args));
-    args = JSON.parse(args);
-    hClinica = args[0].h_clinica;
-    console.log(hClinica);
-    h_clinica.innerHTML = args[0].h_clinica;
-    nombres.innerHTML = args[0].nombres;
-    nombresDB = args[0].nombres;
-    apellidos.innerHTML = args[0].apellidos;
-    apellidosDB = args[0].apellidos;
-    fechaNacimiento = args[0].f_nacimiento;
-    fechaDB = args[0].f_nacimiento;
-    fechaNacimiento = fechaNacimiento.split("T");
-    fechaNacimiento = fechaNacimiento[0];
-    f_nacimiento.innerHTML = fechaNacimiento;
-    edadDB = calcularEdad(fechaNacimiento);
-    edad.innerHTML = edadDB;
+    console.log(args);
+    hClinica = args;
+    args = args.split("-");
+    args = args[0].split('"');
+    h_clinica.innerHTML = args[1];
   });
 });
 
-function calcularEdad(fecha) {
+function calcularEdad() {
+  //console.log(f_nacimiento.value);
   var hoy = new Date();
-  var cumple = new Date(fecha);
+  var cumple = new Date(f_nacimiento.value);
   var edad = hoy.getFullYear() - cumple.getFullYear();
   var m = hoy.getMonth() - cumple.getMonth();
   if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
     edad--;
   }
-  return edad;
+  console.log(edad);
+  edadDB = edad;
+  edadRender.innerHTML = edad;
 }
 
 function getProvincia() {
@@ -242,10 +230,10 @@ function pedido_render() {
   datos.push(cedulaDB);
   datos.push(hClinica);
   datos.push(establecimiento.value);
-  datos.push(nombresDB);
-  datos.push(apellidosDB);
+  datos.push(nombres.value);
+  datos.push(apellidos.value);
   datos.push(edadDB);
-  datos.push(fechaDB);
+  datos.push(f_nacimiento.value);
   datos.push(pais.value);
   datos.push(provincia.value);
   datos.push(canton.value);
@@ -374,8 +362,48 @@ function limpiar() {
 }
 /*
 //Lisener en cmapo de c�dula para empezar la pantalla de pedidos
+input.addEventListener("keyup", function (event) {
+  //Si la tecla presionada es ENTER
+  if (event.keyCode === 13) {
+    event.preventDefault();
 
-
+   
+    var x = document.getElementById("Nombre");
+    if (x.style.display === "none") {
+      document.getElementById("h_clinica").style.display = "block";
+      document.getElementById("pedido").style.display = "block";
+      document.getElementById("establecimiento").style.display = "block";
+      document.getElementById("medicos").style.display = "block";
+      document.getElementById("Nombre").style.display = "block";
+      document.getElementById("edad").style.display = "block";
+      document.getElementById("Apellido").style.display = "block";
+      document.getElementById("f_nacimiento").style.display = "block";
+      document.getElementById("pais").style.display = "block";
+      document.getElementById("provincia").style.display = "block";
+      document.getElementById("canton").style.display = "block";
+      document.getElementById("parroquia").style.display = "block";
+      document.getElementById("sector").style.display = "block";
+      document.getElementById("instruccion").style.display = "block";
+      document.getElementById("ocupacion").style.display = "block";
+      document.getElementById("ins_jefefamilia").style.display = "block";
+      document.getElementById("ocu_jefefamilia").style.display = "block";
+      document.getElementById("telefono").style.display = "block";
+      document.getElementById("email").style.display = "block";
+      document.getElementById("telefonof").style.display = "block";
+      document.getElementById("emailf").style.display = "block";
+      document.getElementById("f_muestra").style.display = "block";
+      document.getElementById("f_menstruacion").style.display = "block";
+      document.getElementById("metodo_planificacion").style.display = "block";
+      document.getElementById("dat1").style.display = "block";
+      document.getElementById("dat2").style.display = "block";
+      document.getElementById("dat3").style.display = "block";
+      document.getElementById("num_partos").style.display = "block";
+      document.getElementById("num_cesareas").style.display = "block";
+      document.getElementById("num_abortos").style.display = "block";
+      document.getElementById("edad_vid_sexual").style.display = "block";
+    }
+  }
+});
 
 
 

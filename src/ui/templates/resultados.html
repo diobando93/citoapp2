@@ -14,570 +14,602 @@
   </head>
 
   <body>
-      <!---------------------------------------------------------------------------------------------------------------------------->
-      <!-- Ventana inicial de ingreso de cédula y No de Pedido  -->
-      <div class="overlay" id="datosBusqueda">
-          <!-- Formulario de Ingreso de Datos -->
-          <div class="form-popup" id="myForm">
-              <form class="form-container">
-                  <h1>Datos de Busqueda</h1>
-                  <!-- Cédula -->
-                  <label for="Cédula"><b>Cédula</b></label>
-                  <input type="text"
-                         placeholder="Ingrese la Cédula"
-                         name="cedula"
-                         id="cedula"
-                         required />
+    <!---------------------------------------------------------------------------------------------------------------------------->
+    <!-- Ventana inicial de ingreso de cédula y No de Pedido  -->
+    <div class="overlay" id="datosBusqueda">
+      <!-- Formulario de Ingreso de Datos -->
+      <div class="form-popup" id="myForm">
+        <form class="form-container">
+          <h1>Datos de Busqueda</h1>
+          <!-- Cédula -->
+          <label for="Cédula"><b>Cédula</b></label>
+          <input
+            type="text"
+            placeholder="Ingrese la Cédula"
+            name="cedula"
+            id="cedula"
+            required
+          />
 
-                  <!-- No de Pedido -->
-                  <label for="NoMuestra"><b>Número de Pedido</b></label>
-                  <input type="text"
-                         placeholder="Ingrese en número de pedido"
-                         name="nopedido"
-                         id="pedido"
-                         required />
+          <!-- No de Pedido -->
+          <label for="NoMuestra"><b>Número de Pedido</b></label>
+          <input
+            type="text"
+            placeholder="Ingrese en número de pedido"
+            name="nopedido"
+            id="pedido"
+            required
+          />
 
-                  <!-- Boton Buscar -->
-                  <button type="button" class="btn" onclick="retrive()">Buscar</button>
+          <!-- Boton Buscar -->
+          <button type="button" class="btn" onclick="retrive()">Buscar</button>
 
-                  <!-- Boton Regresar -->
-                  <div>
-                      <button type="button" class="btn cancel" onclick="cancelar()">Regresar</button>
-                  </div>
-              </form>
+          <!-- Boton Regresar -->
+          <div>
+            <button type="button" class="btn cancel" onclick="cancelar()">
+              Regresar
+            </button>
           </div>
+        </form>
       </div>
+    </div>
 
-      <!---------------------------------------------------------------------------------------------------------------->
-      <!-- Ventana de Resultados -->
-      <div class="container">
-          <form>
-              <!-- Titulo -->
-              <div class="row">
-                  <div class="titulo-principal">
-                      <h1>Resultados</h1>
-                  </div>
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!-- Ventana de Resultados -->
+    <div class="container">
+      <form>
+        <!-- Titulo -->
+        <div class="row">
+          <div class="titulo-principal">
+            <h1>Resultados</h1>
+          </div>
+        </div>
+        <!-- RESULTADOS ANTERIORES -->
+        <div class="row">
+          <!-- DATOS Y FICHA DE USUAIO -->
+          <div
+            class="columnContenedor"
+            style="box-shadow: 0 0 0 1px #0084ff; width: 20%"
+          >
+            <!-- Row Titulo -->
+            <div class="row">
+              <h2 style="color: #040887">Ficha</h2>
+            </div>
+            <div class="row">
+              <div class="campoCorto">
+                <label for="cedula1">Cedula:</label>
               </div>
-              <!-- RESULTADOS ANTERIORES -->
-              <div class="row">
-                  <!-- DATOS Y FICHA DE USUAIO -->
-                  <div class="columnContenedor"
-                       style="box-shadow: 0 0 0 1px #0084ff; width: 20%">
-                      <!-- Row Titulo -->
-                      <div class="row">
-                          <h2 style="color: #040887">Ficha</h2>
-                      </div>
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="cedula1">Cedula:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="cedula1" id="cedula1" name="cedula1"></label>
-                          </div>
-                      </div>
-                      <!-- Row Nombre -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="pedido1">No Informe:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="pedido1" id="pedido1" name="pedido1"></label>
-                          </div>
-                      </div>
-                      <!-- Row NO INFORME -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Nombre:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="nombre" id="nombre" name="nombre"></label>
-                          </div>
-                      </div>
-                      <!-- Row Fecha de Ingreso -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Fecha de Ingreso:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="fechaIngreso"
-                                     id="fechaIngreso"
-                                     name="fechaIngreso"></label>
-                          </div>
-                      </div>
-                      <!-- Row Fecha de Muestra -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Fecha de Muestra:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="fechaMuestra"
-                                     id="fechaMuestra"
-                                     name="fechaMuestra"></label>
-                          </div>
-                      </div>
-                      <!-- Row Establecimiento -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Establecimiento:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="establecimiento"
-                                     id="establecimiento"
-                                     name="establecimiento"></label>
-                          </div>
-                      </div>
-                      <!-- Row Edad -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Edad:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="edad" id="edad" name="edad"></label>
-                          </div>
-                      </div>
-                      <!-- Row Residencia -->
-                      <div class="row">
-                          <div class="row">
-                              <h2 style="color: #040887">Residencia</h2>
-                          </div>
-                      </div>
-                      <!-- Row Provincia -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Provincia:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="provincia" id="provincia" name="provincia"></label>
-                          </div>
-                      </div>
-                      <!-- Row Canton -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Canton:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="canton" id="canton" name="canton"></label>
-                          </div>
-                      </div>
-                      <!-- Row Direccion -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Parroquia:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="parroquia" id="parroquia" name="parroquia"></label>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- DATOS FICHAS ANTERIORES -->
-                  <div class="columnContenedor"
-                       style="box-shadow: 0 0 0 1px #0084ff; width: 60%">
-                      <!-- Row Titulo DIAGNOSTICO -->
-                      <div class="row">
-                          <h2 style="color: #040887">Diagnosticos</h2>
-                      </div>
-                      <!-- Row ULTIMO DIAGNOSTICO -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Ultimo Diagnostico:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="udiagnostico"
-                                     id="udiagnostico"
-                                     name="udiagnostico"></label>
-                          </div>
-                      </div>
-                      <!-- Row DIAGNOSTICO Mas severo-->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Diagnostico mas severo:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="sdiagnostico"
-                                     id="sdiagnostico"
-                                     name="sdiagnostico"></label>
-                          </div>
-                      </div>
-                      <!-- Row Num Informe -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Historia clinica:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="hclinica" id="hclinica" name="hclinica" />
-                          </div>
-                      </div>
-                      <!-- Row Fecha de Informe -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">Fecha de Infomre:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="fechaInforme"
-                                     id="fechaInforme"
-                                     name="fechaInforme"></label>
-                          </div>
-                      </div>
-                      <!-- Row Titulo DATOS ADICIONALES -->
-                      <div class="row">
-                          <h2 style="color: #040887">Datos Adicionales</h2>
-                      </div>
-                      <!-- Row Gestaciones -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">No de Gestaciones:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="gestaciones"
-                                     id="gestaciones"
-                                     name="gestaciones"></label>
-                          </div>
-                      </div>
-                      <!-- Row Partos -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">No de Partos:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="partos" id="partos" name="partos"></label>
-                          </div>
-                      </div>
-                      <!-- Row Abortos -->
-                      <div class="row">
-                          <div class="campoCorto">
-                              <label for="fname">No de Abortos:</label>
-                          </div>
-                          <div class="campoCorto">
-                              <label for="abortos" id="abortos" name="abortos"></label>
-                          </div>
-                      </div>
-                  </div>
+              <div class="campoCorto">
+                <label for="cedula1" id="cedula1" name="cedula1"></label>
               </div>
-              <!-- RESULTADOS ACTUALES -->
-              <div class="row">
-                  <div class="col-25">
-                      <label for="fname">Aspecto de cuello</label>
-                  </div>
-                  <div class="col-75">
-                      <select name="acuello" id="acuello">
-                          <option value="Normal">1 - Normal</option>
-                          <option value="Regular">2 - Regular</option>
-                          <option value="Malo">3 - Malo</option>
-                      </select>
-                  </div>
-                  <div class="separator"></div>
-                  <div class="col-25">
-                      <label for="observaciones">Observaciones</label>
-                  </div>
-                  <div class="col-75">
-                      <input type="text" name="observaciones" id="observaciones" />
-                  </div>
+            </div>
+            <!-- Row Nombre -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="pedido1">No Informe:</label>
               </div>
-              <!-- RESULTADOS ACTUALES -->
-              <div class="row">
-                  <div class="col-25">
-                      <label for="responsable">Responsable de la muestra`</label>
-                  </div>
-                  <div class="col-75">
-                      <input type="text" name="responsable" id="responsable" />
-                  </div>
-                  <div class="separator"></div>
-                  <div class="col-25">
-                      <label for="nplacas">No. Placas</label>
-                  </div>
-                  <div class="col-75">
-                      <select name="acuello" id="noplacas">
-                          <option value="Uno">1 - Uno</option>
-                          <option value="Dos">2 - Dos</option>
-                          <option value="Tres">3 - Tres</option>
-                      </select>
-                  </div>
+              <div class="campoCorto">
+                <label for="pedido1" id="pedido1" name="pedido1"></label>
               </div>
-              <!-- Valoracion de la muestra -->
-              <div class="row">
-                  <div data-role="fieldcontain">
-                      <fieldset data-role="controlgroup1" id="dat1">
-                          <legend>Valoracion de la muestra:</legend>
-                          <!-- Muestra adecuada -->
-                          <input type="radio"
-                                 name="rddat1"
-                                 id="madecuada"
-                                 value="choice-1"
-                                 checked="checked" />
-                          <label for="radio-choice-1">Adecuada</label>
-                          <!-- Muestra inadecuada -->
-                          <input type="radio"
-                                 name="rddat1"
-                                 id="minadecuada"
-                                 value="choice-2" />
-                          <label for="radio-choice-2">Inadecuada</label>
-                      </fieldset>
-                  </div>
+            </div>
+            <!-- Row NO INFORME -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Nombre:</label>
               </div>
-              <!-- Frotis -->
-              <div class="row">
-                  <div data-role="fieldcontain">
-                      <fieldset data-role="controlgroup2" id="dat2">
-                          <legend>Frotis:</legend>
-                          <select name="frotis" id="frotis">
-                              <option value="Limpio">1 - Limpio</option>
-                              <option value="Inflamatorio">2 - Inflamatorio</option>
-                              <option value="Leve">3 - Leve</option>
-                              <option value="Moderado">3 - Moderado</option>
-                              <option value="Severo">3 - Severo</option>
-                          </select>
-                      </fieldset>
-                  </div>
+              <div class="campoCorto">
+                <label for="nombre" id="nombre" name="nombre"></label>
               </div>
-
-              <!-- GERMENES -->
-              <div class="row">
-                  <div data-role="fieldcontain">
-                      <fieldset data-role="controlgroup3" id="dat3">
-                          <legend>Germenes</legend>
-                          <input type="radio"
-                                 name="rddat2"
-                                 id="fbacilar"
-                                 value="Flora Bacilar" />
-                          <label for="radio-choice-2">Flora Bacilar</label>
-
-                          <input type="radio"
-                                 name="rddat3"
-                                 id="fcocoide"
-                                 value="Flora Cocoide" />
-                          <label for="radio-choice-3">Flora Cocoide</label>
-
-                          <input type="radio"
-                                 name="rddat4"
-                                 id="vbacteriana"
-                                 value="Vaginosis Bacteriana" />
-                          <label for="radio-choice-4">Vaginosis Bacteriana</label>
-
-                          <input type="radio" name="rddat5" id="candida" value="Candida" />
-                          <label for="radio-choice-5">Candida</label>
-
-                          <input type="radio"
-                                 name="rddat6"
-                                 id="leptotrix"
-                                 value="Leptotrix" />
-                          <label for="radio-choice-6">Leptotrix</label>
-
-                          <input type="radio"
-                                 name="rddat7"
-                                 id="actnomyces"
-                                 value="Actnomyces" />
-                          <label for="radio-choice-7">Actnomyces</label>
-
-                          <input type="radio"
-                                 name="rddat8"
-                                 id="triconomas"
-                                 value="Triconomas" />
-                          <label for="radio-choice-8">Triconomas</label>
-
-                          <input type="radio"
-                                 name="rddat9"
-                                 id="citolisis"
-                                 value="Citolisis" />
-                          <label for="radio-choice-9">Citolisis</label>
-
-                          <input type="radio" name="rddat10" id="herpes" value="Herpes" />
-                          <label for="radio-choice-10">Sugetivo de Herpes</label>
-
-                          <input type="radio"
-                                 name="rddat11"
-                                 id="hpv"
-                                 value="Sugestivo HPV" />
-                          <label for="radio-choice-11">Sugestivo de HPV</label>
-
-                          <input type="radio"
-                                 name="rddat12"
-                                 id="histocitos"
-                                 value="Histocitos" />
-                          <label for="radio-choice-12">Histocitos</label>
-
-                          <input type="radio" name="rddat13" id="exudado" value="Exudado" />
-                          <label for="radio-choice-13">Exudado Leucocitorio</label>
-
-                          <input type="radio"
-                                 name="rddat14"
-                                 id="germenesotros"
-                                 value="Otros Germenes" />
-                          <label for="radio-choice-14">Otros</label>
-                      </fieldset>
-                  </div>
+            </div>
+            <!-- Row Fecha de Ingreso -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Fecha de Ingreso:</label>
               </div>
-              <!-- CELULAS -->
+              <div class="campoCorto">
+                <label
+                  for="fechaIngreso"
+                  id="fechaIngreso"
+                  name="fechaIngreso"
+                ></label>
+              </div>
+            </div>
+            <!-- Row Fecha de Muestra -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Fecha de Muestra:</label>
+              </div>
+              <div class="campoCorto">
+                <label
+                  for="fechaMuestra"
+                  id="fechaMuestra"
+                  name="fechaMuestra"
+                ></label>
+              </div>
+            </div>
+            <!-- Row Establecimiento -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Establecimiento:</label>
+              </div>
+              <div class="campoCorto">
+                <label
+                  for="establecimiento"
+                  id="establecimiento"
+                  name="establecimiento"
+                ></label>
+              </div>
+            </div>
+            <!-- Row Edad -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Edad:</label>
+              </div>
+              <div class="campoCorto">
+                <label for="edad" id="edad" name="edad"></label>
+              </div>
+            </div>
+            <!-- Row Residencia -->
+            <div class="row">
               <div class="row">
-                  <!-- Tipo de Células -->
-                  <div data-role="fieldcontain">
-                      <fieldset data-role="controlgroup5" id="dat5">
-                          <legend>Celulas</legend>
+                <h2 style="color: #040887">Residencia</h2>
+              </div>
+            </div>
+            <!-- Row Provincia -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Provincia:</label>
+              </div>
+              <div class="campoCorto">
+                <label for="provincia" id="provincia" name="provincia"></label>
+              </div>
+            </div>
+            <!-- Row Canton -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Canton:</label>
+              </div>
+              <div class="campoCorto">
+                <label for="canton" id="canton" name="canton"></label>
+              </div>
+            </div>
+            <!-- Row Direccion -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Parroquia:</label>
+              </div>
+              <div class="campoCorto">
+                <label for="parroquia" id="parroquia" name="parroquia"></label>
+              </div>
+            </div>
+          </div>
+          <!-- DATOS FICHAS ANTERIORES -->
+          <div
+            class="columnContenedor"
+            style="box-shadow: 0 0 0 1px #0084ff; width: 60%"
+          >
+            <!-- Row Titulo DIAGNOSTICO -->
+            <div class="row">
+              <h2 style="color: #040887">Diagnosticos</h2>
+            </div>
+            <!-- Row ULTIMO DIAGNOSTICO -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Ultimo Diagnostico:</label>
+              </div>
+              <div class="campoCorto">
+                <label
+                  for="udiagnostico"
+                  id="udiagnostico"
+                  name="udiagnostico"
+                ></label>
+              </div>
+            </div>
+            <!-- Row Num Informe -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Historia clinica:</label>
+              </div>
+              <div class="campoCorto">
+                <label for="hclinica" id="hclinica" name="hclinica" />
+              </div>
+            </div>
+            <!-- Row Fecha de Informe -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">Fecha de Infomre:</label>
+              </div>
+              <div class="campoCorto">
+                <label
+                  for="fechaInforme"
+                  id="fechaInforme"
+                  name="fechaInforme"
+                ></label>
+              </div>
+            </div>
+            <!-- Row Titulo DATOS ADICIONALES -->
+            <div class="row">
+              <h2 style="color: #040887">Datos Adicionales</h2>
+            </div>
+            <!-- Row Gestaciones -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">No de Gestaciones:</label>
+              </div>
+              <div class="campoCorto">
+                <label
+                  for="gestaciones"
+                  id="gestaciones"
+                  name="gestaciones"
+                ></label>
+              </div>
+            </div>
+            <!-- Row Partos -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">No de Partos:</label>
+              </div>
+              <div class="campoCorto">
+                <label for="partos" id="partos" name="partos"></label>
+              </div>
+            </div>
+            <!-- Row Abortos -->
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">No de Abortos:</label>
+              </div>
+              <div class="campoCorto">
+                <label for="abortos" id="abortos" name="abortos"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- RESULTADOS ACTUALES -->
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Aspecto de cuello</label>
+          </div>
+          <div class="col-75">
+            <select name="acuello" id="acuello">
+              <option value="Normal">1 - Normal</option>
+              <option value="Regular">2 - Regular</option>
+              <option value="Malo">3 - Malo</option>
+            </select>
+          </div>
+          <div class="separator"></div>
+          <div class="col-25">
+            <label for="observaciones">Observaciones</label>
+          </div>
+          <div class="col-75">
+            <input type="text" name="observaciones" id="observaciones" />
+          </div>
+        </div>
+        <!-- RESULTADOS ACTUALES -->
+        <div class="row">
+          <div class="col-25">
+            <label for="responsable">Responsable de la muestra`</label>
+          </div>
+          <div class="col-75">
+            <input type="text" name="responsable" id="responsable" />
+          </div>
+          <div class="separator"></div>
+          <div class="col-25">
+            <label for="nplacas">No. Placas</label>
+          </div>
+          <div class="col-75">
+            <select name="acuello" id="noplacas">
+              <option value="Uno">1 - Uno</option>
+              <option value="Dos">2 - Dos</option>
+              <option value="Tres">3 - Tres</option>
+            </select>
+          </div>
+        </div>
+        <!-- Valoracion de la muestra -->
+        <div class="row">
+          <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup1" id="dat1">
+              <legend>Valoracion de la muestra:</legend>
+              <!-- Muestra adecuada -->
+              <input
+                type="radio"
+                name="rddat1"
+                id="madecuada"
+                value="choice-1"
+                checked="checked"
+              />
+              <label for="radio-choice-1">Adecuada</label>
+              <!-- Muestra inadecuada -->
+              <input
+                type="radio"
+                name="rddat1"
+                id="minadecuada"
+                value="choice-2"
+              />
+              <label for="radio-choice-2">Inadecuada</label>
+            </fieldset>
+          </div>
+        </div>
+        <!-- Frotis -->
+        <div class="row">
+          <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup2" id="dat2">
+              <legend>Frotis:</legend>
+              <select name="frotis" id="frotis">
+                <option value="Limpio">1 - Limpio</option>
+                <option value="Inflamatorio">2 - Inflamatorio</option>
+                <option value="Leve">3 - Leve</option>
+                <option value="Moderado">3 - Moderado</option>
+                <option value="Severo">3 - Severo</option>
+              </select>
+            </fieldset>
+          </div>
+        </div>
 
-                          <!-- Endocervicales -->
-                          <div class="row">
-                              <div data-role="fieldcontain">
-                                  <label for="endocervicales">Endocervicales </label>
-                                  <select name="endocervicales" id="endocervicales">
-                                      <option value="Presentes">1 - Presentes</option>
-                                      <option value="Infalamdas">2 - Infalamdas</option>
-                                      <option value="Reactivas">3 - Reactivas</option>
-                                      <option value="Reparación">4 - Reparación</option>
-                                      <option value="Atípicas">5 - Atípicas</option>
-                                      <option value="Displásicas">6 - Displásicas</option>
-                                  </select>
-                              </div>
-                          </div>
+        <!-- GERMENES -->
+        <div class="row">
+          <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup3" id="dat3">
+              <legend>Germenes</legend>
+              <input
+                type="radio"
+                name="rddat2"
+                id="fbacilar"
+                value="Flora Bacilar"
+              />
+              <label for="radio-choice-2">Flora Bacilar</label>
 
-                          <!-- Resultado -->
-                          <div class="row">
-                              <div data-role="fieldcontain">
-                                  <label for="metaplasticas">Metaplasticas </label>
-                                  <select name="metaplasticas" id="metaplasticas">
-                                      <option value="Presentes">1 - Presentes</option>
-                                      <option value="Infalamdas">2 - Infalamdas</option>
-                                      <option value="Reactivas">3 - Reactivas</option>
-                                      <option value="Reparación">4 - Reparación</option>
-                                      <option value="Atípicas">5 - Atípicas</option>
-                                      <option value="Displásicas">6 - Displásicas</option>
-                                  </select>
-                              </div>
-                          </div>
+              <input
+                type="radio"
+                name="rddat3"
+                id="fcocoide"
+                value="Flora Cocoide"
+              />
+              <label for="radio-choice-3">Flora Cocoide</label>
 
-                          <!-- Resultado -->
-                          <div class="row">
-                              <div data-role="fieldcontain">
-                                  <label for="endometriales">Endometriales </label>
-                                  <select name="endometriales" id="endometriales">
-                                      <option value="Presentes">1 - Presentes</option>
-                                      <option value="Infalamdas">2 - Infalamdas</option>
-                                      <option value="Reactivas">3 - Reactivas</option>
-                                      <option value="Reparación">4 - Reparación</option>
-                                      <option value="Atípicas">5 - Atípicas</option>
-                                      <option value="Displásicas">6 - Displásicas</option>
-                                  </select>
-                              </div>
-                          </div>
-                      </fieldset>
-                  </div>
+              <input
+                type="radio"
+                name="rddat4"
+                id="vbacteriana"
+                value="Vaginosis Bacteriana"
+              />
+              <label for="radio-choice-4">Vaginosis Bacteriana</label>
+
+              <input type="radio" name="rddat5" id="candida" value="Candida" />
+              <label for="radio-choice-5">Candida</label>
+
+              <input
+                type="radio"
+                name="rddat6"
+                id="leptotrix"
+                value="Leptotrix"
+              />
+              <label for="radio-choice-6">Leptotrix</label>
+
+              <input
+                type="radio"
+                name="rddat7"
+                id="actnomyces"
+                value="Actnomyces"
+              />
+              <label for="radio-choice-7">Actnomyces</label>
+
+              <input
+                type="radio"
+                name="rddat8"
+                id="triconomas"
+                value="Triconomas"
+              />
+              <label for="radio-choice-8">Triconomas</label>
+
+              <input
+                type="radio"
+                name="rddat9"
+                id="citolisis"
+                value="Citolisis"
+              />
+              <label for="radio-choice-9">Citolisis</label>
+
+              <input type="radio" name="rddat10" id="herpes" value="Herpes" />
+              <label for="radio-choice-10">Sugetivo de Herpes</label>
+
+              <input
+                type="radio"
+                name="rddat11"
+                id="hpv"
+                value="Sugestivo HPV"
+              />
+              <label for="radio-choice-11">Sugestivo de HPV</label>
+
+              <input
+                type="radio"
+                name="rddat12"
+                id="histocitos"
+                value="Histocitos"
+              />
+              <label for="radio-choice-12">Histocitos</label>
+
+              <input type="radio" name="rddat13" id="exudado" value="Exudado" />
+              <label for="radio-choice-13">Exudado Leucocitorio</label>
+
+              <input
+                type="radio"
+                name="rddat14"
+                id="germenesotros"
+                value="Otros Germenes"
+              />
+              <label for="radio-choice-14">Otros</label>
+            </fieldset>
+          </div>
+        </div>
+        <!-- CELULAS -->
+        <div class="row">
+          <!-- Tipo de Células -->
+          <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup5" id="dat5">
+              <legend>Celulas</legend>
+
+              <!-- Endocervicales -->
+              <div class="row">
+                <div data-role="fieldcontain">
+                  <label for="endocervicales">Endocervicales </label>
+                  <select name="endocervicales" id="endocervicales">
+                    <option value="Presentes">1 - Presentes</option>
+                    <option value="Infalamdas">2 - Infalamdas</option>
+                    <option value="Reactivas">3 - Reactivas</option>
+                    <option value="Reparación">4 - Reparación</option>
+                    <option value="Atípicas">5 - Atípicas</option>
+                    <option value="Displásicas">6 - Displásicas</option>
+                  </select>
+                </div>
               </div>
 
-              <!--DIAGNOSTICO-->
+              <!-- Resultado -->
               <div class="row">
-                  <div data-role="fieldcontain">
-                      <fieldset data-role="controlgroup4" id="dat4">
-                          <legend>Resultados</legend>
-
-                          <label for="diagnostico">Diagnostico Bethesda: </label>
-                          <select name="diagnostico" id="diagnostico">
-                              <option value="Op1">
-                                  1 - Negativo Normal
-                              </option>
-                              <option value="Op2">
-                                  2 - Negativo Inflamatorio
-                              </option>
-                              <option value="Op3">
-                                  3 - Atipia Escamosa (ASCUS)
-                              </option>
-                              <option value="Op4">
-                                  4 - Atipia Endocervical (ASCUS)
-                              </option>
-                              <option value="Op5">
-                                  5 - Atipia Escamosa a favor de LIAG (ASC-H)
-                              </option>
-                              <option value="Op6">
-                                  6 - LIE de bajo grado I
-                              </option>
-                              <option value="Op7">
-                                  7 - LIE de alto grado II
-                              </option>
-                              <option value="Op8">
-                                  8 - LIE de alto grado III
-                              </option>
-                              <option value="Op9">
-                                  9 - LIE de alto grado - Carcinoma insitu
-                              </option>
-                              <option value="Op10">
-                                  10 - Carcinoma VA
-                              </option>
-                              <option value="Op11">
-                                  11 - Carcinoma VB
-                              </option>
-                          </select>
-
-                          <!--INDICE HORMONAL-->
-                          <div class="row">
-                              <label for="cparabasales">Indice Hormonal: </label>
-                          </div>
-
-                          <div class="row">
-                              <!--celulas parabasales-->
-                              <div class="col-25">
-                                  <label for="cparabasales">Celulas parabasales:</label>
-                              </div>
-
-                              <div class="col-75" style="width: 150px">
-                                  <input type="text" id="icparabasal" name="icparabasal" />
-                              </div>
-
-                              <div class="columnContenedor" style="width: 20px"></div>
-
-                              <!--celulas intermedias-->
-                              <div class="col-25">
-                                  <label for="fname">Celulas intermedias:</label>
-                              </div>
-                              <div class="col-75" style="width: 150px">
-                                  <input type="text" id="icintermedias" name="icintermedias" />
-                              </div>
-
-                              <div class="columnContenedor" style="width: 20px"></div>
-
-                              <!--celulas suerficiales-->
-                              <div class="col-25">
-                                  <label for="fname">Celulas superficiales:</label>
-                              </div>
-                              <div class="col-75" style="width: 150px">
-                                  <input type="text"
-                                         id="icsuperficiales"
-                                         name="icsuperficiales" />
-                              </div>
-                          </div>
-                      </fieldset>
-                  </div>
+                <div data-role="fieldcontain">
+                  <label for="metaplasticas">Metaplasticas </label>
+                  <select name="metaplasticas" id="metaplasticas">
+                    <option value="Presentes">1 - Presentes</option>
+                    <option value="Infalamdas">2 - Infalamdas</option>
+                    <option value="Reactivas">3 - Reactivas</option>
+                    <option value="Reparación">4 - Reparación</option>
+                    <option value="Atípicas">5 - Atípicas</option>
+                    <option value="Displásicas">6 - Displásicas</option>
+                  </select>
+                </div>
               </div>
 
-              <!--CONTROL-->
+              <!-- Resultado -->
               <div class="row">
-                  <label for="control">Control: </label>
-                  <input type="text" name="rcontrol" id="rcontrol" />
+                <div data-role="fieldcontain">
+                  <label for="endometriales">Endometriales </label>
+                  <select name="endometriales" id="endometriales">
+                    <option value="Presentes">1 - Presentes</option>
+                    <option value="Infalamdas">2 - Infalamdas</option>
+                    <option value="Reactivas">3 - Reactivas</option>
+                    <option value="Reparación">4 - Reparación</option>
+                    <option value="Atípicas">5 - Atípicas</option>
+                    <option value="Displásicas">6 - Displásicas</option>
+                  </select>
+                </div>
               </div>
-              <!--OBSERVACIONES-->
+            </fieldset>
+          </div>
+        </div>
+
+        <!--DIAGNOSTICO-->
+        <div class="row">
+          <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup4" id="dat4">
+              <legend>Resultados</legend>
+
+              <label for="diagnostico">Diagnostico Bethesda: </label>
+              <select name="diagnostico" id="diagnostico">
+                <option value="Negativo Normal">1 - Negativo Normal</option>
+                <option value="Negativo Inflamatorio">
+                  2 - Negativo Inflamatorio
+                </option>
+                <option value="Atipia Escamosa (ASCUS)">
+                  3 - Atipia Escamosa (ASCUS)
+                </option>
+                <option value="Atipia Endocervical (ASCUS)">
+                  4 - Atipia Endocervical (ASCUS)
+                </option>
+                <option value="Atipia Escamosa a favor de LIAG (ASC-H)">
+                  5 - Atipia Escamosa a favor de LIAG (ASC-H)
+                </option>
+                <option value="LIE de bajo grado I">
+                  6 - LIE de bajo grado I
+                </option>
+                <option value="LIE de alto grado II">
+                  7 - LIE de alto grado II
+                </option>
+                <option value="LIE de alto grado III">
+                  8 - LIE de alto grado III
+                </option>
+                <option value="LIE de alto grado - Carcinoma insitu">
+                  9 - LIE de alto grado - Carcinoma insitu
+                </option>
+                <option value="Carcinoma VA">10 - Carcinoma VA</option>
+                <option value="Carcinoma VB">11 - Carcinoma VB</option>
+              </select>
+
+              <!--INDICE HORMONAL-->
               <div class="row">
-                  <label for="reobservaciones">Observaciones: </label>
-                  <input type="text" name="reobservaciones" id="reobservaciones" />
+                <label for="cparabasales">Indice Hormonal: </label>
               </div>
-
-              <!--BOTONES-->
-
-              <div class="col-25" style="width: 100px"></div>
 
               <div class="row">
+                <!--celulas parabasales-->
+                <div class="col-25">
+                  <label for="cparabasales">Celulas parabasales:</label>
+                </div>
 
-                  <!-- BOTON REGRESAR -->
-                  <input type="button"
-                         value="Regresar"
-                         onclick="cancelar()"
-                         style="background-color: #cff6ff" />
+                <div class="col-75" style="width: 150px">
+                  <input type="text" id="icparabasal" name="icparabasal" />
+                </div>
 
-                  <!-- BOTON GUARDAR -->
-                  <input type="button"
-                         value="Guardar"
-                         onclick="enviaDatos()"
-                         style="background-color: #cff6ff" />
+                <div class="columnContenedor" style="width: 20px"></div>
 
+                <!--celulas intermedias-->
+                <div class="col-25">
+                  <label for="fname">Celulas intermedias:</label>
+                </div>
+                <div class="col-75" style="width: 150px">
+                  <input type="text" id="icintermedias" name="icintermedias" />
+                </div>
+
+                <div class="columnContenedor" style="width: 20px"></div>
+
+                <!--celulas suerficiales-->
+                <div class="col-25">
+                  <label for="fname">Celulas superficiales:</label>
+                </div>
+                <div class="col-75" style="width: 150px">
+                  <input
+                    type="text"
+                    id="icsuperficiales"
+                    name="icsuperficiales"
+                  />
+                </div>
               </div>
+            </fieldset>
+          </div>
+        </div>
 
-          </form>
-      </div>
-      <script src="../scripts/resultados_render.js"></script>
+        <!--CONTROL-->
+        <div class="row">
+          <label for="control">Control: </label>
+          <input type="text" name="rcontrol" id="rcontrol" />
+        </div>
+        <!--OBSERVACIONES-->
+        <div class="row">
+          <label for="reobservaciones">Observaciones: </label>
+          <input type="text" name="reobservaciones" id="reobservaciones" />
+        </div>
+
+        <!--BOTONES-->
+
+        <div class="col-25" style="width: 100px"></div>
+
+        <div class="row">
+          <!-- BOTON REGRESAR -->
+          <input
+            type="button"
+            value="Regresar"
+            onclick="cancelar()"
+            style="background-color: #cff6ff"
+          />
+
+          <!-- BOTON GUARDAR -->
+          <input
+            type="button"
+            value="Guardar"
+            onclick="enviaDatos()"
+            style="background-color: #cff6ff"
+          />
+        </div>
+      </form>
+    </div>
+    <script src="../scripts/resultados_render.js"></script>
   </body>
 </html>

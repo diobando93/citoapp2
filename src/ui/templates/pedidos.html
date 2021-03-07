@@ -44,6 +44,42 @@
             <label type="text" id="pedido" name="pedido"></label>
           </div>
         </div>
+
+        <!-- Nombres y Apellidos -->
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Nombres</label>
+          </div>
+          <div class="col-75">
+            <label type="text" id="Nombre" name="Nombres" />
+          </div>
+          <div class="separator"></div>
+          <div class="col-25">
+            <label for="lname">Apellidos</label>
+          </div>
+          <div class="col-75">
+            <label type="text" id="Apellido" name="Apellidos" />
+          </div>
+        </div>
+
+        <!-- Edad y Fecha de Nacimiento -->
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Fecha de nacimiento</label>
+          </div>
+          <div class="col-75">
+            <label type="text" id="f_nacimiento" name="f_nacimiento" />
+          </div>
+          <div class="separator"></div>
+
+          <div class="col-25">
+            <label for="lname">Edad</label>
+          </div>
+          <div class="col-75">
+            <label type="text" id="edad" name="edad" />
+          </div>
+        </div>
+
         <!-- Establecimiento -->
         <div class="row">
           <div class="col-25">
@@ -53,7 +89,6 @@
             <select
               name="establecimiento"
               id="establecimiento"
-              style="display: none"
               onchange="getMedico()"
             ></select>
           </div>
@@ -62,66 +97,17 @@
             <label for="Medicos">Medicos</label>
           </div>
           <div class="col-75">
-            <select name="medicos" id="medicos" style="display: none"></select>
+            <select name="medicos" id="medicos"></select>
           </div>
         </div>
-        <!-- Nombres y Apellidos -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Nombres</label>
-          </div>
-          <div class="col-75">
-            <label
-              type="text"
-              id="Nombre"
-              name="Nombres"
-              style="display: none"
-            />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Apellidos</label>
-          </div>
-          <div class="col-75">
-            <label
-              type="text"
-              id="Apellido"
-              name="Apellidos"
-              style="display: none"
-            />
-          </div>
-        </div>
-        <!-- Edad y Fecha de Nacimiento -->
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Edad</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="edad" name="edad" style="display: none" />
-          </div>
-          <div class="separator"></div>
-          <div class="col-25">
-            <label for="lname">Fecha de nacimiento</label>
-          </div>
-          <div class="col-75">
-            <label
-              type="date"
-              id="f_nacimiento"
-              name="f_nacimiento"
-              value="2021-01-01"
-              min="1900-01-01"
-              max="2100-12-31"
-              style="display: none"
-            />
-          </div>
-        </div>
+
         <!-- Pais y Provincia -->
         <div class="row">
           <div class="col-25">
             <label for="lname">País</label>
           </div>
           <div class="col-75">
-            <input type="text" id="pais" name="pais" style="display: none" />
+            <input type="text" id="pais" name="pais" />
           </div>
           <div class="separator"></div>
           <div class="col-25">
@@ -131,7 +117,6 @@
             <select
               name="provincia"
               id="provincia"
-              style="display: none"
               onchange="getProvincia()"
             ></select>
           </div>
@@ -142,23 +127,14 @@
             <label for="lname">Cantón</label>
           </div>
           <div class="col-75">
-            <select
-              name="canton"
-              id="canton"
-              style="display: none"
-              onchange="getCanton()"
-            ></select>
+            <select name="canton" id="canton" onchange="getCanton()"></select>
           </div>
           <div class="separator"></div>
           <div class="col-25">
             <label for="lname">Parroquía</label>
           </div>
           <div class="col-75">
-            <select
-              id="parroquia"
-              name="parroquia"
-              style="display: none"
-            ></select>
+            <select id="parroquia" name="parroquia"></select>
           </div>
         </div>
         <!-- Ciudad Sector -->
@@ -168,7 +144,7 @@
           </div>
 
           <div class="col-75">
-            <select name="sector" id="sector" style="display: none">
+            <select name="sector" id="sector">
               <option value="Rural">1 - Rural</option>
               <option value="Urbano">2 - Urbano</option>
             </select>
@@ -180,7 +156,7 @@
             <label for="lname">Instruccion</label>
           </div>
           <div class="col-75">
-            <select name="instruccion" id="instruccion" style="display: none">
+            <select name="instruccion" id="instruccion">
               <option value="Básica">1 - Básica</option>
               <option value="Primaria">2 - Primaria</option>
               <option value="Secundária">3 - Secundária</option>
@@ -192,7 +168,7 @@
             <label for="lname">Ocupacion</label>
           </div>
           <div class="col-75">
-            <select name="ocupacion" id="ocupacion" style="display: none">
+            <select name="ocupacion" id="ocupacion">
               <option value="Estudiante">1 - Estudiante</option>
               <option value="Trabajos Ocasionales">
                 2 - Trabajos Ocasionales
@@ -212,11 +188,7 @@
             <label for="lname">Instruccion jefe de famila</label>
           </div>
           <div class="col-75">
-            <select
-              name="ins_jefefamilia"
-              id="ins_jefefamilia"
-              style="display: none"
-            >
+            <select name="ins_jefefamilia" id="ins_jefefamilia">
               <option value="Básica">1 - Básica</option>
               <option value="Primaria">2 - Primaria</option>
               <option value="Secundária">3 - Secundária</option>
@@ -228,11 +200,7 @@
             <label for="lname">Ocupacion jefe de famila</label>
           </div>
           <div class="col-75">
-            <select
-              name="ocu_jefefamilia"
-              id="ocu_jefefamilia"
-              style="display: none"
-            >
+            <select name="ocu_jefefamilia" id="ocu_jefefamilia">
               <option value="Estudiante">1 - Estudiante</option>
               <option value="Trabajos Ocasionales">
                 2 - Trabajos Ocasionales
@@ -252,19 +220,14 @@
             <label for="lname">Telefono</label>
           </div>
           <div class="col-75">
-            <input
-              type="text"
-              id="telefono"
-              name="telefono"
-              style="display: none"
-            />
+            <input type="text" id="telefono" name="telefono" />
           </div>
           <div class="separator"></div>
           <div class="col-25">
             <label for="lname">Email</label>
           </div>
           <div class="col-75">
-            <input type="text" id="email" name="email" style="display: none" />
+            <input type="text" id="email" name="email" />
           </div>
         </div>
 
@@ -273,12 +236,7 @@
             <label for="lname">Telefono familiar</label>
           </div>
           <div class="col-75">
-            <input
-              type="text"
-              id="telefonof"
-              name="telefonof"
-              style="display: none"
-            />
+            <input type="text" id="telefonof" name="telefonof" />
           </div>
         </div>
 
@@ -294,7 +252,6 @@
               value="2021-01-01"
               min="1900-01-01"
               max="2100-12-31"
-              style="display: none"
             />
           </div>
         </div>
@@ -319,7 +276,6 @@
               value="2021-01-01"
               min="1900-01-01"
               max="2100-12-31"
-              style="display: none"
             />
           </div>
           <div class="separator"></div>
@@ -327,11 +283,7 @@
             <label for="lname">Método de planificación familiar</label>
           </div>
           <div class="col-75">
-            <select
-              id="metodo_planificacion"
-              name="metodo_planificacion"
-              style="display: none"
-            >
+            <select id="metodo_planificacion" name="metodo_planificacion">
               <option value="Anticonceptivos orales">
                 1 - Anticonceptivos orales
               </option>
@@ -364,7 +316,7 @@
               type="text"
               id="num_partos"
               name="num_partos"
-              style="display: none; width: 50px"
+              style="width: 50px"
             />
           </div>
           <div class="separator"></div>
@@ -376,7 +328,7 @@
               type="text"
               id="num_cesareas"
               name="num_cesareas"
-              style="display: none; width: 50px"
+              style="width: 50px"
             />
           </div>
           <div class="separator"></div>
@@ -388,7 +340,7 @@
               type="text"
               id="num_abortos"
               name="num_abortos"
-              style="display: none; width: 50px"
+              style="width: 50px"
             />
           </div>
           <div class="separator"></div>
@@ -400,7 +352,7 @@
               type="text"
               id="edad_vid_sexual"
               name="edad_vid_sexual"
-              style="display: none; width: 50px"
+              style="width: 50px"
             />
           </div>
         </div>
@@ -440,7 +392,7 @@
         <!-- Otros Datos -->
         <div class="row">
           <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup" id="dat2" style="display: none">
+            <fieldset data-role="controlgroup" id="dat2">
               <legend>Alguna vez le practicaron:</legend>
               <input
                 type="radio"
@@ -517,7 +469,6 @@
               width: 70%;
               margin-top: 6px;
               padding-top: 10px;
-              display: none;
             "
           >
             <div class="row">

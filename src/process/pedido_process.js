@@ -5,7 +5,6 @@ const Hclinic = require("../models/h_clinic.js");
 const Pedidocounter = require("../models/pedidocounter.js");
 const Medicos = require("../models/medicos.js");
 const validaciones = require("./validaciones.js");
-
 let ecuador = require("ecuador-postal-codes");
 let provincias = [];
 let cantones = [];
@@ -13,6 +12,7 @@ let parroquias = [];
 let numPedido = "";
 let hClinica = "";
 
+console.log("CARGANDO PEDIDO PROCESS");
 //let medicosBD = "";
 //recibe datos desde el pedido_render
 
@@ -22,7 +22,6 @@ function recibir() {
   //bug0: MAL HACER UNA FUNCION DEL TIEMPOconsole.log(hora);
   //bug0: resuelto
   console.log(hourNow());
-
   /*
     ipcMain.on("exit-pedidos", (e, args) => {
         console.log(args);
@@ -95,6 +94,7 @@ function recibir() {
     let array2 = [];
     array = genHc.split("-");
     array2 = array[0].split('"');
+
     //console.log(array2[1].replace(/['"]+/g, ""));
     //envia0 = validaciones.verificarVacio(datosVacios);
     //envia1 = validaciones.verificarNumero(datosNumeros);
@@ -107,8 +107,10 @@ function recibir() {
         let actualizar = Hclinic.where({ _id: "5fcd4685b3b8b747e6347f82" });
         actualizar.updateOne({ $set: { h_clinica: array2[1] } }).exec();
         hClinica = array2[1];
+        console.log(hClinica);
       } else {
         hClinica = args[1];
+        console.log(hClinica);
       }
 
       const paciente = {
@@ -257,14 +259,18 @@ async function hcgen(cedula) {
     return hclinicaNew1;
   } else {
     console.log("envie codigo de historia clinica");
-    cedula_buscar = cedula_buscar[0];
+    //cedula_buscar = cedula_buscar[0];
+    return cedula_buscar;
+    /*
     let hclinicaNew2 =
       cedula_buscar.h_clinica +
       " " +
       cedula_buscar.nombres +
       " " +
       cedula_buscar.apellidos;
+
     return hclinicaNew2;
+    */
   }
 }
 
