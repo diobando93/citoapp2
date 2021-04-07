@@ -56,11 +56,24 @@ document.getElementById("informes").addEventListener("click", function (e) {
   ]);
 });
 
-//Listener de botones CONSULTA DE PEDIDOS
+//consulta de pedidos
+
+document
+  .getElementById("ConsultaPedidos")
+  .addEventListener("click", function (e) {
+    resultado = true;
+    ipcRenderer.send("consulta-pedidos", [
+      "src/ui//templates/consultaPedidos.html",
+      "src/ui//templates/main.html",
+      "regresar-consultaPedidos",
+    ]);
+  });
+
+//Listener de botones CONSULTA DE PACIENTES
 document.getElementById("pacientes").addEventListener("click", function (e) {
   resultado = true;
   ipcRenderer.send("paciente-consultar", [
-    "src/ui//templates/consultaPedidos.html",
+    "src/ui//templates/consultaPacientes.html",
     "src/ui//templates/main.html",
     "regresar-pacientes",
   ]);

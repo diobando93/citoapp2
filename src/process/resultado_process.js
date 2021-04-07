@@ -21,9 +21,15 @@ console.log("CARGANDO RESULTADO PROCESS");
 function consultar() {
   ipcMain.on("consulta", async (e, args) => {
     //console.log(args);
-    const paciente = await Patient.find({ cedula: args[0] });
-    const pedido = await Pedido.find({ cedula: args[0], pedido: args[1] });
-    const resultado = await Results.find({ cedula: args[0], pedido: args[1] });
+    //
+    const pedido = await Pedido.find({ pedido: args });
+    //console.log(pedido);
+    let cedula = pedido[0].cedula;
+    const paciente = await Patient.find({ cedula: cedula });
+    //console.log(cedula);
+    const resultado = await Results.find({ cedula: cedula, pedido: args });
+
+    const resultadoBack = await Results.find({ cedula: cedula });
 
     e.reply("pacienteRetrieved", JSON.stringify(paciente));
     //console.log(paciente);
@@ -31,58 +37,60 @@ function consultar() {
     e.reply("pedidoRetrieved", JSON.stringify(pedido));
     //console.log(pedido);
     e.reply("resultadoRetrived", JSON.stringify(resultado));
+
+    e.reply("resultadoBack", JSON.stringify(resultadoBack));
   });
 
   ipcMain.on("datosResultado", async (e, args) => {
     //console.log(args);
-    let aux = args[32].split(" ");
+    let aux = args[30].split(" ");
     let name = aux[0];
     let lastName = aux[1];
     const resultadoBD = {
       fecha: new Date().toISOString().slice(0, 10),
       hora: hourNow(),
-      h_clinica: args[31],
-      cedula: args[0],
+      h_clinica: args[29],
+      cedula: args[38],
       nombres: name,
       apellidos: lastName,
-      pedido: args[1],
-      aspecto_cuello: args[2],
-      observaciones: args[3],
-      responsable: args[4],
-      noplacas: args[5],
-      madecuada: args[6],
-      minadecuada: args[7],
-      frotis: args[8],
+      pedido: args[40],
+      aspecto_cuello: args[0],
+      observaciones: args[1],
+      responsable: args[2],
+      noplacas: args[3],
+      madecuada: args[4],
+      minadecuada: args[5],
+      frotis: args[6],
 
       germenes: {
-        floraBarcilar: args[9],
-        floraCocoide: args[10],
-        vaginosisBacteriana: args[11],
-        candida: args[12],
-        leptotrix: args[13],
-        actnomyces: args[14],
-        triconomas: args[15],
-        citolisis: args[16],
-        herpes: args[17],
-        hpv: args[18],
-        histocitos: args[19],
-        exudado: args[20],
-        otros: args[21],
+        floraBarcilar: args[7],
+        floraCocoide: args[8],
+        vaginosisBacteriana: args[9],
+        candida: args[10],
+        leptotrix: args[11],
+        actnomyces: args[12],
+        triconomas: args[13],
+        citolisis: args[14],
+        herpes: args[15],
+        hpv: args[16],
+        histocitos: args[17],
+        exudado: args[18],
+        otros: args[19],
       },
 
       celulas: {
-        endocervicales: args[22],
-        metaplasticas: args[23],
-        endometriales: args[24],
+        endocervicales: args[20],
+        metaplasticas: args[21],
+        endometriales: args[22],
       },
 
       result_toma: {
-        diagnostico: args[25],
-        celulasParabasales: args[26],
-        celulasIntermedias: args[27],
-        celulasSuperficiales: args[28],
-        control: args[29],
-        observaciones: args[30],
+        diagnostico: args[23],
+        celulasParabasales: args[24],
+        celulasIntermedias: args[25],
+        celulasSuperficiales: args[26],
+        control: args[27],
+        observaciones: args[28],
       },
     };
 
@@ -104,48 +112,48 @@ function consultar() {
 function genPDF() {
   escribirGermenes = [];
 
-  if (resultPdf[6] == true) {
+  if (resultPdf[4] == true) {
     muestraPDF = "Adecuada";
   } else {
     muestraPDF = "Inadecuada";
   }
-  if (resultPdf[9] == true) {
+  if (resultPdf[7] == true) {
     escribirGermenes.push("Flora Bacilar");
   }
-  if (resultPdf[10] == true) {
+  if (resultPdf[8] == true) {
     escribirGermenes.push("Flora Cocoide");
   }
-  if (resultPdf[11] == true) {
+  if (resultPdf[9] == true) {
     escribirGermenes.push("Vaginosis Bacteriana");
   }
-  if (resultPdf[12] == true) {
+  if (resultPdf[10] == true) {
     escribirGermenes.push("Candida");
   }
-  if (resultPdf[13] == true) {
+  if (resultPdf[11] == true) {
     escribirGermenes.push("Leptotrix");
   }
-  if (resultPdf[14] == true) {
+  if (resultPdf[12] == true) {
     escribirGermenes.push("Actnomyces");
   }
-  if (resultPdf[15] == true) {
+  if (resultPdf[13] == true) {
     escribirGermenes.push("Triconomas");
   }
-  if (resultPdf[16] == true) {
+  if (resultPdf[14] == true) {
     escribirGermenes.push("Citolisis");
   }
-  if (resultPdf[17] == true) {
+  if (resultPdf[15] == true) {
     escribirGermenes.push("Sugestivo de Herpes");
   }
-  if (resultPdf[18] == true) {
+  if (resultPdf[16] == true) {
     escribirGermenes.push("Sugestivo HPV");
   }
-  if (resultPdf[19] == true) {
+  if (resultPdf[17] == true) {
     escribirGermenes.push("Histocitos");
   }
-  if (resultPdf[20] == true) {
+  if (resultPdf[18] == true) {
     escribirGermenes.push("Exudado Leucocitorio");
   }
-  if (resultPdf[21] == true) {
+  if (resultPdf[19] == true) {
     escribirGermenes.push("Otros");
   }
 
@@ -158,75 +166,75 @@ function genPDF() {
   }
 
   //console.log(escribirGermenes);
-  fechaToma = resultPdf[35].split("T");
+  fechaToma = resultPdf[33].split("T");
   fechaToma = fechaToma[0];
 
-  fum = resultPdf[34].split("T");
+  fum = resultPdf[32].split("T");
   fum = fum[0];
 
   //SETEAR DIAGNOSTICO
 
-  if (resultPdf[25] == "Op1") {
+  if (resultPdf[23] == "Op1") {
     bethesda = "Negativo";
     nic = "---";
     oms = "Normal";
     papanicolau = "Clase I";
   }
-  if (resultPdf[25] == "Op2") {
+  if (resultPdf[23] == "Op2") {
     bethesda = "Negativo";
     nic = "---";
     oms = "Inflamatorio";
     papanicolau = "Clase II";
   }
-  if (resultPdf[25] == "Op3") {
+  if (resultPdf[23] == "Op3") {
     bethesda = "Atipia escamosa (ASCUS)";
     nic = "---";
     oms = "-----";
     papanicolau = "------";
   }
-  if (resultPdf[25] == "Op4") {
+  if (resultPdf[23] == "Op4") {
     bethesda = "Atipia Endocervical NO ESPECIFICADA";
     nic = "---";
     oms = "-----";
     papanicolau = "------";
   }
-  if (resultPdf[25] == "Op5") {
+  if (resultPdf[23] == "Op5") {
     bethesda = " Atipia Escamosa a favor de LIAG (ASC- H)";
     nic = "---";
     oms = "-----";
     papanicolau = "------";
   }
-  if (resultPdf[25] == "Op6") {
+  if (resultPdf[23] == "Op6") {
     bethesda = "LIE de bajo grado";
     nic = "I";
     oms = "Prob. Displasia inicial";
     papanicolau = "Clase III A";
   }
-  if (resultPdf[25] == "Op7") {
+  if (resultPdf[23] == "Op7") {
     bethesda = "LIE de alto grado";
     nic = "II";
     oms = "Prob. Displasia moderada";
     papanicolau = "Clase III B";
   }
-  if (resultPdf[25] == "Op8") {
+  if (resultPdf[23] == "Op8") {
     bethesda = "LIE de alto grado";
     nic = "---";
     oms = "Prob. Displasia severa";
     papanicolau = "Clase III C";
   }
-  if (resultPdf[25] == "Op9") {
+  if (resultPdf[23] == "Op9") {
     bethesda = "LIE de alto grado";
     nic = "III";
     oms = "Prob. Carcinoma insitu";
     papanicolau = "Clase IV";
   }
-  if (resultPdf[25] == "Op10") {
+  if (resultPdf[23] == "Op10") {
     bethesda = "Carcinoma VA";
     nic = "---";
     oms = "Prob. Ca. Escamo - celular invasor";
     papanicolau = "Clase VA";
   }
-  if (resultPdf[25] == "Op11") {
+  if (resultPdf[23] == "Op11") {
     bethesda = "Carcinoma VB";
     nic = "---";
     oms = "Prob. Adenocarcinoma invasor";
@@ -236,32 +244,32 @@ function genPDF() {
   //ESCRIBIR PDF
 
   const doc = new PDFDocument({ margin: 25 });
-  doc.pipe(fs.createWriteStream(resultPdf[0] + "_" + resultPdf[1] + ".pdf"));
+  doc.pipe(fs.createWriteStream(resultPdf[38] + "_" + resultPdf[40] + ".pdf"));
   doc
     .font("Times-Roman", 13)
     .moveDown()
-    .text("Nombre Completo: " + resultPdf[32], 30, 50)
-    .text("Edad: " + resultPdf[33], 350, 50)
+    .text("Nombre Completo: " + resultPdf[30], 30, 50)
+    .text("Edad: " + resultPdf[31], 350, 50)
     .moveDown()
     .text("F.U.M: " + fum, 30, 80)
-    .text("Cédula: " + resultPdf[0], 350, 80)
+    .text("Cédula: " + resultPdf[38], 350, 80)
     .moveDown()
     .text("Fecha toma: " + fechaToma, 30, 110)
-    .text("Teléfono: " + resultPdf[41], 350, 110)
+    .text("Teléfono: " + resultPdf[39], 350, 110)
     .moveDown()
-    .text("Solicitado por: " + resultPdf[39], 30, 140)
-    .text("N° Pedido: " + resultPdf[1], 350, 140)
+    .text("Solicitado por: " + resultPdf[37], 30, 140)
+    .text("N° Pedido: " + resultPdf[40], 350, 140)
     .moveDown()
     .moveDown()
     .text("------------ANTECEDENTES------------", 30, 170)
     .moveDown()
     .text(
       "N° Partos: " +
-        resultPdf[36] +
+        resultPdf[34] +
         " , N° Abortos: " +
-        resultPdf[37] +
+        resultPdf[35] +
         " , N° Cesareas: " +
-        resultPdf[38],
+        resultPdf[36],
       30,
       200
     )
@@ -271,7 +279,7 @@ function genPDF() {
     .text("La muestra es: ", 30, 260)
     .text(muestraPDF, 140, 260)
     .moveDown()
-    .text("Frotis: " + resultPdf[8], 30, 290)
+    .text("Frotis: " + resultPdf[6], 30, 290)
     .moveDown()
     .text("Gérmenes:", 30, 310)
     .moveDown()
@@ -281,11 +289,11 @@ function genPDF() {
     .moveDown()
     .text(
       "Endocervicales: " +
-        resultPdf[22] +
+        resultPdf[20] +
         ",  Metaplásticas: " +
-        resultPdf[23] +
+        resultPdf[21] +
         ", Endometriales: " +
-        resultPdf[24],
+        resultPdf[22],
       30,
       400
     )
@@ -307,18 +315,18 @@ function genPDF() {
     .moveDown()
     .text(
       "C. Parabasales: " +
-        resultPdf[26] +
+        resultPdf[24] +
         " ,  C. Intermedias" +
-        resultPdf[27] +
+        resultPdf[25] +
         " , C. Superficiales: " +
-        resultPdf[28],
+        resultPdf[26],
       30,
       540
     )
     .moveDown()
-    .text("Control: " + resultPdf[29], 30, 570)
+    .text("Control: " + resultPdf[27], 30, 570)
     .moveDown()
-    .text("Observaciones: " + resultPdf[30], 30, 600);
+    .text("Observaciones: " + resultPdf[28], 30, 600);
 
   doc.end();
 }

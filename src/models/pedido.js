@@ -6,6 +6,8 @@ const Pedido = new Schema({
   cedula: String,
   h_clinica: String,
   pedido: String,
+  nombre: String,
+  apellido: String,
   edad: String,
   medico: String,
   ubicacion: {
@@ -35,7 +37,6 @@ const Pedido = new Schema({
   inicio_sexo: String,
   embarazada: String,
   lactancia: String,
-  now_ninguno: String,
 
   destruccion_local: String,
   conizacon: String,
@@ -43,7 +44,6 @@ const Pedido = new Schema({
   radioterapia: String,
   hormonoterapia: String,
   otros: String,
-  some_ninguno: String,
 
   citologia: {
     Si: String,

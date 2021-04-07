@@ -21,32 +21,33 @@ function actualizar_tabla(par0, par1, par2, par3) {
   }
 }
 
-function pacientes_consulta() {
+function pedidos_consulta() {
   document.getElementById("botonesBusqueda").style.display = "none";
 
   //Recibir arreglo de establecimientos
-  let pacientesDB = [];
+  let pedidosDB = [];
   let nombresTabla = [];
   let apellidosTabla = [];
   let cedulaTabla = [];
-  let hclinicaTabla = [];
+  let pedidosTabla = [];
 
-  pacientesDB = JSON.parse(
-    ipcRenderer.sendSync("consulta-pacientes", "consulta-pacientes")
+  pedidosDB = JSON.parse(
+    ipcRenderer.sendSync("consulta-de-pedidos", "consulta-pedidos")
   );
-  console.log(pacientesDB);
-  for (var key in pacientesDB) {
-    nombresTabla.push(pacientesDB[key].nombres);
-    apellidosTabla.push(pacientesDB[key].apellidos);
-    cedulaTabla.push(pacientesDB[key].cedula);
-    hclinicaTabla.push(pacientesDB[key].h_clinica);
+  console.log(pedidosDB);
+
+  for (var key in pedidosDB) {
+    nombresTabla.push(pedidosDB[key].nombre);
+    apellidosTabla.push(pedidosDB[key].apellido);
+    cedulaTabla.push(pedidosDB[key].cedula);
+    pedidosTabla.push(pedidosDB[key].pedido);
   }
 
-  actualizar_tabla(nombresTabla, apellidosTabla, cedulaTabla, hclinicaTabla);
+  actualizar_tabla(nombresTabla, apellidosTabla, cedulaTabla, pedidosTabla);
 }
 
-function exitPacientes() {
-  ipcRenderer.send("regresar-pacientes", "regresar-pacientes");
+function exitPedidosConsulta() {
+  ipcRenderer.send("regresar-consultaPedidos", "regresar-consultaPedidos");
 }
 
 function buscarPacientes() {

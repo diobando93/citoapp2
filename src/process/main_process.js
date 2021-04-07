@@ -1,20 +1,16 @@
 //Invoca a todos los process
 const { BrowserWindow, ipcMain, app } = require("electron");
-const { recibir } = require("./pedido_process.js");
+const { recibir } = require("./pedido_process.js"); //pedidos llenar formulario
 const { consultar } = require("./resultado_process.js");
 const { pacientes } = require("./pacientes_process.js");
 const { doctores } = require("./doctores_process.js");
 const { estab } = require("./establecimientos_process.js");
 const { reports } = require("./informes_process.js");
 const { findPatient } = require("./pedidosconfirm_process.js");
+const { pedidos } = require("./consultaPedidos_process.js"); // consultar los pedidos y renderizar en tabla
 
 //Variables para creaci�n de ventanas
 let mainWindows;
-let pedidosWindow;
-let resultadosWindow;
-let doctoresWindow;
-let establecimientosWindow;
-let pacientesWindow;
 
 //falta crear una pantalla por cada icono del menu por ejemplo pantalla pedidos
 //como esta el process se confunde
@@ -28,6 +24,7 @@ app.on("ready", () => {
   app.whenReady().then(doctores);
   app.whenReady().then(estab);
   app.whenReady().then(findPatient);
+  app.whenReady().then(pedidos);
 
   //---------------OPCION PEDIDOS
   ipcMain.on("envio-datos-paciente", (e, args) => {
@@ -46,7 +43,12 @@ app.on("ready", () => {
     abriPantallaPedidos(args[0], args[1], args[2], args[3]);
   });
 
-  //---------------OPCION RESULTADOS
+  //---------------Consulta de PEDIDOS
+  ipcMain.on("consulta-pedidos", (e, args) => {
+    abrirPantalla(args[0], args[1], args[2]);
+  });
+
+  //---------------Consulta de PACIENTES
   ipcMain.on("consulta-datos-paciente", (e, args) => {
     abrirPantalla(args[0], args[1], args[2]);
   });

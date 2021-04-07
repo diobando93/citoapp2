@@ -21,16 +21,6 @@
       <div class="form-popup" id="myForm">
         <form class="form-container">
           <h1>Datos de Busqueda</h1>
-          <!-- Cédula -->
-          <label for="Cédula"><b>Cédula</b></label>
-          <input
-            type="text"
-            placeholder="Ingrese la Cédula"
-            name="cedula"
-            id="cedula"
-            required
-          />
-
           <!-- No de Pedido -->
           <label for="NoMuestra"><b>Número de Pedido</b></label>
           <input
@@ -262,6 +252,14 @@
                 <label for="abortos" id="abortos" name="abortos"></label>
               </div>
             </div>
+            <div class="row">
+              <div class="campoCorto">
+                <label for="fname">No de Cesáreas:</label>
+              </div>
+              <div class="campoCorto">
+                <label for="cesareas" id="cesareas" name="cesareas"></label>
+              </div>
+            </div>
           </div>
         </div>
         <!-- RESULTADOS ACTUALES -->
@@ -271,9 +269,15 @@
           </div>
           <div class="col-75">
             <select name="acuello" id="acuello">
-              <option value="Normal">1 - Normal</option>
-              <option value="Regular">2 - Regular</option>
-              <option value="Malo">3 - Malo</option>
+              <option value="Sano">1 - Sano</option>
+              <option value="Inflamatorio">2 - Inflamatorio</option>
+              <option value="Ulcerado">3 - Ulcerado</option>
+              <option value="Polipo">3 - Polipo</option>
+              <option value="Sospechoso de cancer">
+                3 - Sospechoso de cancer
+              </option>
+              <option value="Ausente">3 - Ausente</option>
+              <option value="Sangra facilmente">3 - Sangra facilmente</option>
             </select>
           </div>
           <div class="separator"></div>
@@ -504,33 +508,21 @@
 
               <label for="diagnostico">Diagnostico Bethesda: </label>
               <select name="diagnostico" id="diagnostico">
-                <option value="Negativo Normal">1 - Negativo Normal</option>
-                <option value="Negativo Inflamatorio">
-                  2 - Negativo Inflamatorio
-                </option>
-                <option value="Atipia Escamosa (ASCUS)">
-                  3 - Atipia Escamosa (ASCUS)
-                </option>
-                <option value="Atipia Endocervical (ASCUS)">
-                  4 - Atipia Endocervical (ASCUS)
-                </option>
-                <option value="Atipia Escamosa a favor de LIAG (ASC-H)">
+                <option value="Op1">1 - Negativo Normal</option>
+                <option value="Op2">2 - Negativo Inflamatorio</option>
+                <option value="Op3">3 - Atipia Escamosa (ASCUS)</option>
+                <option value="Op4">4 - Atipia Endocervical (ASCUS)</option>
+                <option value="Op5">
                   5 - Atipia Escamosa a favor de LIAG (ASC-H)
                 </option>
-                <option value="LIE de bajo grado I">
-                  6 - LIE de bajo grado I
-                </option>
-                <option value="LIE de alto grado II">
-                  7 - LIE de alto grado II
-                </option>
-                <option value="LIE de alto grado III">
-                  8 - LIE de alto grado III
-                </option>
-                <option value="LIE de alto grado - Carcinoma insitu">
+                <option value="Op6">6 - LIE de bajo grado I</option>
+                <option value="Op7">7 - LIE de alto grado II</option>
+                <option value="Op8">8 - LIE de alto grado III</option>
+                <option value="Op9">
                   9 - LIE de alto grado - Carcinoma insitu
                 </option>
-                <option value="Carcinoma VA">10 - Carcinoma VA</option>
-                <option value="Carcinoma VB">11 - Carcinoma VB</option>
+                <option value="Op10">10 - Carcinoma VA</option>
+                <option value="Op11">11 - Carcinoma VB</option>
               </select>
 
               <!--INDICE HORMONAL-->

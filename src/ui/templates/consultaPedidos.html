@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -24,13 +24,17 @@
       <div class="form-popup" id="myForm">
         <form class="form-container">
           <!-- Boton Buscar -->
-          <button type="button" class="btn" onclick="pacientes_consulta()">
+          <button type="button" class="btn" onclick="pedidos_consulta()">
             Buscar
           </button>
 
           <!-- Boton Regresar -->
           <div>
-            <button type="button" class="btn cancel" onclick="exitPacientes()">
+            <button
+              type="button"
+              class="btn cancel"
+              onclick="exitPedidosConsulta()"
+            >
               Regresar
             </button>
           </div>
@@ -43,7 +47,7 @@
         <!-- Titulo Establecimientos -->
         <div class="row">
           <div class="titulo-principal">
-            <h1>Consulta de Pacientes</h1>
+            <h1>Consulta de Pedidos</h1>
           </div>
         </div>
         <div class="row">
@@ -70,7 +74,7 @@
               <td style="background-color: #aaa">Nombre</td>
               <td style="background-color: #aaa">Apellido</td>
               <td style="background-color: #aaa">Cédula</td>
-              <td style="background-color: #aaa">Histora Clínica</td>
+              <td style="background-color: #aaa">Número de Pedido</td>
             </tr>
           </table>
         </div>
@@ -83,7 +87,7 @@
             id="btnRegresar"
             class="btn"
             value="Regresar"
-            onclick="exitPacientes()"
+            onclick="exitPedidosConsulta()"
           />
         </div>
 

@@ -1,4 +1,5 @@
 const electron = require("electron");
+const { info } = require("pdfkit");
 const { ipcRenderer } = electron;
 const cedula = document.getElementById("cedula");
 const pedido = document.getElementById("pedido");
@@ -18,6 +19,7 @@ let fechaInforme = document.getElementById("fechaInforme");
 let gestaciones = document.getElementById("gestaciones");
 let partos = document.getElementById("partos");
 let abortos = document.getElementById("abortos");
+let cesareas = document.getElementById("cesareas");
 let telefono = "";
 
 const acuello = document.getElementById("acuello");
@@ -56,9 +58,15 @@ const reobservaciones = document.getElementById("reobservaciones");
 let pacienteRetrieved = [];
 let pedidoRetrieved = [];
 let resultadosRetrived = [];
+let resultadosBack = [];
+let infoBack = [];
 
 let datosResultado = [];
 let fechaMuestraRender = "";
+cedulaPDF = "";
+telefonoPDF = "";
+pedidoPDF = "";
+let diagnosticoBack = "";
 
 function consulta_render() {
   ipcRenderer.on("response", (e, args) => {
@@ -71,12 +79,13 @@ function retrive() {
   let valPedido = true;
   let valPaciente = true;
   let valResultado = true;
-  datosResultado = [];
-  console.log(cedula.value);
+  let valFechas = true;
+  //datosResultado = [];
+  //console.log(cedula.value);
   console.log(pedido.value);
-  datosResultado.push(cedula.value);
-  datosResultado.push(pedido.value);
-  ipcRenderer.send("consulta", datosResultado);
+  //datosResultado.push(cedula.value);
+  //datosResultado.push(pedido.value);
+  ipcRenderer.send("consulta", pedido.value);
   ipcRenderer.on("pedidoRetrieved", (e, args) => {
     pedidoRetrieved = JSON.parse(args);
     if (pedidoRetrieved.length == 0) {
@@ -85,6 +94,7 @@ function retrive() {
       console.log("no existe pedido no llenar el formulario");
     } else {
       console.log(pedidoRetrieved);
+      cedulaPDF = pedidoRetrieved[0].cedula;
       edadPDF = pedidoRetrieved[0].edad;
       fumPDF = pedidoRetrieved[0].fecha_ult_mestruacion;
       console.log("day");
@@ -94,7 +104,8 @@ function retrive() {
       abortosPDF = pedidoRetrieved[0].num_abortos;
       cesareasPDF = pedidoRetrieved[0].num_cesareas;
       medicoPDF = pedidoRetrieved[0].medico;
-      telefono = pedidoRetrieved[0].telefono;
+      telefonoPDF = pedidoRetrieved[0].telefono;
+      pedidoPDF = pedidoRetrieved[0].pedido;
       console.log(telefono);
     }
     //datosResultado.push(args[])
@@ -113,6 +124,49 @@ function retrive() {
     }
   });
 
+  ipcRenderer.on("resultadoBack", (e, args) => {
+    console.log("entro back");
+    resultadosBack = JSON.parse(args);
+    console.log(JSON.parse(args));
+    //if (resultadosBack.length == 0) {
+    //valFechas = true;
+    //} else {
+    let fechas = [];
+    let calculo = [];
+    let fechas1 = [];
+    let diag = "";
+    let hoy = new Date();
+    for (var key in resultadosBack) {
+      fechas.push(resultadosBack[key].fecha);
+      fechaback = new Date(resultadosBack[key].fecha);
+      var aux1 = hoy.getFullYear() - fechaback.getFullYear();
+      var aux2 = hoy.getMonth() - fechaback.getMonth();
+      if (aux2 < 0 || (aux2 === 0 && hoy.getDate() < fechaback.getDate())) {
+        aux1--;
+      }
+      aux1 = aux1.toString();
+      aux2 = aux2.toString();
+      var x = aux1 + "." + aux2;
+      console.log(x);
+      calculo.push(x);
+    }
+    console.log(calculo);
+    for (var key in calculo) {
+      fechas1.push(parseFloat(calculo[key]));
+    }
+    console.log(fechas1);
+    var min = Math.min(...fechas1);
+    console.log(min);
+    console.log(fechas1.indexOf(min));
+    console.log(resultadosBack[fechas1.indexOf(min)]);
+    infoBack = resultadosBack[fechas1.indexOf(min)];
+    console.log(infoBack.result_toma.diagnostico);
+    valFechas = true;
+    fechaInforme.innerHTML = infoBack.fecha;
+    diag = diagnosticoB(infoBack.result_toma.diagnostico);
+    udiagnostico.innerHTML = diag;
+  });
+
   ipcRenderer.on("resultadoRetrived", (e, args) => {
     resultadosRetrived = JSON.parse(args);
     //let comprobar = false;
@@ -125,10 +179,14 @@ function retrive() {
       console.log("el resultado ya existe no pasar");
       console.log(resultadosRetrived);
     }
-
-    if (valPedido == true && valPaciente == true && valResultado == false) {
+    if (
+      valPedido == true &&
+      valPaciente == true &&
+      valResultado == false &&
+      valFechas == true
+    ) {
+      console.log(infoBack);
       document.getElementById("datosBusqueda").style.display = "none";
-
       nombre.innerHTML =
         pacienteRetrieved[0].nombres + " " + pacienteRetrieved[0].apellidos;
       cedula1.innerHTML = pacienteRetrieved[0].cedula;
@@ -143,14 +201,14 @@ function retrive() {
       provincia.innerHTML = pedidoRetrieved[0].ubicacion.provincia;
       canton.innerHTML = pedidoRetrieved[0].ubicacion.canton;
       parroquia.innerHTML = pedidoRetrieved[0].ubicacion.parroquia;
-      udiagnostico.innerHTML = "preguntar dato 1";
-      fechaInforme.innerHTML = "preguntar si es el actual 3";
+
       gestaciones.innerHTML =
         parseInt(pedidoRetrieved[0].num_partos) +
         parseInt(pedidoRetrieved[0].num_cesareas) +
         parseInt(pedidoRetrieved[0].num_abortos);
       partos.innerHTML = pedidoRetrieved[0].num_partos;
       abortos.innerHTML = pedidoRetrieved[0].num_abortos;
+      cesareas.innerHTML = pedidoRetrieved[0].num_cesareas;
     } else if (valPedido == false) {
       alert("Numero de pedido incorrecto");
       ipcRenderer.send("regresar-resultados", "regresar-resultados");
@@ -161,9 +219,9 @@ function retrive() {
       alert("El resultado ya esta registrado");
       ipcRenderer.send("regresar-resultados", "regresar-resultados");
     }
-
-    // validar verificando si el objeto esta vacio o no
   });
+
+  // validar verificando si el objeto esta vacio o no
 }
 
 function enviaDatos() {
@@ -205,13 +263,105 @@ function enviaDatos() {
   datosResultado.push(abortosPDF);
   datosResultado.push(cesareasPDF);
   datosResultado.push(medicoPDF);
-  datosResultado.push(cedula1);
-  datosResultado.push(telefono);
+  datosResultado.push(cedulaPDF);
+  datosResultado.push(telefonoPDF);
+  datosResultado.push(pedidoPDF);
   console.log(datosResultado);
   ipcRenderer.send("datosResultado", datosResultado);
   //ipcRenderer.send("regresar-resultados", "regresar-resultados");
 }
 
+function diagnosticoB(opcion) {
+  if (opcion == "Op1") {
+    diagnosticoBack = "Bethesda -- Negativo";
+    /*
+    nic = "---";
+    oms = "Normal";
+    papanicolau = "Clase I";
+    */
+  }
+  if (opcion == "Op2") {
+    diagnosticoBack = "Betheda -- Negativo";
+    /*
+    nic = "---";
+    oms = "Inflamatorio";
+    papanicolau = "Clase II";
+    */
+  }
+  if (opcion == "Op3") {
+    diagnosticoBack = "Atipia escamosa (ASCUS)";
+    /*
+    nic = "---";
+    oms = "-----";
+    papanicolau = "------";
+    */
+  }
+  if (opcion == "Op4") {
+    diagnosticoBack = "Atipia Endocervical NO ESPECIFICADA";
+    /*
+    nic = "---";
+    oms = "-----";
+    papanicolau = "------";
+    */
+  }
+  if (opcion == "Op5") {
+    diagnosticoBack = " Atipia Escamosa a favor de LIAG (ASC- H)";
+    /*
+    nic = "---";
+    oms = "-----";
+    papanicolau = "------";
+    */
+  }
+  if (opcion == "Op6") {
+    diagnosticoBack = "LIE de bajo grado";
+    /*
+    nic = "I";
+    oms = "Prob. Displasia inicial";
+    papanicolau = "Clase III A";
+    */
+  }
+  if (opcion == "Op7") {
+    diagnosticoBack = "LIE de alto grado";
+    /*
+    nic = "II";
+    oms = "Prob. Displasia moderada";
+    papanicolau = "Clase III B";
+    */
+  }
+  if (opcion == "Op8") {
+    diagnosticoBack = "LIE de alto grado";
+    /*
+    nic = "---";
+    oms = "Prob. Displasia severa";
+    papanicolau = "Clase III C";
+    */
+  }
+  if (opcion == "Op9") {
+    diagnosticoBack = "LIE de alto grado";
+    /*
+    nic = "III";
+    oms = "Prob. Carcinoma insitu";
+    papanicolau = "Clase IV";
+    */
+  }
+  if (opcion == "Op10") {
+    diagnosticoBack = "Carcinoma VA";
+    /*
+    nic = "---";
+    oms = "Prob. Ca. Escamo - celular invasor";
+    papanicolau = "Clase VA";
+    */
+  }
+  if (opcion == "Op11") {
+    diagnosticoBack = "Carcinoma VB";
+    /*
+    nic = "---";
+    oms = "Prob. Adenocarcinoma invasor";
+    papanicolau = "Clase VB";
+    */
+  }
+  return diagnosticoBack;
+}
 function cancelar() {
   ipcRenderer.send("regresar-resultados", "regresar-resultados");
 }

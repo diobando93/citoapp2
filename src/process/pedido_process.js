@@ -129,6 +129,8 @@ function recibir() {
         h_clinica: hClinica,
         cedula: args[0],
         pedido: args[39].replace(/['"]+/g, ""),
+        nombre: args[3],
+        apellido: args[4],
         edad: args[5],
         medico: args[40],
         establecimiento: args[2],
