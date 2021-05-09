@@ -111,6 +111,7 @@ function consultar() {
 // bug2: crear carpeta general o por fecha?
 function genPDF() {
   escribirGermenes = [];
+  fechaActual = new Date().toISOString().slice(0, 10);
 
   if (resultPdf[4] == true) {
     muestraPDF = "Adecuada";
@@ -247,21 +248,35 @@ function genPDF() {
   doc.pipe(fs.createWriteStream(resultPdf[38] + "_" + resultPdf[40] + ".pdf"));
   doc
     .font("Times-Roman", 13)
+    .image("images/Logo.jpeg", 15, 15, { width: 100 })
+    .text("Fecha de informe: " + fechaActual, 450, 30)
+    .rect(15, 95, 575, 20)
+    .fillAndStroke("#040887", "#000")
+    .fill("#ffffff")
+    .stroke()
+    .fontSize(16)
+    .text("RESULTADO DE EXAMEN CITOLÓGICO", 155, 100, { lineBreak: false })
+    .fill("#000")
+    .stroke()
+    .fontSize(13)
     .moveDown()
-    .text("Nombre Completo: " + resultPdf[30], 30, 50)
-    .text("Edad: " + resultPdf[31], 350, 50)
+    .text("Nombre Completo: " + resultPdf[30], 30, 125)
+    .text("Edad: " + resultPdf[31], 350, 125)
     .moveDown()
-    .text("F.U.M: " + fum, 30, 80)
-    .text("Cédula: " + resultPdf[38], 350, 80)
+    .text("F.U.M: " + fum, 30, 150)
+    .text("Cédula: " + resultPdf[38], 350, 150)
     .moveDown()
-    .text("Fecha toma: " + fechaToma, 30, 110)
-    .text("Teléfono: " + resultPdf[39], 350, 110)
+    .text("Toma de la muestra: " + fechaToma, 30, 180)
+    .text("Teléfono: " + resultPdf[39], 350, 180)
     .moveDown()
-    .text("Solicitado por: " + resultPdf[37], 30, 140)
-    .text("N° Pedido: " + resultPdf[40], 350, 140)
+    .text("Solicitado por: " + resultPdf[37], 30, 205)
+    .text("N° Pedido: " + resultPdf[40], 350, 205)
     .moveDown()
+    .moveTo(30, 225)
+    .lineTo(550, 225)
+    .stroke()
     .moveDown()
-    .text("------------ANTECEDENTES------------", 30, 170)
+    .text("ANTECEDENTES", 30, 235)
     .moveDown()
     .text(
       "N° Partos: " +
@@ -271,21 +286,28 @@ function genPDF() {
         " , N° Cesareas: " +
         resultPdf[36],
       30,
-      200
+      265
     )
     .moveDown()
-    .text("-----------VALORACIÓN DE LA MUESTRA------------", 30, 230)
+    .moveTo(30, 285)
+    .lineTo(550, 285)
+    .stroke()
+    .text("VALORACIÓN DE LA MUESTRA", 30, 295)
     .moveDown()
-    .text("La muestra es: ", 30, 260)
-    .text(muestraPDF, 140, 260)
+    .text("Muestra: ", 30, 325)
+    .text(muestraPDF, 100, 325)
     .moveDown()
-    .text("Frotis: " + resultPdf[6], 30, 290)
+    .text("Frotis: ", 30, 350)
+    .text(resultPdf[6], 100, 350)
     .moveDown()
-    .text("Gérmenes:", 30, 310)
+    .text("Gérmenes: ", 30, 375)
     .moveDown()
-    .text(escribirGermenes, 30, 330)
+    .text(escribirGermenes, 100, 375)
     .moveDown()
-    .text("------------CÉLULAS------------", 30, 370)
+    .moveTo(30, 425)
+    .lineTo(550, 425)
+    .stroke()
+    .text("CÉLULAS", 30, 435)
     .moveDown()
     .text(
       "Endocervicales: " +
@@ -295,23 +317,29 @@ function genPDF() {
         ", Endometriales: " +
         resultPdf[22],
       30,
-      400
+      465
     )
     .moveDown()
-    .text("------------RESULTADO------------", 30, 430)
+    .moveTo(30, 485)
+    .lineTo(550, 485)
+    .stroke()
+    .text("RESULTADO", 30, 495)
     .moveDown()
-    .text("BETHESDA", 30, 460)
-    .text("|NIC", 270, 460)
-    .text("|OMS-DHP", 300, 460)
-    .text("|PAPANICOLAU", 485, 460)
+    .text("BETHESDA", 30, 525)
+    .text("|NIC", 270, 525)
+    .text("|OMS-DHP", 300, 525)
+    .text("|PAPANICOLAU", 485, 525)
     .moveDown()
-    .text(bethesda, 30, 490)
-    .text("| " + nic, 270, 490)
-    .text("|" + oms, 300, 490)
-    .text("|" + papanicolau, 485, 490)
-    //.text(resultPdf[25], 50, 490)
+    .text(bethesda, 30, 555)
+    .text("| " + nic, 270, 555)
+    .text("|" + oms, 300, 555)
+    .text("|" + papanicolau, 485, 555)
+    //.text(resultPdf[25], 50, 555)
     .moveDown()
-    .text("------------Indice Hormonal------------", 30, 510)
+    .moveTo(30, 575)
+    .lineTo(550, 575)
+    .stroke()
+    .text("ÍNDICE HORMONAL", 30, 585)
     .moveDown()
     .text(
       "C. Parabasales: " +
@@ -321,12 +349,12 @@ function genPDF() {
         " , C. Superficiales: " +
         resultPdf[26],
       30,
-      540
+      605
     )
     .moveDown()
-    .text("Control: " + resultPdf[27], 30, 570)
+    .text("Control: " + resultPdf[27], 30, 635)
     .moveDown()
-    .text("Observaciones: " + resultPdf[28], 30, 600);
+    .text("Observaciones: " + resultPdf[28], 30, 665);
 
   doc.end();
 }

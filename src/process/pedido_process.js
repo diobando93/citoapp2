@@ -294,13 +294,18 @@ async function pedidogen() {
     let counter = pedido_buscar[0];
     let counter1 = counter.pedido_counter;
     counter1 = counter1.split("-");
+    /*
     mesBd = counter1[1];
     diaBd = counter1[2];
     mesNow = fecha1[1];
     diaNow = fecha1[2];
     mes = Math.abs(mesBd - mesNow);
     dia = Math.abs(diaBd - diaNow);
-    if (mes == 0 && dia == 0) {
+    */
+    anioBD = counter1[0];
+    anioNow = fecha[0];
+    anio = Math.abs(anioNow - anioBD);
+    if (anio == 0) {
       fechacompro = '"' + fecha;
       let counter2 = parseInt(counter1[3]) + 1;
       counter2 = counter2.toString();

@@ -160,6 +160,8 @@ function retrive() {
     console.log(fechas1.indexOf(min));
     console.log(resultadosBack[fechas1.indexOf(min)]);
     infoBack = resultadosBack[fechas1.indexOf(min)];
+    // esto pasa solo en caso de que devuelva un resultado
+    // validar
     console.log(infoBack.result_toma.diagnostico);
     valFechas = true;
     fechaInforme.innerHTML = infoBack.fecha;
