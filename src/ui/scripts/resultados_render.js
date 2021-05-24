@@ -87,9 +87,10 @@ function retrive() {
   //datosResultado.push(pedido.value);
   ipcRenderer.send("consulta", pedido.value);
   ipcRenderer.on("pedidoRetrieved", (e, args) => {
+    //
     pedidoRetrieved = JSON.parse(args);
     if (pedidoRetrieved.length == 0) {
-      //alert("No existe el paciente");
+      alert("No existe el pedido");
       valPedido = false;
       console.log("no existe pedido no llenar el formulario");
     } else {

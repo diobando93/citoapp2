@@ -25,6 +25,7 @@ function consultar() {
     const pedido = await Pedido.find({ pedido: args });
     //console.log(pedido);
     let cedula = pedido[0].cedula;
+
     const paciente = await Patient.find({ cedula: cedula });
     //console.log(cedula);
     const resultado = await Results.find({ cedula: cedula, pedido: args });

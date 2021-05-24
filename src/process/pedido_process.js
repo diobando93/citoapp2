@@ -96,8 +96,8 @@ function recibir() {
     array2 = array[0].split('"');
 
     //console.log(array2[1].replace(/['"]+/g, ""));
-    //envia0 = validaciones.verificarVacio(datosVacios);
-    //envia1 = validaciones.verificarNumero(datosNumeros);
+    envia0 = validaciones.verificarVacio(datosVacios);
+    envia1 = validaciones.verificarNumero(datosNumeros);
 
     // bug2: popup para preguntar si continuar en la pantalla de pedidos, entonces se debe resetear los campos
     // si no se desea continuar regresar al main menu
