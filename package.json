@@ -19,7 +19,7 @@
   "homepage": "https://github.com/diobando93/citoapp2#readme",
   "dependencies": {
     "ecuador-postal-codes": "0.0.6",
-    "electron": "^8.2.1",
+    "electron": "^18.3.7",
     "electron-pdf-window": "^1.0.12",
     "mongoose": "^5.9.7",
     "pdfkit": "^0.11.0"
